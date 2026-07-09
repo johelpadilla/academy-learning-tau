@@ -13,9 +13,25 @@
 
 After the first build (2–5 min), the app URL looks like:
 
-`https://systemic-tau-platform-<user>.streamlit.app`
+`https://learningtau.streamlit.app` (or whatever subdomain you chose)
 
-You can rename the subdomain in **App settings → General**.
+### Canonical public URL (Academy)
+
+**Target:** [`https://academylearningtau.streamlit.app`](https://academylearningtau.streamlit.app)
+
+To set or rename the subdomain (only you can do this — OAuth required):
+
+1. Open [share.streamlit.io](https://share.streamlit.io) while logged in with GitHub `johelpadilla`.
+2. Open the app linked to `johelpadilla/systemic-tau-platform` → `main` → `app/Home.py`.
+3. ⋮ menu (or **Manage app**) → **Settings** → tab **General**.
+4. **App URL** → set subdomain to: `academylearningtau`
+5. **Save**.
+
+Result: `https://academylearningtau.streamlit.app`
+
+Rules: 6–63 characters, unique on Streamlit Cloud. If taken, try `academy-learning-tau` or `academylearningtau-upr`.
+
+If you still have the old app as `learningtau`, either **rename** that one (preferred) or create a new deploy with the subdomain above and delete the old app to avoid double billing/quota.
 
 ## Manual from the dashboard
 
