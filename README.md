@@ -27,13 +27,13 @@ Abrir la URL local que indique Streamlit (típicamente `http://localhost:8501`).
 | Campo | Valor |
 |-------|--------|
 | **Web pública** | https://academylearningtau.streamlit.app |
-| **Repo (marca Academy)** | https://github.com/johelpadilla/academylearningtau |
+| **Repo (marca Academy)** | https://github.com/johelpadilla/academy-learning-tau |
 | **Repo espejo** | https://github.com/johelpadilla/systemic-tau-platform |
 | **Branch** | `main` |
 | **Main file** | `app/streamlit_app.py` (también existe `app/Home.py`) |
 
 Deploy directo (App URL = `academylearningtau`):  
-https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/streamlit_app.py
+https://share.streamlit.io/deploy?repository=johelpadilla/academy-learning-tau&branch=main&mainModule=app/streamlit_app.py
 
 Si Cloud ya tiene otra versión en ese subdominio: **Delete** esa app y redespliega con el enlace de arriba (el subdominio se reutiliza al instante).  
 Guía: [`docs/DEPLOY.md`](docs/DEPLOY.md).
