@@ -7,7 +7,7 @@ import streamlit as st
 TRANSLATIONS = {
     "es": {
         "footer_text": "<strong>Systemic Tau Platform</strong> · v1.0 · Alineado con <em>systemictau</em>, <em>nested-recd</em> y CCTP/SDDB",
-        "footer_disclaimer": "<strong>Descargo de responsabilidad:</strong> Esta plataforma es estrictamente para fines educativos y de investigación. No está destinada para uso clínico o diagnóstico médico. <br/><strong>Contacto:</strong> Johel Padilla-Villanueva (johel.padilla@upr.edu)",
+        "footer_disclaimer": "<strong>Descargo de responsabilidad:</strong> Esta plataforma es estrictamente para fines educativos y de investigación. No está destinada para uso clínico o diagnóstico médico. <br/><strong>Contacto:</strong> Johel Padilla-Villanueva (joel.padilla2@upr.edu)",
 
         "sidebar_in_this_section": "### En esta sección",
         "sidebar_lang": "🌍 Idioma / Language",
@@ -160,7 +160,7 @@ TRANSLATIONS = {
 },
     "en": {
         "footer_text": "<strong>Systemic Tau Platform</strong> · v1.0 · Aligned with <em>systemictau</em>, <em>nested-recd</em> and CCTP/SDDB",
-        "footer_disclaimer": "<strong>Disclaimer:</strong> This platform is strictly for educational and research purposes. It is not intended for clinical use or medical diagnosis. <br/><strong>Contact:</strong> Johel Padilla-Villanueva (johel.padilla@upr.edu)",
+        "footer_disclaimer": "<strong>Disclaimer:</strong> This platform is strictly for educational and research purposes. It is not intended for clinical use or medical diagnosis. <br/><strong>Contact:</strong> Johel Padilla-Villanueva (joel.padilla2@upr.edu)",
 
         "sidebar_in_this_section": "### In this section",
         "sidebar_lang": "🌍 Language",
@@ -313,7 +313,7 @@ TRANSLATIONS = {
 },
     "fr": {
         "footer_text": "<strong>Systemic Tau Platform</strong> · v1.0 · Aligné avec <em>systemictau</em>, <em>nested-recd</em> et CCTP/SDDB",
-        "footer_disclaimer": "<strong>Avis de non-responsabilité :</strong> Cette plateforme est strictement à des fins éducatives et de recherche. Elle n'est pas destinée à un usage clinique ou à un diagnostic médical. <br/><strong>Contact :</strong> Johel Padilla-Villanueva (johel.padilla@upr.edu)",
+        "footer_disclaimer": "<strong>Avis de non-responsabilité :</strong> Cette plateforme est strictement à des fins éducatives et de recherche. Elle n'est pas destinée à un usage clinique ou à un diagnostic médical. <br/><strong>Contact :</strong> Johel Padilla-Villanueva (joel.padilla2@upr.edu)",
 
         "sidebar_in_this_section": "### Dans cette section",
         "sidebar_lang": "🌍 Langue",

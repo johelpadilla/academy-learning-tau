@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-  { name = "Johel Padilla-Villanueva", email = "johel.padilla@upr.edu" },
+  { name = "Johel Padilla-Villanueva", email = "joel.padilla2@upr.edu" },
 ]
 keywords = [
   "systemic-tau",

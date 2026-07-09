@@ -34,19 +34,30 @@ class AnalysisResult:
 
 
 def _prepare_X(X: np.ndarray, zscore: bool) -> np.ndarray:
+    """Normalize X for analysis; tolerate NaN/inf and constant columns."""
     X = np.asarray(X, dtype=float)
     if X.ndim == 1:
-        logging.info("El array de entrada es 1D. Expandiendo a 2D (proxy bivariado con primera derivada absoluta).")
+        logging.info(
+            "El array de entrada es 1D. Expandiendo a 2D "
+            "(proxy bivariado con primera derivada absoluta)."
+        )
         dx = np.abs(np.diff(X, prepend=X[0]))
         X = np.column_stack([X, dx])
-    if zscore:
-        out = np.zeros_like(X)
-        for j in range(X.shape[1]):
-            col = X[:, j]
-            s = np.nanstd(col)
-            out[:, j] = (col - np.nanmean(col)) / s if s > 1e-12 else 0.0
-        return out
-    return X
+    X = np.where(np.isfinite(X), X, np.nan)
+    if not zscore:
+        return X
+    out = np.zeros_like(X, dtype=float)
+    for j in range(X.shape[1]):
+        col = X[:, j]
+        if not np.any(np.isfinite(col)):
+            continue
+        s = float(np.nanstd(col))
+        if not np.isfinite(s) or s < 1e-12:
+            continue
+        mu = float(np.nanmean(col))
+        z = (col - mu) / s
+        out[:, j] = np.where(np.isfinite(z), z, 0.0)
+    return out
 
 
 def run_analysis(X: np.ndarray, params: AnalysisParams | None = None) -> AnalysisResult:

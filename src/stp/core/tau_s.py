@@ -15,10 +15,15 @@ from numba import jit
 
 def _zscore(x: np.ndarray) -> np.ndarray:
     x = np.asarray(x, dtype=float)
-    s = np.nanstd(x)
-    if s < 1e-12:
-        return np.zeros_like(x)
-    return (x - np.nanmean(x)) / s
+    # All-NaN / empty → zeros (avoid numpy RuntimeWarnings on empty slices).
+    if x.size == 0 or not np.any(np.isfinite(x)):
+        return np.zeros_like(x, dtype=float)
+    s = float(np.nanstd(x))
+    if not np.isfinite(s) or s < 1e-12:
+        return np.zeros_like(x, dtype=float)
+    mu = float(np.nanmean(x))
+    out = (x - mu) / s
+    return np.where(np.isfinite(out), out, 0.0)
 
 
 @jit(nopython=True)

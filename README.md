@@ -17,10 +17,26 @@ pip install -r requirements.txt
 pip install -e .
 
 # Lanzar la app
-PYTHONPATH=src streamlit run app/Home.py
+streamlit run app/Home.py
 ```
 
 Abrir la URL local que indique Streamlit (típicamente `http://localhost:8501`).
+
+## Deploy (Streamlit Community Cloud)
+
+| Campo | Valor |
+|-------|--------|
+| **Repo** | `johelpadilla/systemic-tau-platform` |
+| **Branch** | `main` |
+| **Main file** | `app/Home.py` |
+| **Python** | 3.11 |
+
+Enlace directo de deploy:  
+https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py
+
+Guía completa: [`docs/DEPLOY.md`](docs/DEPLOY.md).
+
+**Contacto:** joel.padilla2@upr.edu
 
 ## Qué incluye v1.0
 

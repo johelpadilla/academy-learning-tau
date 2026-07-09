@@ -9,10 +9,16 @@ font = "sans serif"
 [server]
 headless = true
 fileWatcherType = "none"
-maxUploadSize = 200
+# Public Cloud demo: keep uploads modest (anti-abuse / memory).
+maxUploadSize = 15
+enableXsrfProtection = true
 
 [browser]
 gatherUsageStats = false
 
 [client]
 toolbarMode = "minimal"
+showErrorDetails = false
+
+[runner]
+fastReruns = true

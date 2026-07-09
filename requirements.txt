@@ -1,4 +1,6 @@
-# Systemic Tau Platform v1.0 — core runtime
+# Streamlit Community Cloud + local runtime
+# Install order: third-party deps first, then this repo's package (import stp).
+
 streamlit>=1.32
 streamlit-extras>=0.4
 plotly>=5.18
@@ -17,10 +19,5 @@ Pillow>=10.0
 openpyxl>=3.1
 statsmodels>=0.14
 
-# Optional scientific stack (install when available)
-# systemictau>=4.5
-# nested-recd>=0.1
-# ripser>=0.6
-# persim>=0.3
-# wfdb>=4.1
-# streamlit-aggrid>=0.3
+# Local package (src/stp) — required on Streamlit Cloud
+-e .

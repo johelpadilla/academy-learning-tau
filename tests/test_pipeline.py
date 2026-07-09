@@ -34,6 +34,18 @@ def test_pipeline_fast_runs():
     assert "delta_tau_s" in result.metrics
 
 
+def test_pipeline_tolerates_nan_and_constant_columns():
+    """Dirty CSVs (NaNs, constant cols) must not crash the Lab pipeline."""
+    rng = np.random.default_rng(11)
+    X = rng.normal(size=(300, 3))
+    X[20:40, 0] = np.nan
+    X[:, 2] = 1.0
+    params = AnalysisParams(window=31, stride=3, n_surrogates=0, mode="fast")
+    result = run_analysis(X, params)
+    assert len(result.tau_s) > 0
+    assert np.isfinite(result.metrics["delta_tau_s"])
+
+
 def test_repro_hash_stable():
     X = np.random.default_rng(0).normal(size=(100, 2))
     p = {"window": 13, "seed": 1}
