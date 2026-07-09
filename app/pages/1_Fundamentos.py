@@ -11,23 +11,22 @@ import streamlit as st
 
 from components.hero import inject_css
 from stp.education.content_loader import read_markdown
+from locales import t
 
-st.set_page_config(page_title="Fundamentos | STP", page_icon="🌀", layout="wide")
+st.set_page_config(page_title=f"{t('fund_title')} | STP", page_icon="🌀", layout="wide")
 inject_css()
 
-st.title("Fundamentos teóricos")
-st.caption("Definiciones precisas, límites de las EWS clásicas y ontología del RECD.")
+st.title(t("fund_title"))
+st.caption(t("fund_caption"))
 
-tabs = st.tabs(
-    [
-        "Tau Sistémica",
-        "Límites EWS",
-        "RECD Φ₁–Φ₃",
-        "excess3",
-        "CSD",
-        "Filosofía",
-    ]
-)
+tabs = st.tabs([
+    t("fund_tab1"),
+    t("fund_tab2"),
+    t("fund_tab3"),
+    t("fund_tab4"),
+    t("fund_tab5"),
+    t("fund_tab6")
+])
 
 files = [
     ("fundamentos", "01_tau.md"),
@@ -42,14 +41,12 @@ for tab, parts in zip(tabs, files):
     with tab:
         st.markdown(read_markdown(*parts))
 
-st.sidebar.markdown("### En esta sección")
-st.sidebar.markdown(
-    """
-    1. ¿Qué es Tau Sistémica?
-    2. Problema de las EWS clásicas
-    3. RECD y niveles anidados
-    4. excess3
-    5. Transiciones críticas / CSD
-    6. Polo y tiempo extramental
-    """
-)
+st.sidebar.markdown(t("sidebar_in_this_section"))
+st.sidebar.markdown(f"""
+{t("fund_sb1")}
+{t("fund_sb2")}
+{t("fund_sb3")}
+{t("fund_sb4")}
+{t("fund_sb5")}
+{t("fund_sb6")}
+""")

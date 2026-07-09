@@ -28,6 +28,7 @@ from stp.visualization.series_plots import (
     plot_series,
     plot_tau,
 )
+from locales import t
 
 @st.cache_data(show_spinner=False)
 def generate_data(source: str, kind: str, T: int, seed: int, extra: dict) -> np.ndarray:
@@ -49,17 +50,17 @@ def cached_run_analysis(X_array: np.ndarray, params_json: str):
     p = AnalysisParams(**json.loads(params_json))
     return run_analysis(X_array, p)
 
-st.set_page_config(page_title="Laboratorio | STP", page_icon="🌀", layout="wide")
+st.set_page_config(page_title=f"{t('lab_page_title')} | STP", page_icon="🌀", layout="wide")
 inject_css()
 
-st.title("Laboratorio interactivo")
-st.caption("Carga → parámetros → análisis (τ_s + RECD + EWS + surrogates) → export con hash.")
+st.title(t("lab_page_title"))
+st.caption(t("lab_caption"))
 
 # ---- Step 1: data ----
-st.header("1. Datos")
+st.header(t("lab_s1"))
 source = st.radio(
-    "Origen",
-    ["Sintético pedagógico", "Subir CSV", "Cardio-like demo"],
+    t("lab_origin"),
+    [t("lab_o1"), t("lab_o2"), t("lab_o3")],
     horizontal=True,
 )
 
@@ -67,57 +68,57 @@ X = None
 domain = "synthetic"
 extra_params = {}
 
-if source == "Sintético pedagógico":
-    kind = st.selectbox("Tipo", [
+if source == t("lab_o1"):
+    kind = st.selectbox(t("lab_type"), [
         "Logísticos acoplados (switch)", 
         "AR ruido",
         "Simulador Reloj Extramental (Feigenbaum)",
         "Controlador Antisincrónico (Mosquito)"
     ])
-    T = st.slider("Longitud T", 300, 3000, 800, 100)
+    T = st.slider(t("lab_len"), 300, 3000, 800, 100)
     
     if kind == "Simulador Reloj Extramental (Feigenbaum)":
-        extra_params["r"] = st.slider("Constante r (Feigenbaum proxy)", 3.0, 4.0, 3.8, 0.05)
+        extra_params["r"] = st.slider(t("lab_r"), 3.0, 4.0, 3.8, 0.05)
     elif kind == "Controlador Antisincrónico (Mosquito)":
-        extra_params["fum_at"] = st.slider("Fumigación en t=", int(T*0.2), int(T*0.8), int(T*0.6), 50)
+        extra_params["fum_at"] = st.slider(t("lab_fum"), int(T*0.2), int(T*0.8), int(T*0.6), 50)
         
-    X = generate_data(source, kind, T, 42, extra_params)
+    X = generate_data("Sintético pedagógico", kind, T, 42, extra_params)
     domain = "synthetic"
-elif source == "Cardio-like demo":
-    T = st.slider("Latidos (aprox.)", 1000, 8000, 4000, 500)
-    X = generate_data(source, "", T, 5, {})
+elif source == t("lab_o3"):
+    T = st.slider(t("lab_beats"), 1000, 8000, 4000, 500)
+    X = generate_data("Cardio-like demo", "", T, 5, {})
     domain = "cardiology"
 else:
-    up = st.file_uploader("CSV numérico (columnas = variables)", type=["csv"])
+    up = st.file_uploader(t("lab_up"), type=["csv"])
     if up is not None:
         df = pd.read_csv(up)
         num = df.select_dtypes(include=[np.number])
         st.dataframe(num.head())
-        cols = st.multiselect("Variables", list(num.columns), default=list(num.columns)[: min(3, num.shape[1])])
+        cols = st.multiselect(t("lab_vars"), list(num.columns), default=list(num.columns)[: min(3, num.shape[1])])
         if len(cols) >= 1:
             X = num[cols].to_numpy(dtype=float)
-        domain = st.selectbox("Dominio (preset)", list(DOMAIN_PRESETS.keys()), index=0)
+        domain = st.selectbox(t("lab_dom"), list(DOMAIN_PRESETS.keys()), index=0)
 
 if X is not None:
-    st.plotly_chart(plot_series(X, "Vista previa"), use_container_width=True)
+    st.plotly_chart(plot_series(X, t("lab_prev")), use_container_width=True)
 
 # ---- Step 2-3: params ----
-st.header("2. Parámetros")
+st.header(t("lab_s2"))
 preset = DOMAIN_PRESETS.get(domain, DOMAIN_PRESETS["synthetic"])
-mode = st.radio("Modo", ["fast", "full"], horizontal=True)
+mode = st.radio(t("math_mode"), ["fast", "full"], horizontal=True)
 c1, c2, c3 = st.columns(3)
-window = c1.number_input("Ventana W", 5, 301, int(preset["window"]), 2)
-stride = c2.number_input("Stride", 1, 50, int(preset["stride"]))
-theta3 = c3.number_input("θ₃", 0.01, 0.5, float(preset["theta3"]), 0.01)
-m = st.select_slider("m (Bandt–Pompe)", options=[2, 3, 4, 5], value=int(preset.get("m", 3)))
-n_surr = st.slider("n surrogates", 0, 50, 8 if mode == "fast" else 20)
-seed = st.number_input("Seed", 0, 10_000, 42)
+window = c1.number_input(t("lab_w"), 5, 301, int(preset["window"]), 2)
+stride = c2.number_input(t("lab_stride"), 1, 50, int(preset["stride"]))
+theta3 = c3.number_input(t("lab_t3"), 0.01, 0.5, float(preset["theta3"]), 0.01)
+m = st.select_slider(t("lab_m"), options=[2, 3, 4, 5], value=int(preset.get("m", 3)))
+n_surr = st.slider(t("lab_nsurr"), 0, 50, 8 if mode == "fast" else 20)
+seed = st.number_input(t("lab_seed"), 0, 10_000, 42)
 
 # ---- Step 4: run ----
-st.header("3. Ejecutar")
+st.header(t("lab_s3"))
 if X is None:
-    st.warning("Seleccione o cargue datos para continuar.")
-elif st.button("▶ Ejecutar análisis completo", type="primary"):
+    st.warning(t("lab_warn"))
+elif st.button(t("lab_run"), type="primary"):
     params = AnalysisParams(
         window=int(window),
         stride=int(stride),
@@ -128,36 +129,36 @@ elif st.button("▶ Ejecutar análisis completo", type="primary"):
         seed=int(seed),
         include_ews=True,
     )
-    with st.status("Pipeline en ejecución…", expanded=True) as status:
-        st.write("Preprocess + z-score…")
-        st.write("Systemic Tau…")
-        st.write("RECD Φ₁–Φ₃ + excess3…")
-        st.write("EWS clásicos…")
+    with st.status(t("lab_status"), expanded=True) as status:
+        st.write(t("lab_st1"))
+        st.write(t("lab_st2"))
+        st.write(t("lab_st3"))
+        st.write(t("lab_st4"))
         if n_surr:
-            st.write("Surrogates phase-shuffle…")
+            st.write(t("lab_st5"))
         
         # Call cached function
         result = cached_run_analysis(X, params.model_dump_json())
         
-        st.write("Hash de reproducibilidad…")
-        status.update(label="Análisis completo (desde caché si aplica)", state="complete")
+        st.write(t("lab_st6"))
+        status.update(label=t("lab_st7"), state="complete")
 
     st.session_state["lab_result"] = result
     st.session_state["lab_domain"] = domain
-    st.success(f"Listo. `repro_hash = {result.repro_hash}`")
+    st.success(t("lab_succ", hash=result.repro_hash[:16]))
 
 # ---- Step 5: results ----
 result = st.session_state.get("lab_result")
 if result is not None:
-    st.header("4. Resultados")
+    st.header(t("lab_s4"))
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("Δτ_s", f"{result.metrics['delta_tau_s']:.4f}")
     k2.metric("mean excess3", f"{result.metrics['mean_excess3']:.4f}")
     k3.metric("Δexcess3", f"{result.metrics['delta_excess3']:.4f}")
     pval = result.surrogate_stats.get("tau_s", {}).get("p_value", None)
-    k4.metric("p_surr (τ_s)", f"{pval:.3f}" if pval is not None else "—")
+    k4.metric(t("lab_psurr"), f"{pval:.3f}" if pval is not None else "—")
 
-    t1, t2, t3, t4 = st.tabs(["τ_s", "RECD", "EWS clásicos", "Export"])
+    t1, t2, t3, t4 = st.tabs([t("lab_t1"), t("lab_t2"), t("lab_t3"), t("lab_t4")])
     with t1:
         st.plotly_chart(plot_tau(result), use_container_width=True)
     with t2:
@@ -167,7 +168,7 @@ if result is not None:
     with t4:
         md = render_markdown_report(result, domain=st.session_state.get("lab_domain", domain))
         st.download_button(
-            "Descargar reporte Markdown",
+            t("lab_down"),
             data=md,
             file_name="stp_report.md",
             mime="text/markdown",

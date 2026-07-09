@@ -4,6 +4,7 @@ from pathlib import Path
 
 import streamlit as st
 import components.theme as theme
+from locales import t
 
 
 def inject_css() -> None:
@@ -33,8 +34,28 @@ def sidebar_brand() -> None:
         """,
         unsafe_allow_html=True,
     )
+    
+    # Language Selector
+    lang_options = {"es": "🇪🇸 Español", "en": "🇬🇧 English", "fr": "🇫🇷 Français"}
+    current_lang = st.session_state.get("lang", "es")
+    
+    selected_lang_name = st.sidebar.selectbox(
+        t("sidebar_lang"),
+        options=list(lang_options.values()),
+        index=list(lang_options.keys()).index(current_lang),
+        key="lang_selector"
+    )
+    
+    # Map back to code
+    for code, name in lang_options.items():
+        if name == selected_lang_name:
+            if code != current_lang:
+                st.session_state["lang"] = code
+                st.rerun()
+            break
+            
     is_dark = theme.get_current_theme_base() == "dark"
-    new_theme = st.sidebar.toggle("🌌 Modo Oscuro", value=is_dark)
+    new_theme = st.sidebar.toggle(t("sidebar_dark_mode"), value=is_dark)
     if new_theme != is_dark:
         theme.toggle_theme(new_theme)
 

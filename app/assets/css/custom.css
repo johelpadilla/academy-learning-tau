@@ -252,7 +252,7 @@ div[data-testid="stSidebarNav"] a[aria-selected="true"] {
 }
 
 .stp-card h3 {
-  color: var(--stp-navy);
+  color: var(--stp-deep);
   font-size: 1.05rem;
   font-weight: 700;
   margin: 0 0 0.4rem 0;
@@ -609,7 +609,7 @@ div[data-testid="stSidebarNav"] a[aria-selected="true"] {
 
 .stp-step-chip.active {
   background: var(--stp-teal-soft);
-  color: var(--stp-navy);
+  color: var(--stp-deep);
 }
 
 .stp-step-chip.active .n {
@@ -796,7 +796,7 @@ div[data-testid="stMetric"] label {
 }
 
 div[data-testid="stMetric"] [data-testid="stMetricValue"] {
-  color: var(--stp-navy) !important;
+  color: var(--stp-deep) !important;
   font-weight: 750 !important;
 }
 
