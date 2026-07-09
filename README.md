@@ -22,23 +22,21 @@ streamlit run app/Home.py
 
 Abrir la URL local que indique Streamlit (típicamente `http://localhost:8501`).
 
-## Deploy (Streamlit Community Cloud)
+## Deploy (Streamlit Community Cloud) — Academy Learning Tau
 
 | Campo | Valor |
 |-------|--------|
-| **Repo** | `johelpadilla/systemic-tau-platform` |
+| **Web pública** | https://academylearningtau.streamlit.app |
+| **Repo (marca Academy)** | https://github.com/johelpadilla/academylearningtau |
+| **Repo espejo** | https://github.com/johelpadilla/systemic-tau-platform |
 | **Branch** | `main` |
 | **Main file** | `app/Home.py` |
-| **Python** | 3.11 |
 
-Enlace directo de deploy:  
-https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py
+Deploy directo (App URL = `academylearningtau`):  
+https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/Home.py
 
-**URL pública de esta plataforma (propia):** p.ej. https://systemic-tau-platform.streamlit.app  
-o la que ya uses (`learningtau`, etc.). Config: *Settings → General → App URL*.
-
-**No usar** https://academylearningtau.streamlit.app — es **otra app** para otra población; dejarla intacta.  
-Detalle: [`docs/DEPLOY.md`](docs/DEPLOY.md).
+Si Cloud ya tiene otra versión en ese subdominio: **Delete** esa app y redespliega con el enlace de arriba (el subdominio se reutiliza al instante).  
+Guía: [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 **Contacto:** joel.padilla2@upr.edu
 

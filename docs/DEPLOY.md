@@ -1,101 +1,73 @@
-# Deploy guide — Streamlit Community Cloud
+# Deploy — Academy Learning Tau
 
-## One-click (recommended)
+## Canonical product
 
-1. Open: [Deploy on Streamlit Community Cloud](https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py)
-2. Sign in with **GitHub** (`johelpadilla`).
-3. Confirm settings:
-   - **Repository:** `johelpadilla/systemic-tau-platform`
-   - **Branch:** `main`
-   - **Main file path:** `app/Home.py`
-   - **Python version:** 3.11 (or 3.12 if offered)
-4. Click **Deploy**.
+| Piece | Value |
+|-------|--------|
+| **Public web** | https://academylearningtau.streamlit.app |
+| **GitHub repo (brand)** | https://github.com/johelpadilla/academylearningtau |
+| **Code twin** | https://github.com/johelpadilla/systemic-tau-platform (same platform) |
+| **Main file** | `app/Home.py` |
+| **Branch** | `main` |
 
-After the first build (2–5 min), the app URL looks like:
+This Streamlit app **is** Academy Learning Tau. Deploy **this** codebase to that URL.
 
-`https://learningtau.streamlit.app` (or whatever subdomain you chose)
+## One-shot deploy / rebind Cloud app
 
-### Public URL for *this* platform (do not touch Academy)
+Streamlit binds **one GitHub repo + entry file** per Cloud app. Settings cannot “switch repo” in place.
 
-**Do not use** [`https://academylearningtau.streamlit.app`](https://academylearningtau.streamlit.app).  
-That Cloud app is a **separate product for another audience**. Leave it **intact** (same subdomain, same repo, same settings).
+### If `academylearningtau.streamlit.app` already exists (old code)
 
-This repo deploys under its **own** subdomain, for example:
+1. [share.streamlit.io](https://share.streamlit.io) → app **academylearningtau**.
+2. ⋮ → **Delete app** (only the Cloud deployment — GitHub repos stay).  
+   Subdomain becomes free immediately.
+3. Immediately create the new deploy (next section) with App URL `academylearningtau`.
 
-| Product | Subdomain (example) | URL |
-|---------|---------------------|-----|
-| Academy (other population) | `academylearningtau` | https://academylearningtau.streamlit.app — **do not change** |
-| Systemic Tau Platform (this repo) | `systemic-tau-platform` or `learningtau` | https://systemic-tau-platform.streamlit.app |
+### Deploy this platform as Academy
 
-#### Deploy / rename only the *platform* app
+**Direct link:**  
+https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/Home.py
 
-1. Open [share.streamlit.io](https://share.streamlit.io) (GitHub `johelpadilla`).
-2. Open the app for **`johelpadilla/systemic-tau-platform`** (e.g. current `learningtau` test deploy), **or** create a new one:
-   - Repo: `johelpadilla/systemic-tau-platform`
-   - Branch: `main`
-   - Main file: `app/Home.py`
-   - Direct link:  
-     https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py
-3. ⋮ → **Settings** → **General** → **App URL** → set a free slug, e.g.:
-   - `systemic-tau-platform` → https://systemic-tau-platform.streamlit.app  
-   - `systemictau-lab` → https://systemictau-lab.streamlit.app  
-   - `learningtau` → https://learningtau.streamlit.app (if that is already this repo’s app, keep it)
-4. **Save** / Deploy.
+| Field | Value |
+|-------|--------|
+| Repository | `johelpadilla/academylearningtau` |
+| Branch | `main` |
+| Main file path | `app/Home.py` |
+| **App URL** | `academylearningtau` |
 
-Never set this app’s URL to `academylearningtau`.
+Click **Deploy**. After build: **https://academylearningtau.streamlit.app**
 
-## Manual from the dashboard
+### Sharing
 
-1. Go to [share.streamlit.io](https://share.streamlit.io) → **New app**.
-2. Select the repo and branch `main`.
-3. **Main file path:** `app/Home.py`
-4. Deploy.
+Settings → Sharing → **Public** if the Academy audience should open without GitHub login.
 
-## Repo files used by Cloud
+## Repo files Cloud uses
 
 | File | Role |
 |------|------|
-| `app/Home.py` | Entry point (multipage root) |
-| `requirements.txt` | pip deps only (no `-e .`) |
-| `.streamlit/config.toml` | theme, `maxUploadSize=15`, no usage stats |
+| `app/Home.py` | Entry (multipage) |
+| `requirements.txt` | pip (no `packages.txt` unless real apt packages, no comments with `/`) |
+| `.streamlit/config.toml` | theme, `maxUploadSize=15` |
 
-**Do not add `packages.txt`** unless you need real Debian packages (one package name per line, **no comments** with `/`). Empty or commented `packages.txt` breaks Cloud’s apt installer (`E: Unsupported file /`).
+Pages inject `src/` on `sys.path` so `import stp` works on Cloud.
 
-Pages under `app/pages/` inject `src/` into `sys.path`, so `import stp` works without installing the local wheel.
+## Sync both GitHub remotes (maintainers)
 
-## Advanced settings (optional)
+Local clones may have:
 
-In Cloud **App settings → Advanced**:
+- `origin` → `systemic-tau-platform`
+- `academy` → `academylearningtau`
 
-| Setting | Value |
-|---------|--------|
-| Python version | 3.11 |
-| Secrets | none required for the public demo |
+After commits:
 
-Optional env vars:
+```bash
+git push origin main
+git push academy main
+```
 
-| Variable | Effect |
-|----------|--------|
-| `STP_LANG` | Default language (`es`, `en`, `fr`) if the code reads it |
-
-## Local parity with Cloud
+## Local run
 
 ```bash
 pip install -r requirements.txt
-streamlit run app/Home.py --server.port 8501 --server.headless true
+streamlit run app/Home.py
 ```
-
-## Notes for public traffic
-
-- Lab uploads are capped at **15 MB** (`.streamlit/config.toml`).
-- Prefer **Fast** mode and few surrogates on Cloud; heavy Full / IAAFT jobs belong on a local machine or Docker.
-- Do not commit secrets; this app needs none for the educational demo.
-
-## Docker (alternative)
-
-```bash
-docker build -t systemic-tau-platform .
-docker run --rm -p 8501:8501 systemic-tau-platform
-```
-
-(Only if a `Dockerfile` is present in the branch.)
