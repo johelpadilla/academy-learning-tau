@@ -8,7 +8,7 @@ from stp.config.settings import AnalysisParams
 from stp.core.ordinal import bandt_pompe_symbols, multivariate_symbols
 from stp.core.pipeline import run_analysis
 from stp.core.reproducibility import repro_hash
-from stp.data.generators import coupled_logistic
+from stp.data.synthetic_generators import coupled_logistic
 
 
 def test_bandt_pompe_length():
