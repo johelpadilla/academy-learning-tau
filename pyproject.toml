@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "systemic-tau-platform"
+name = "academy-learning-tau"
 version = "1.0.0"
-description = "Systemic Tau Educational & Research Platform — Tau Sistémica + RECD"
+description = "Academy Learning Tau — educational and research platform for Systemic Tau and RECD"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -15,9 +15,12 @@ authors = [
 keywords = [
   "systemic-tau",
   "recd",
+  "academy-learning-tau",
   "early-warning-signals",
   "complex-systems",
   "ordinal-patterns",
+  "education",
+  "reproducible-research",
   "streamlit",
 ]
 classifiers = [
@@ -27,6 +30,7 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering",
+  "Topic :: Education",
 ]
 dependencies = [
   "streamlit>=1.32",
@@ -51,7 +55,7 @@ dependencies = [
 [project.optional-dependencies]
 tda = ["ripser>=0.6", "persim>=0.3"]
 full = [
-  "systemic-tau-platform[tda]",
+  "academy-learning-tau[tda]",
   "streamlit-aggrid>=0.3",
   "weasyprint>=60.0",
   "wfdb>=4.1",
@@ -74,9 +78,10 @@ stp = "stp.cli:main"
 stp-lab = "stp.cli:run_streamlit"
 
 [project.urls]
-Homepage = "https://github.com/johelpadilla/systemic-tau-platform"
-Documentation = "https://github.com/johelpadilla/systemic-tau-platform/docs"
-Research = "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
+Homepage = "https://github.com/johelpadilla/academy-learning-tau"
+Documentation = "https://github.com/johelpadilla/academy-learning-tau/tree/main/docs"
+Repository = "https://github.com/johelpadilla/academy-learning-tau"
+Issues = "https://github.com/johelpadilla/academy-learning-tau/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/stp"]

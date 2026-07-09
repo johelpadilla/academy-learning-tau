@@ -1,6 +1,6 @@
-# Datasets — Systemic Tau Platform
+# Datasets — Academy Learning Tau
 
-Guía operativa: **qué bajar, cómo preprocesar, qué meter en el repo**.
+Guía operativa de datos: **fuentes, preprocesamiento y política de versionado en el repositorio**.
 
 ---
 
@@ -22,8 +22,7 @@ Siempre documentar **licencia de uso** del dataset original y citar DOI.
 - **Sudden Cardiac Death Holter Database (SDDB)**  
   PhysioNet: https://physionet.org/content/sddb/1.0.0/  
   DOI: 10.13026/C2W306  
-- Pipeline ya validado en:  
-  `~/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/`
+- Pipeline de referencia documentado en estudios CCTP del autor (cohorte y scripts de exportación en `scripts/`).
 
 ### Cohorte analítica (N=10)
 ```

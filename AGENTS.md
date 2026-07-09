@@ -1,28 +1,30 @@
-# AGENTS — Academy Learning Tau
+# Agent notes — Academy Learning Tau
 
 | | |
 |--|--|
-| Local folder | `~/grok-safe/systemic-tau-platform` |
-| Local URL | http://localhost:8501 |
-| **GitHub NEW (canonical)** | https://github.com/johelpadilla/academy-learning-tau |
-| Mirror (dev name) | https://github.com/johelpadilla/systemic-tau-platform |
-| Cloud main file | `app/streamlit_app.py` |
-| Desired public URL | https://academylearningtau.streamlit.app |
+| Local folder | `~/grok-safe/academy-learning-tau` |
+| Local URL | http://localhost:8502 |
+| Entry point | `app/Home.py` |
+| Canonical GitHub | https://github.com/johelpadilla/academy-learning-tau |
+| Contact | joel.padilla2@upr.edu |
 
-## Do NOT
+## Scope
 
-- Use repo `academylearningtau` (name taken / legacy)
-- Push from `systemictau`, Gemini, or antigravity folders
-- Reuse an old Streamlit Cloud app bound to other code — create **New app**
+This repository is the **educational platform** (Streamlit + `src/stp`).  
+Do **not** confuse it with:
+
+- `systemictau` (PyPI / Systemic Tau Studio)
+- Gemini or experimental copies under other folders
+
+## Documentation tone
+
+README, `docs/*`, and `CITATION.cff` must remain **academic and professional**: no marketing slang, no “SaaS premium” framing, clear scientific scope and ethical disclaimers.
 
 ## Push
 
 ```bash
-cd ~/grok-safe/systemic-tau-platform
-git push origin main   # systemic-tau-platform
-git push alt main      # academy-learning-tau (canonical brand repo)
+cd ~/grok-safe/academy-learning-tau
+git push origin main   # if origin points to academy-learning-tau
+# or
+git push alt main
 ```
-
-## Deploy
-
-https://share.streamlit.io/deploy?repository=johelpadilla/academy-learning-tau&branch=main&mainModule=app/streamlit_app.py

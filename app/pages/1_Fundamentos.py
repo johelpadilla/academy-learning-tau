@@ -3,30 +3,42 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "src"))
-sys.path.insert(0, str(ROOT / "app"))
+_APP = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_APP))
+from components.bootstrap import ensure_stp_path  # noqa: E402
+
+ROOT = ensure_stp_path(__file__)
 
 import streamlit as st
 
-from components.hero import inject_css
+from components.illustrations import show_illustration
+from components.ui import page_link, footer, learning_goals, page_header
 from stp.education.content_loader import read_markdown
-from locales import t
+from stp.i18n.core import t
 
-st.set_page_config(page_title=f"{t('fund_title')} | STP", page_icon="🌀", layout="wide")
-inject_css()
+st.set_page_config(page_title=t("fundamentos.page_title"), page_icon="🌀", layout="wide")
 
-st.title(t("fund_title"))
-st.caption(t("fund_caption"))
+page_header(
+    t("fundamentos.title"),
+    subtitle=t("fundamentos.subtitle"),
+    eyebrow=t("fundamentos.eyebrow"),
+    icon="📘",
+)
 
-tabs = st.tabs([
-    t("fund_tab1"),
-    t("fund_tab2"),
-    t("fund_tab3"),
-    t("fund_tab4"),
-    t("fund_tab5"),
-    t("fund_tab6")
-])
+learning_goals(
+    [t("fundamentos.goal_1"), t("fundamentos.goal_2"), t("fundamentos.goal_3")]
+)
+
+tabs = st.tabs(
+    [
+        t("fundamentos.tab_1"),
+        t("fundamentos.tab_2"),
+        t("fundamentos.tab_3"),
+        t("fundamentos.tab_4"),
+        t("fundamentos.tab_5"),
+        t("fundamentos.tab_6"),
+    ]
+)
 
 files = [
     ("fundamentos", "01_tau.md"),
@@ -37,16 +49,47 @@ files = [
     ("fundamentos", "06_filosofia.md"),
 ]
 
-for tab, parts in zip(tabs, files):
+tab_illustrations = [
+    "tau_relational",
+    "dual_reading",
+    "recd_nested",
+    "excess3",
+    "dual_reading",
+    "chronos_kairos",
+]
+
+for tab, parts, illus in zip(tabs, files, tab_illustrations):
     with tab:
+        show_illustration(illus)
         st.markdown(read_markdown(*parts))
 
-st.sidebar.markdown(t("sidebar_in_this_section"))
-st.sidebar.markdown(f"""
-{t("fund_sb1")}
-{t("fund_sb2")}
-{t("fund_sb3")}
-{t("fund_sb4")}
-{t("fund_sb5")}
-{t("fund_sb6")}
-""")
+st.sidebar.markdown(
+    f'<div class="stp-sidebar-section">{t("common.suggested_path")}</div>',
+    unsafe_allow_html=True,
+)
+st.sidebar.markdown(t("fundamentos.sidebar_path"))
+try:
+    from stp.education.handouts import render_handout_bytes
+
+    st.download_button(
+        t("fundamentos.dl_fund"),
+        data=render_handout_bytes("fundamentos_compilado"),
+        file_name="stp_fundamentos_compilado.md",
+        mime="text/markdown",
+        width="stretch",
+    )
+    st.download_button(
+        t("fundamentos.dl_theory"),
+        data=render_handout_bytes("teoria"),
+        file_name="stp_03_teoria_tau_recd.md",
+        mime="text/markdown",
+        width="stretch",
+    )
+except Exception:
+    pass
+
+page_link("pages/2_Matematica.py", label=t("nav.next_math"), icon="📐")
+page_link("pages/4_Laboratorio.py", label=t("nav.practice_lab"), icon="🔬")
+page_link("pages/8_Materiales.py", label=t("nav.materials"), icon="📦")
+
+footer()

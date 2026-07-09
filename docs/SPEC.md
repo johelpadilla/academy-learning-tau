@@ -1,52 +1,56 @@
-# Systemic Tau Platform — Especificación de Producto v1.0
+# Academy Learning Tau — Especificación de producto v1.0
 
-**Nombre de producto:** *Systemic Tau Platform*  
-**Tagline:** *Paradigma Tau Sistémico: De la Teoría a la Práctica*  
-**Framework:** Streamlit multipágina  
-**Audiencia:** intermedio–avanzado · académicos · investigadores · posgrado  
-**Estado:** diseño + scaffold v1.0 (Julio 2026)
+| Campo | Valor |
+|-------|--------|
+| **Nombre de producto** | *Academy Learning Tau* |
+| **Marco científico** | Tau Sistémica + RECD (Reloj Extramental Discreto) |
+| **Implementación** | Streamlit multipágina + biblioteca `src/stp` |
+| **Audiencia** | Intermedio–avanzado · académicos · investigadores · posgrado |
+| **Estado** | Versión 1.0 (julio 2026) |
+| **Repositorio** | https://github.com/johelpadilla/academy-learning-tau |
 
 ---
 
 ## 1. Visión y posicionamiento
 
-La plataforma es un **producto SaaS educativo/científico premium** que unifica:
+Academy Learning Tau es una **plataforma abierta de educación e investigación** que unifica:
 
 | Capa | Contenido |
 |------|-----------|
-| **Teoría** | Tau Sistémica, RECD (Φ₁–Φ₃), exceso de Nivel 3, ontología Polo / tiempo extramental |
-| **Matemática** | Bandt–Pompe, τ_s, Breathing Window, TDA/Betti, memoria ordinal, surrogates |
-| **Evidencia** | CCTP/SDDB (VF), dengue PR, EEG, lagos, finanzas |
-| **Laboratorio** | Análisis interactivo + reportes reproducibles + comparación EWS clásicos |
+| **Teoría** | Tau Sistémica, RECD (Φ₁–Φ₃), exceso de Nivel 3, ontología del tiempo extramental |
+| **Matemática** | Bandt–Pompe, τ_s, breathing window, TDA/Betti, memoria ordinal, surrogates |
+| **Evidencia** | CCTP/SDDB, epidemiología, EEG, ecología, finanzas (según materiales disponibles) |
+| **Laboratorio** | Análisis interactivo, reportes reproducibles y lectura dual frente a EWS clásicos |
 
-**Principio de marca:** no es un prototipo de notebook; es una **plataforma de investigación y docencia** con calidad de curso universitario y de consultoría metodológica.
+**Principio rector:** no es un prototipo de cuaderno; es un entorno de **investigación y docencia** con rigor de curso universitario y trazabilidad metodológica.
 
 ### 1.1 Públicos
 
-1. **Intermedio–avanzado** — ya conoce Tau/RECD a nivel conceptual; necesita rigor, conexiones ontológicas y experimentación.
-2. **Académicos / posgrado** — integran el paradigma en papers, tesis o currículos de sistemas complejos, epidemiología, cardiología computacional o ciencia de datos de sistemas vivos.
+1. **Intermedio–avanzado** — conoce Tau/RECD a nivel conceptual; necesita rigor, conexiones ontológicas y experimentación.
+2. **Académicos / posgrado** — integran el paradigma en artículos, tesis o currículos de sistemas complejos, epidemiología, cardiología computacional o ciencia de datos de sistemas vivos.
 
 ### 1.2 Tono
 
-Riguroso, elegante, académico-moderno. Precisión terminológica + pedagogía. Nunca condescendiente ni “pop-science”.
+Riguroso, sobrio y académico. Precisión terminológica con pedagogía clara. Evita registro condescendiente o de divulgación superficial.
 
-### 1.3 Diferenciador comercial
+### 1.3 Posicionamiento metodológico
 
-| Competidor típico | Systemic Tau Platform |
-|-------------------|------------------------|
-| Dashboards de EWS clásicos (var, AR1) | τ_s + RECD ordinal anidado |
-| Cajas negras ML | Métricas interpretables + surrogates |
-| Papers PDF estáticos | Lab interactivo + reportes con hash de reproducibilidad |
-| Studio de análisis crudo | Narrativa pedagógica + learning path + planes SaaS |
+| Enfoque habitual | Academy Learning Tau |
+|------------------|----------------------|
+| Paneles solo de EWS clásicos (varianza, AR1) | τ_s + RECD ordinal anidado |
+| Modelos de caja negra | Métricas interpretables + surrogates |
+| Artículos estáticos en PDF | Laboratorio interactivo + exportes con huella de reproducibilidad |
+| Software de análisis sin narrativa | Ruta de aprendizaje, materiales docentes y evidencia citables |
 
 ---
 
 ## 2. Arquitectura de carpetas y archivos
 
 ```text
-systemic-tau-platform/
+academy-learning-tau/
 ├── README.md
 ├── LICENSE
+├── CITATION.cff
 ├── pyproject.toml
 ├── requirements.txt
 ├── .streamlit/config.toml

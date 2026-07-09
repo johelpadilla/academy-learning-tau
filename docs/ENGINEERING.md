@@ -1,24 +1,27 @@
-# Ingeniería — mejores prácticas
+# Ingeniería — Academy Learning Tau
+
+Prácticas de desarrollo y stack tecnológico de la plataforma. Complementa [`ARCHITECTURE.md`](ARCHITECTURE.md) y [`SPEC.md`](SPEC.md).
 
 ## Stack recomendado
 
-| Capa | Librería | Por qué |
-|------|----------|---------|
-| UI | **streamlit** + streamlit-extras | Rápido, multipage, ecosistema científico |
-| Plots | **plotly** | Interactivo, exportable, bueno en papers |
-| Core numérico | **numpy**, **scipy**, **numba** | Performance en Bandt–Pompe y sliding windows |
-| Data | **pandas**, **pydantic** | Validación de params y esquemas |
-| Reports | **reportlab** (base), weasyprint (HTML→PDF opcional) | PDF de calidad |
-| Ordinal RECD | **nested-recd** (si instalado) | Paridad con papers |
-| Tau full | **systemictau** (si instalado) | Paridad Studio |
-| TDA opcional | **ripser**, **persim** | Betti / persistence |
-| Physio | **wfdb** | SDDB / CHB-MIT |
-| Tests | **pytest**, **ruff**, **mypy** | Calidad |
+| Capa | Librería | Justificación |
+|------|----------|---------------|
+| Interfaz | **streamlit** (+ streamlit-extras) | Multipágina, adopción en entornos científicos |
+| Gráficos | **plotly** | Interactividad y exportación para informes |
+| Núcleo numérico | **numpy**, **scipy**, **numba** | Rendimiento en Bandt–Pompe y ventanas deslizantes |
+| Datos | **pandas**, **pydantic** | Tablas y validación de parámetros |
+| Informes | **reportlab** (base); weasyprint opcional | Artefactos PDF |
+| Paridad RECD | **nested-recd** (si instalado) | Alineación con implementaciones de paper |
+| Paridad Tau | **systemictau** (si instalado) | Alineación con el ecosistema de investigación |
+| TDA opcional | **ripser**, **persim** | Números de Betti / persistencia |
+| Fisiología | **wfdb** | SDDB / PhysioNet |
+| Calidad | **pytest**, **ruff**, **mypy** | Pruebas y estilo |
 
-### Evitar en v1
-- Dash/Gradio (duplicar UI)
-- TensorFlow/PyTorch en el path crítico (pesado; ML es comparación, no core)
-- Base de datos obligatoria (SaaS real puede añadir Postgres después)
+### Fuera del alcance de v1.0
+
+- Duplicar la UI en Dash o Gradio sin necesidad pedagógica clara  
+- Deep learning en el camino crítico (puede usarse solo como comparación externa)  
+- Base de datos obligatoria para la experiencia educativa local
 
 ---
 

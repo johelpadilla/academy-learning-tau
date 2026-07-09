@@ -5,17 +5,14 @@ Falls back to a pure implementation; prefers nested_recd when installed.
 
 from __future__ import annotations
 
-import logging
 from collections import Counter
 from typing import Any
 
 import numpy as np
-from numba import jit
 
 from stp.core.ordinal import multivariate_symbols
 
 
-@jit(nopython=True)
 def compute_phi1(S: np.ndarray) -> np.ndarray:
     T, N = S.shape
     if N < 2:
@@ -24,21 +21,17 @@ def compute_phi1(S: np.ndarray) -> np.ndarray:
     phi1 = np.zeros(T)
     for t in range(T):
         row = S[t]
-        matches = 0
-        for i in range(N):
-            for j in range(i + 1, N):
-                if row[i] == row[j]:
-                    matches += 1
+        matches = sum(1 for i in range(N) for j in range(i + 1, N) if row[i] == row[j])
         phi1[t] = matches / pairs
     return phi1
 
-@jit(nopython=True)
+
 def _rel_code(a: int, b: int) -> int:
     if a == b:
         return 0
     return 1 if a > b else 2
 
-@jit(nopython=True)
+
 def compute_phi2(S: np.ndarray, d: int = 4, min_fraction: float = 0.75) -> np.ndarray:
     T, N = S.shape
     if N < 2 or T < d:
@@ -47,20 +40,12 @@ def compute_phi2(S: np.ndarray, d: int = 4, min_fraction: float = 0.75) -> np.nd
     phi2 = np.zeros(T)
     for i in range(N):
         for j in range(i + 1, N):
-            rel = np.zeros(T, dtype=np.int8)
-            for t in range(T):
-                rel[t] = _rel_code(int(S[t, i]), int(S[t, j]))
+            rel = np.array([_rel_code(int(S[t, i]), int(S[t, j])) for t in range(T)])
             for t in range(d - 1, T):
-                matches = 0
-                for w_idx in range(t - d + 1, t + 1):
-                    if rel[w_idx] == rel[t]:
-                        matches += 1
-                if matches / d >= min_fraction:
+                win = rel[t - d + 1 : t + 1]
+                if np.mean(win == rel[t]) >= min_fraction:
                     phi2[t] += 1.0
-    for t in range(T):
-        val = phi2[t] / num_pairs
-        phi2[t] = 1.0 if val > 1.0 else (0.0 if val < 0.0 else val)
-    return phi2
+    return np.clip(phi2 / num_pairs, 0.0, 1.0)
 
 
 def _synergy_and_surprise(win: np.ndarray) -> float:
@@ -147,7 +132,6 @@ def compute_recd_from_conjunctions(
 
         return _ext(X, m=m, delay=delay, d=d, theta3=theta3)
     except Exception:
-        logging.warning("Librerias premium (nested-recd) no encontradas. Cayendo en fallback educativo.")
         pass
 
     S = multivariate_symbols(X, m=m, delay=delay)

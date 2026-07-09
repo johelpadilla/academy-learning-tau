@@ -1,12 +1,12 @@
-# Flujo de interacción — Laboratorio Interactivo
+# Flujo del Laboratorio — Academy Learning Tau
 
-## Objetivo de UX
+## Objetivo pedagógico y de investigación
 
-Que un investigador complete, en **menos de 5 minutos**, un ciclo:
+Permitir que un investigador o estudiante de posgrado complete, en un tiempo acotado (del orden de minutos), un ciclo completo:
 
-> cargar datos → configurar → analizar → interpretar → exportar con hash de reproducibilidad
+> cargar datos → configurar → analizar → interpretar → exportar con huella de reproducibilidad
 
-sin escribir código, con defaults sensatos por dominio.
+sin programar, con valores por defecto coherentes por dominio.
 
 ---
 

@@ -1,23 +1,33 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using these metadata."
-title: "Systemic Tau Platform"
-abstract: "Plataforma web educativa y de investigación para el paradigma Tau Sistémica y el Reloj Extramental Discreto (RECD). Incluye un laboratorio interactivo para el análisis de señales biológicas, ecológicas y financieras mediante ordinal patterns, EWS y TDA."
-authors:
-  - family-names: "Padilla-Villanueva"
-    given-names: "Johel"
-    orcid: "https://orcid.org/0000-0002-5797-6931"
-    email: "joel.padilla2@upr.edu"
-version: 1.0.0
-date-released: 2026-07-09
-url: "https://github.com/johelpadilla/systemic-tau-platform"
-repository-code: "https://github.com/johelpadilla/systemic-tau-platform"
-license: MIT
+message: "If you use Academy Learning Tau, please cite it as below."
 type: software
+title: "Academy Learning Tau: Educational and research platform for Systemic Tau and RECD"
+version: "1.0.0"
+date-released: "2026-07-09"
+license: MIT
+repository-code: "https://github.com/johelpadilla/academy-learning-tau"
+url: "https://github.com/johelpadilla/academy-learning-tau"
+abstract: >-
+  Academy Learning Tau is an open educational and research software platform
+  that operationalizes the Systemic Tau framework and the Discrete Extramental
+  Clock (RECD) for complex time-series analysis. It provides ordinal metrics
+  (τ_s, nested RECD levels), classical early-warning signals for dual reading,
+  surrogate null models, multilingual pedagogy (Spanish, English, French), and
+  a reproducible Streamlit laboratory for teaching and exploratory research.
+authors:
+  - family-names: Padilla-Villanueva
+    given-names: Johel
+    email: joel.padilla2@upr.edu
+    orcid: "https://orcid.org/0000-0002-5797-6931"
+    affiliation: "University of Puerto Rico"
 keywords:
-  - "systemic-tau"
-  - "recd"
-  - "early-warning-signals"
-  - "complex-systems"
-  - "ordinal-patterns"
-  - "streamlit"
-  - "education"
+  - systemic tau
+  - RECD
+  - discrete extramental clock
+  - ordinal patterns
+  - early-warning signals
+  - complex systems
+  - Bandt-Pompe
+  - educational software
+  - reproducible research
+  - Streamlit

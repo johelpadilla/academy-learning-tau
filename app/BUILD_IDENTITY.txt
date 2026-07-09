@@ -1,5 +1,0 @@
-PROJECT=Academy Learning Tau
-SOURCE_FOLDER=~/grok-safe/systemic-tau-platform
-GITHUB=johelpadilla/academy-learning-tau
-MAIN_FILE=app/streamlit_app.py
-STATUS=NEW GitHub repo (academylearningtau name was taken/legacy)

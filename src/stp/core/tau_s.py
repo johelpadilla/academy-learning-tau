@@ -7,52 +7,17 @@ may prefer that implementation for paper-level parity.
 
 from __future__ import annotations
 
-import logging
 import numpy as np
-from numba import jit
-
+from scipy.stats import kendalltau
 
 
 def _zscore(x: np.ndarray) -> np.ndarray:
     x = np.asarray(x, dtype=float)
-    # All-NaN / empty → zeros (avoid numpy RuntimeWarnings on empty slices).
-    if x.size == 0 or not np.any(np.isfinite(x)):
-        return np.zeros_like(x, dtype=float)
-    s = float(np.nanstd(x))
-    if not np.isfinite(s) or s < 1e-12:
-        return np.zeros_like(x, dtype=float)
-    mu = float(np.nanmean(x))
-    out = (x - mu) / s
-    return np.where(np.isfinite(out), out, 0.0)
+    s = np.nanstd(x)
+    if s < 1e-12:
+        return np.zeros_like(x)
+    return (x - np.nanmean(x)) / s
 
-
-@jit(nopython=True)
-def _fast_kendall_tau(x: np.ndarray, y: np.ndarray) -> float:
-    n = len(x)
-    concordant = 0
-    discordant = 0
-    ties_x = 0
-    ties_y = 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            dx = x[i] - x[j]
-            dy = y[i] - y[j]
-            if dx == 0 and dy == 0:
-                pass
-            elif dx == 0:
-                ties_x += 1
-            elif dy == 0:
-                ties_y += 1
-            elif dx * dy > 0:
-                concordant += 1
-            else:
-                discordant += 1
-    n0 = n * (n - 1) / 2
-    n1 = n0 - ties_x
-    n2 = n0 - ties_y
-    if n1 == 0 or n2 == 0:
-        return 0.0
-    return (concordant - discordant) / np.sqrt(n1 * n2)
 
 def pairwise_mean_kendall(window: np.ndarray) -> float:
     """Mean absolute Kendall-τ across all pairs in a (W, N) window."""
@@ -66,10 +31,27 @@ def pairwise_mean_kendall(window: np.ndarray) -> float:
             mask = np.isfinite(a) & np.isfinite(b)
             if mask.sum() < 3:
                 continue
-            tau = _fast_kendall_tau(a[mask], b[mask])
+            tau, _ = kendalltau(a[mask], b[mask])
             if np.isfinite(tau):
                 vals.append(float(tau))
     return float(np.mean(vals)) if vals else 0.0
+
+
+def ensure_multivariate(X: np.ndarray) -> np.ndarray:
+    """Ensure (T, N≥2). Univariate ``(T,)`` or ``(T, 1)`` → ``[x, |Δx|]`` proxy."""
+    X = np.asarray(X, dtype=float)
+    if X.ndim == 1:
+        dx = np.abs(np.diff(X, prepend=X[0]))
+        return np.column_stack([X, dx])
+    if X.ndim != 2:
+        raise ValueError("X must be (T,) or (T, N)")
+    if X.shape[1] == 0:
+        raise ValueError("X must have at least one variable")
+    if X.shape[1] == 1:
+        x = X[:, 0]
+        dx = np.abs(np.diff(x, prepend=x[0]))
+        return np.column_stack([x, dx])
+    return X
 
 
 def compute_tau_s(
@@ -88,14 +70,7 @@ def compute_tau_s(
     centers : ndarray
         Window center indices in original time.
     """
-    X = np.asarray(X, dtype=float)
-    if X.ndim == 1:
-        # CCTP-style bivariate proxy
-        dx = np.abs(np.diff(X, prepend=X[0]))
-        X = np.column_stack([X, dx])
-    if X.ndim != 2:
-        raise ValueError("X must be (T,) or (T, N)")
-
+    X = ensure_multivariate(X)
     T, N = X.shape
     if N < 2:
         raise ValueError("Need at least 2 variables (or a univariate series to expand)")
@@ -124,5 +99,4 @@ def try_systemictau(X: np.ndarray, window: int = 101) -> np.ndarray | None:
         taus_global, _ = st.compute_taus(X, window_size=window)
         return np.asarray(taus_global, dtype=float)
     except Exception:
-        logging.warning("Librerias premium (systemictau) no encontradas. Cayendo en fallback educativo.")
         return None

@@ -1,38 +1,33 @@
-"""Load Markdown educational content."""
+"""Load Markdown educational content (language-aware)."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-import streamlit as st
 from stp.config.settings import CONTENT_DIR
+from stp.i18n.content import localized_content_path, read_localized_markdown
+from stp.i18n.core import t
 
 
-def get_active_lang() -> str:
-    """Gets the active language from session state, defaults to Spanish."""
-    # Attempt to use st.session_state, fallback to 'es' if outside of a Streamlit context
-    try:
-        return st.session_state.get("lang", "es")
-    except Exception:
-        return "es"
-
-
-def read_markdown(*parts: str) -> str:
-    lang = get_active_lang()
-    path = CONTENT_DIR.joinpath(lang, *parts)
-    # Fallback to Spanish if the translation is not yet available
+def read_markdown(*parts: str, lang: str | None = None) -> str:
+    """Read educational markdown in the active (or given) language; fall back to Spanish."""
+    path = localized_content_path(*parts, lang=lang)
     if not path.exists():
-        path = CONTENT_DIR.joinpath("es", *parts)
-    if not path.exists():
-        return f"_Contenido no encontrado: `{path.relative_to(CONTENT_DIR)}`_"
+        rel = "/".join(parts)
+        return f"_{t('common.content_missing', path=rel)}_"
     return path.read_text(encoding="utf-8")
 
 
-def list_section(section: str) -> list[Path]:
-    lang = get_active_lang()
-    d = CONTENT_DIR / lang / section
-    if not d.exists():
-        d = CONTENT_DIR / "es" / section
+def list_section(section: str, lang: str | None = None) -> list[Path]:
+    """List markdown files for a section (Spanish inventory; localized paths when present)."""
+    d = CONTENT_DIR / section
     if not d.exists():
         return []
-    return sorted(d.glob("*.md"))
+    out: list[Path] = []
+    for p in sorted(d.glob("*.md")):
+        out.append(localized_content_path(section, p.name, lang=lang))
+    return out
+
+
+# re-export for callers that want the low-level helper
+__all__ = ["read_markdown", "list_section", "read_localized_markdown", "localized_content_path"]
