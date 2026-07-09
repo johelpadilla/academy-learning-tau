@@ -15,41 +15,34 @@ After the first build (2–5 min), the app URL looks like:
 
 `https://learningtau.streamlit.app` (or whatever subdomain you chose)
 
-### Canonical public URL (Academy)
+### Public URL for *this* platform (do not touch Academy)
 
-**Target:** [`https://academylearningtau.streamlit.app`](https://academylearningtau.streamlit.app)
+**Do not use** [`https://academylearningtau.streamlit.app`](https://academylearningtau.streamlit.app).  
+That Cloud app is a **separate product for another audience**. Leave it **intact** (same subdomain, same repo, same settings).
 
-That subdomain is almost certainly already bound to **another** Streamlit Cloud app (different GitHub repo / entry file).  
-Streamlit **does not** let you “point an existing Cloud app at a new repo” in Settings — the GitHub source is fixed at deploy time. To put **this** repo on that URL:
+This repo deploys under its **own** subdomain, for example:
 
-#### Recommended: free the subdomain, then redeploy this platform
+| Product | Subdomain (example) | URL |
+|---------|---------------------|-----|
+| Academy (other population) | `academylearningtau` | https://academylearningtau.streamlit.app — **do not change** |
+| Systemic Tau Platform (this repo) | `systemic-tau-platform` or `learningtau` | https://systemic-tau-platform.streamlit.app |
+
+#### Deploy / rename only the *platform* app
 
 1. Open [share.streamlit.io](https://share.streamlit.io) (GitHub `johelpadilla`).
-2. Find the **existing** app whose URL is `academylearningtau.streamlit.app` (whatever repo it uses today).
-3. Either:
-   - **A — Keep a backup of the old app:** ⋮ → **Settings** → **General** → change its App URL to e.g. `academylearningtau-legacy` → Save.  
-   - **B — Drop the old app:** ⋮ → **Delete app** (subdomain is free right away).
-4. **New app** (or deploy again):
+2. Open the app for **`johelpadilla/systemic-tau-platform`** (e.g. current `learningtau` test deploy), **or** create a new one:
    - Repo: `johelpadilla/systemic-tau-platform`
    - Branch: `main`
    - Main file: `app/Home.py`
-   - **App URL:** `academylearningtau`  
    - Direct link:  
-     https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py  
-     (set the subdomain field before Deploy).
-5. Optional: delete or keep the temporary app `learningtau` (from earlier tests) so you only maintain one Cloud app for this platform.
+     https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py
+3. ⋮ → **Settings** → **General** → **App URL** → set a free slug, e.g.:
+   - `systemic-tau-platform` → https://systemic-tau-platform.streamlit.app  
+   - `systemictau-lab` → https://systemictau-lab.streamlit.app  
+   - `learningtau` → https://learningtau.streamlit.app (if that is already this repo’s app, keep it)
+4. **Save** / Deploy.
 
-Result: **https://academylearningtau.streamlit.app** serves Systemic Tau Platform.
-
-#### Alternative: overwrite the *old GitHub repo* that Academy already uses
-
-Only if you intentionally want the Academy Cloud app to keep the same GitHub connection:
-
-1. In the existing Academy app → Manage app → note **which repo + main file** it deploys.
-2. Replace that repo’s entrypoint / content with this platform (or change that repo to mirror `systemic-tau-platform`).
-3. Reboot the app.
-
-Usually worse than delete + redeploy (history, secrets, wrong stack). Prefer the recommended path.
+Never set this app’s URL to `academylearningtau`.
 
 ## Manual from the dashboard
 

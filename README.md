@@ -34,11 +34,11 @@ Abrir la URL local que indique Streamlit (típicamente `http://localhost:8501`).
 Enlace directo de deploy:  
 https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&branch=main&mainModule=app/Home.py
 
-**URL pública (Academy):** https://academylearningtau.streamlit.app  
+**URL pública de esta plataforma (propia):** p.ej. https://systemic-tau-platform.streamlit.app  
+o la que ya uses (`learningtau`, etc.). Config: *Settings → General → App URL*.
 
-Ese subdominio es de una app Cloud **preexistente** (otro repo). No renombres `learningtau` a ese nombre.  
-Hay que **liberar** `academylearningtau` (renombrar o borrar la app vieja) y **redeploy** de este repo con App URL `academylearningtau`.  
-Pasos: [`docs/DEPLOY.md`](docs/DEPLOY.md).
+**No usar** https://academylearningtau.streamlit.app — es **otra app** para otra población; dejarla intacta.  
+Detalle: [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 **Contacto:** joel.padilla2@upr.edu
 
