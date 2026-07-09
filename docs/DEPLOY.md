@@ -29,11 +29,12 @@ You can rename the subdomain in **App settings → General**.
 | File | Role |
 |------|------|
 | `app/Home.py` | Entry point (multipage root) |
-| `requirements.txt` | pip deps + local package install |
-| `packages.txt` | apt packages (empty; ready if needed) |
+| `requirements.txt` | pip deps only (no `-e .`) |
 | `.streamlit/config.toml` | theme, `maxUploadSize=15`, no usage stats |
 
-Pages under `app/pages/` inject `src/` into `sys.path`, so `import stp` works even before editable install finishes.
+**Do not add `packages.txt`** unless you need real Debian packages (one package name per line, **no comments** with `/`). Empty or commented `packages.txt` breaks Cloud’s apt installer (`E: Unsupported file /`).
+
+Pages under `app/pages/` inject `src/` into `sys.path`, so `import stp` works without installing the local wheel.
 
 ## Advanced settings (optional)
 

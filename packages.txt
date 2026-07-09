@@ -1,2 +1,0 @@
-# System packages for Streamlit Community Cloud (apt).
-# Currently empty — pure-Python / wheel scientific stack (numpy, scipy, numba).

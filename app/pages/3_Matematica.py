@@ -48,8 +48,8 @@ if st.button(t("math_btn_demo"), type="primary"):
     with st.spinner(t("math_calc")):
         result = run_analysis(X, params)
     st.success(t("math_hash", hash=result.repro_hash[:16]))
-    st.plotly_chart(plot_tau(result), use_container_width=True)
-    st.plotly_chart(plot_recd_panel(result), use_container_width=True)
+    st.plotly_chart(plot_tau(result), width="stretch")
+    st.plotly_chart(plot_recd_panel(result), width="stretch")
     st.json(result.metrics)
 
 with st.expander(t("math_expander")):

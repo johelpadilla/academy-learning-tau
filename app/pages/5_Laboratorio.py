@@ -100,7 +100,7 @@ else:
         domain = st.selectbox(t("lab_dom"), list(DOMAIN_PRESETS.keys()), index=0)
 
 if X is not None:
-    st.plotly_chart(plot_series(X, t("lab_prev")), use_container_width=True)
+    st.plotly_chart(plot_series(X, t("lab_prev")), width="stretch")
 
 # ---- Step 2-3: params ----
 st.header(t("lab_s2"))
@@ -160,11 +160,11 @@ if result is not None:
 
     t1, t2, t3, t4 = st.tabs([t("lab_t1"), t("lab_t2"), t("lab_t3"), t("lab_t4")])
     with t1:
-        st.plotly_chart(plot_tau(result), use_container_width=True)
+        st.plotly_chart(plot_tau(result), width="stretch")
     with t2:
-        st.plotly_chart(plot_recd_panel(result), use_container_width=True)
+        st.plotly_chart(plot_recd_panel(result), width="stretch")
     with t3:
-        st.plotly_chart(plot_ews_comparison(result), use_container_width=True)
+        st.plotly_chart(plot_ews_comparison(result), width="stretch")
     with t4:
         md = render_markdown_report(result, domain=st.session_state.get("lab_domain", domain))
         st.download_button(

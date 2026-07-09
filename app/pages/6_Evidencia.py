@@ -43,6 +43,10 @@ for pub in data.get("publications", []):
 st.subheader(t("ev_sub2"))
 rows = data.get("comparison_matrix", [])
 if rows:
-    st.dataframe(rows, use_container_width=True)
+    import pandas as pd
+
+    # Force all cells to str so Arrow never mixes bool/str (yaml yes/no vs "optional").
+    df = pd.DataFrame(rows).astype(str)
+    st.dataframe(df, width="stretch")
 
 st.info(t("ev_info"))
