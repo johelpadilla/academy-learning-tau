@@ -6,13 +6,6 @@ from pathlib import Path
 
 import streamlit as st
 
-def load_css():
-    css_path = Path(__file__).parent / "assets" / "style.css"
-    if css_path.exists():
-        with open(css_path) as f:
-            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-
 import streamlit as st
 
 from components.hero import render_hero
@@ -25,7 +18,6 @@ st.set_page_config(
 )
 
 render_hero()
-load_css()
 
 st.markdown(
     """
