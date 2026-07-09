@@ -7,7 +7,7 @@
 | **Public web** | https://academylearningtau.streamlit.app |
 | **GitHub repo (brand)** | https://github.com/johelpadilla/academylearningtau |
 | **Code twin** | https://github.com/johelpadilla/systemic-tau-platform (same platform) |
-| **Main file** | `app/Home.py` |
+| **Main file** | `app/streamlit_app.py` |
 | **Branch** | `main` |
 
 This Streamlit app **is** Academy Learning Tau. Deploy **this** codebase to that URL.
@@ -26,13 +26,13 @@ Streamlit binds **one GitHub repo + entry file** per Cloud app. Settings cannot 
 ### Deploy this platform as Academy
 
 **Direct link:**  
-https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/Home.py
+https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/streamlit_app.py
 
 | Field | Value |
 |-------|--------|
 | Repository | `johelpadilla/academylearningtau` |
 | Branch | `main` |
-| Main file path | `app/Home.py` |
+| Main file path | `app/streamlit_app.py` |
 | **App URL** | `academylearningtau` |
 
 Click **Deploy**. After build: **https://academylearningtau.streamlit.app**
@@ -45,7 +45,8 @@ Settings → Sharing → **Public** if the Academy audience should open without 
 
 | File | Role |
 |------|------|
-| `app/Home.py` | Entry (multipage) |
+| `app/streamlit_app.py` | Entry (Cloud / multipage) |
+| `app/Home.py` | Entry local (mismo contenido) |
 | `requirements.txt` | pip (no `packages.txt` unless real apt packages, no comments with `/`) |
 | `.streamlit/config.toml` | theme, `maxUploadSize=15` |
 

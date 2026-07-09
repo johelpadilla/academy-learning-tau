@@ -6,7 +6,7 @@
 |------|--------|
 | Local folder | `~/grok-safe/systemic-tau-platform` |
 | Local URL | http://localhost:8501 |
-| Entry point | `app/Home.py` |
+| Entry point | `app/streamlit_app.py` (Cloud) / `app/Home.py` (local) |
 | Public brand | **Academy Learning Tau** |
 | Public URL | https://academylearningtau.streamlit.app |
 | Deploy repo | https://github.com/johelpadilla/academylearningtau |
@@ -19,9 +19,9 @@
 3. Never deploy a different product (other Streamlit apps, old demos, learningtau test clones) to `academylearningtau.streamlit.app`.
 4. Dual remotes: `origin` = systemic-tau-platform, `academy` = academylearningtau. Push both after meaningful changes:  
    `git push origin main && git push academy main`
-5. Streamlit Cloud cannot switch source repo in-place: **Delete** the old Cloud app (not GitHub), then Deploy from `johelpadilla/academylearningtau` / `main` / `app/Home.py` with App URL `academylearningtau`.
+5. Streamlit Cloud cannot switch source repo in-place: **Delete** the old Cloud app (not GitHub), then Deploy from `johelpadilla/academylearningtau` / `main` / `app/streamlit_app.py` with App URL `academylearningtau`.
 6. Contact: joel.padilla2@upr.edu
 
 ## Deploy link
 
-https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/Home.py
+https://share.streamlit.io/deploy?repository=johelpadilla/academylearningtau&branch=main&mainModule=app/streamlit_app.py
