@@ -82,10 +82,21 @@ m4.metric(t("home_m4"), "1.0.0")
 
 # --- deploy identity (must match GitHub academylearningtau) ---
 from pathlib import Path as _P
+import subprocess as _sp
 _id = _P(__file__).with_name("BUILD_IDENTITY.txt")
-if _id.exists():
-    with st.expander("Build / deploy identity", expanded=False):
+with st.expander("Build / deploy identity", expanded=False):
+    if _id.exists():
         st.code(_id.read_text(encoding="utf-8"), language="text")
+    try:
+        _sha = _sp.check_output(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=_P(__file__).resolve().parents[1],
+            stderr=_sp.DEVNULL,
+            text=True,
+        ).strip()
+        st.caption(f"git HEAD: {_sha} · folder: systemic-tau-platform · NOT antigravity/systemictau")
+    except Exception:
+        st.caption("folder: systemic-tau-platform · NOT antigravity/systemictau")
 
 with st.expander(t("home_about")):
     st.markdown(t("home_about_text"))

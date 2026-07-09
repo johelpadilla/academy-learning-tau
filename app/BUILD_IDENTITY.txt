@@ -5,4 +5,4 @@ GITHUB_REPO=johelpadilla/academylearningtau
 MIRROR_REPO=johelpadilla/systemic-tau-platform
 MAIN_FILE=app/streamlit_app.py
 NOT_FROM=antigravity,systemictau,Gemini
-GIT_COMMIT=d589c6d
+NOTE=Same tree as localhost:8501 in this folder. Verify on GitHub app/ tree.
