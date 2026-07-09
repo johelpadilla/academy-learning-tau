@@ -79,5 +79,13 @@ m2.metric(t("home_m2"), "3")
 m3.metric(t("home_m3"), "N=10")
 m4.metric(t("home_m4"), "1.0.0")
 
+
+# --- deploy identity (must match GitHub academylearningtau) ---
+from pathlib import Path as _P
+_id = _P(__file__).with_name("BUILD_IDENTITY.txt")
+if _id.exists():
+    with st.expander("Build / deploy identity", expanded=False):
+        st.code(_id.read_text(encoding="utf-8"), language="text")
+
 with st.expander(t("home_about")):
     st.markdown(t("home_about_text"))

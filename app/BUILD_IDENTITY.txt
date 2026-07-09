@@ -1,0 +1,8 @@
+PROJECT=systemic-tau-platform
+BRAND=Academy Learning Tau
+LOCAL_PATH=~/grok-safe/systemic-tau-platform
+GITHUB_REPO=johelpadilla/academylearningtau
+MIRROR_REPO=johelpadilla/systemic-tau-platform
+MAIN_FILE=app/streamlit_app.py
+NOT_FROM=antigravity,systemictau,Gemini
+GIT_COMMIT=36ffcb2

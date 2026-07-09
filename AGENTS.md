@@ -4,7 +4,7 @@
 
 | What | Value |
 |------|--------|
-| Local folder | `~/grok-safe/systemic-tau-platform` |
+| Local folder | `~/grok-safe/systemic-tau-platform` ONLY |
 | Local URL | http://localhost:8501 |
 | Entry point | `app/streamlit_app.py` (Cloud) / `app/Home.py` (local) |
 | Public brand | **Academy Learning Tau** |
@@ -12,15 +12,24 @@
 | Deploy repo | https://github.com/johelpadilla/academylearningtau |
 | Mirror repo | https://github.com/johelpadilla/systemic-tau-platform |
 
+## NEVER push these (other products)
+
+| Path | Why |
+|------|-----|
+| `~/grok-safe/systemictau` | Other product (PyPI systemictau studio) |
+| `~/grok-safe/Gemini/**` | Old experiments / antigravity-era copies |
+| `~/grok-safe/systemic-tau-platform-copy` | Snapshot copy, not source of truth |
+
 ## Rules
 
-1. **The product users deploy is THIS codebase** — Systemic Tau Platform content, branded **Academy Learning Tau**.
-2. Never treat `academylearningtau` as “another app to leave alone forever.” That URL/repo is the **production** home of this work.
-3. Never deploy a different product (other Streamlit apps, old demos, learningtau test clones) to `academylearningtau.streamlit.app`.
-4. Dual remotes: `origin` = systemic-tau-platform, `academy` = academylearningtau. Push both after meaningful changes:  
-   `git push origin main && git push academy main`
-5. Streamlit Cloud cannot switch source repo in-place: **Delete** the old Cloud app (not GitHub), then Deploy from `johelpadilla/academylearningtau` / `main` / `app/streamlit_app.py` with App URL `academylearningtau`.
-6. Contact: joel.padilla2@upr.edu
+1. **Source of truth** = this directory only: `systemic-tau-platform`.
+2. After every meaningful change:  
+   `git push origin main && git push academy main`  
+   from **this** folder only.
+3. Streamlit Cloud main file: `app/streamlit_app.py`  
+   Repo: `johelpadilla/academylearningtau` branch `main`.
+4. Contact: joel.padilla2@upr.edu
+5. Verify deploy: open the app → expander **Build / deploy identity**.
 
 ## Deploy link
 
