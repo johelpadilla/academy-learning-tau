@@ -36,8 +36,9 @@ https://share.streamlit.io/deploy?repository=johelpadilla/systemic-tau-platform&
 
 **URL pública (Academy):** https://academylearningtau.streamlit.app  
 
-Para fijar ese subdominio: *Manage app → Settings → General → App URL* → `academylearningtau` → Save.  
-Guía: [`docs/DEPLOY.md`](docs/DEPLOY.md).
+Ese subdominio es de una app Cloud **preexistente** (otro repo). No renombres `learningtau` a ese nombre.  
+Hay que **liberar** `academylearningtau` (renombrar o borrar la app vieja) y **redeploy** de este repo con App URL `academylearningtau`.  
+Pasos: [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 **Contacto:** joel.padilla2@upr.edu
 
