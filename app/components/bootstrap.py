@@ -115,13 +115,32 @@ def import_ui(*names: str) -> tuple[Any, ...]:
     return tuple(getattr(ui_mod, n) for n in names)
 
 
+_DEPS_CHECKED = False
+
+
+def check_runtime_deps() -> list[str]:
+    """Return names of missing *required* third-party packages (empty = OK)."""
+    missing: list[str] = []
+    for name in ("numpy", "pandas", "yaml", "pydantic"):
+        try:
+            __import__(name)
+        except Exception:
+            missing.append(name)
+    # SciPy preferred (τ_s uses it); pure-NumPy fallback exists in tau_s.
+    try:
+        __import__("scipy")
+    except Exception:
+        missing.append("scipy (fallback Kendall-τ active if NumPy ok)")
+    return missing
+
+
 def ensure_stp_path(page_file: str | Path) -> Path:
     """
     Insert ``<repo>/src`` (and ``app/``) at the front of ``sys.path``.
 
     Returns the repository root.
     """
-    global _PATH_READY
+    global _PATH_READY, _DEPS_CHECKED
 
     page = Path(page_file).resolve()
     # pages live in app/pages/*.py → parents[2] = repo root
@@ -171,5 +190,35 @@ def ensure_stp_path(page_file: str | Path) -> Path:
             clear_catalog_cache()
     except Exception:
         pass
+
+    # One-shot soft warning on Streamlit Cloud when the scientific stack is incomplete.
+    if not _DEPS_CHECKED:
+        _DEPS_CHECKED = True
+        missing = check_runtime_deps()
+        hard = [m for m in missing if not m.startswith("scipy")]
+        if hard:
+            try:
+                import streamlit as st
+
+                st.error(
+                    "**Runtime dependencies missing:** "
+                    + ", ".join(hard)
+                    + ". On Streamlit Community Cloud set **Python 3.12** "
+                    "(Advanced settings → redeploy) and ensure "
+                    "`requirements.txt` installs `numpy`, `pandas`, `scipy`."
+                )
+            except Exception:
+                pass
+        elif any(m.startswith("scipy") for m in missing):
+            try:
+                import streamlit as st
+
+                st.warning(
+                    "SciPy not importable — using NumPy Kendall-τ fallback. "
+                    "Prefer Python **3.11 or 3.12** on Streamlit Cloud "
+                    "(not 3.14) and reboot the app."
+                )
+            except Exception:
+                pass
 
     return root

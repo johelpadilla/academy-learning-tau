@@ -8,7 +8,38 @@ may prefer that implementation for paper-level parity.
 from __future__ import annotations
 
 import numpy as np
-from scipy.stats import kendalltau
+
+try:
+    from scipy.stats import kendalltau as _scipy_kendalltau
+except ImportError:  # pragma: no cover — Cloud mis-install / exotic Python
+    _scipy_kendalltau = None  # type: ignore[assignment]
+
+
+def _kendalltau_numpy(a: np.ndarray, b: np.ndarray) -> tuple[float, float]:
+    """Fallback Kendall-τ (O(n²)) when SciPy is unavailable at import time."""
+    a = np.asarray(a, dtype=float).ravel()
+    b = np.asarray(b, dtype=float).ravel()
+    n = len(a)
+    if n < 2:
+        return 0.0, 1.0
+    conc = disc = 0
+    for i in range(n - 1):
+        da = a[i + 1 :] - a[i]
+        db = b[i + 1 :] - b[i]
+        prod = da * db
+        conc += int(np.sum(prod > 0))
+        disc += int(np.sum(prod < 0))
+    denom = conc + disc
+    if denom == 0:
+        return 0.0, 1.0
+    return float(conc - disc) / float(denom), 1.0
+
+
+def kendalltau(a: np.ndarray, b: np.ndarray):
+    """Kendall-τ with SciPy when present, pure NumPy fallback otherwise."""
+    if _scipy_kendalltau is not None:
+        return _scipy_kendalltau(a, b)
+    return _kendalltau_numpy(a, b)
 
 
 def _zscore(x: np.ndarray) -> np.ndarray:

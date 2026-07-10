@@ -1,10 +1,16 @@
-# Academy Learning Tau v1.0 — core runtime (Streamlit Cloud / local)
-streamlit>=1.32
+# Academy Learning Tau v1.1 — Streamlit Cloud / local runtime
+# IMPORTANT (Community Cloud): set Python to 3.11 or 3.12 in
+# Advanced settings (or delete+redeploy). Python 3.14 has broken
+# multipage imports / segfaults with the scientific stack.
+# runtime.txt and .python-version document the intended version;
+# Cloud primarily honors the dashboard Advanced settings selector.
+
+streamlit>=1.32,<2
 streamlit-extras>=0.4
 plotly>=5.18
-numpy>=1.24
-pandas>=2.0
-scipy>=1.11
+numpy>=1.24,<3
+pandas>=2.0,<3
+scipy>=1.11,<2
 numba>=0.58
 scikit-learn>=1.3
 networkx>=3.1

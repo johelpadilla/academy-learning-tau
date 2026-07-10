@@ -113,6 +113,16 @@ stp serve
 PYTHONPATH=src streamlit run app/Home.py
 ```
 
+### Streamlit Community Cloud
+
+Main file: `app/Home.py` · repo: `johelpadilla/academy-learning-tau` · branch: `main`.
+
+**Required:** in **Advanced settings** set **Python 3.12** (or 3.11). Do **not** leave the default if it is 3.14 — logs show `ModuleNotFoundError: scipy`, multipage `_DeadlockError`, and segfaults on 3.14 with this stack.
+
+To change Python after deploy: **delete the app and redeploy**, selecting 3.12 in Advanced settings (Cloud does not switch Python in place). Then **Reboot**.
+
+Intended version is also recorded in `runtime.txt` / `.python-version` (Cloud primarily honors the UI selector).
+
 ### Command-line analysis
 
 ```bash
