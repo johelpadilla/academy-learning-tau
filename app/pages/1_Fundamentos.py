@@ -12,7 +12,11 @@ ROOT = ensure_stp_path(__file__)
 import streamlit as st
 
 from components.illustrations import show_illustration
+from components.micro_labs import render_micro_lab
 from components.ui import page_link, footer, learning_goals, page_header
+from stp.config.settings import DOMAIN_PRESETS
+from stp.domains import domain_label
+from stp.domains.voice import render_situated_example
 from stp.education.content_loader import read_markdown
 from stp.i18n.core import t
 
@@ -28,6 +32,26 @@ page_header(
 learning_goals(
     [t("fundamentos.goal_1"), t("fundamentos.goal_2"), t("fundamentos.goal_3")]
 )
+
+# Domain lens: situated examples / jargon while teaching abstract Tau
+_lens_domains = [d for d in DOMAIN_PRESETS.keys() if d != "synthetic"] + ["synthetic"]
+if "fund_domain_lens" not in st.session_state:
+    st.session_state["fund_domain_lens"] = st.session_state.get("lab_domain", "cardiology")
+    if st.session_state["fund_domain_lens"] not in DOMAIN_PRESETS:
+        st.session_state["fund_domain_lens"] = "cardiology"
+
+st.markdown(f"### {t('fundamentos.domain_lens_header')}")
+st.caption(t("fundamentos.domain_lens_help"))
+lens_domain = st.selectbox(
+    t("fundamentos.domain_lens_select"),
+    _lens_domains,
+    index=_lens_domains.index(st.session_state["fund_domain_lens"])
+    if st.session_state["fund_domain_lens"] in _lens_domains
+    else 0,
+    format_func=lambda k: domain_label(k),
+    key="fund_domain_lens",
+)
+st.session_state["lab_domain"] = lens_domain  # keep Lab deep-link coherent
 
 tabs = st.tabs(
     [
@@ -58,10 +82,37 @@ tab_illustrations = [
     "chronos_kairos",
 ]
 
-for tab, parts, illus in zip(tabs, files, tab_illustrations):
+# One micro-lab topic per theoretical module
+micro_topics = ["tau", "ews", "recd", "excess3", "csd", "philosophy"]
+
+# Domain-situated callout key per tab
+_example_fields = [
+    "example_tau",
+    "classic_gloss",
+    "example_recd",
+    "excess_gloss",
+    "example_dual",
+    "jargon_note",
+]
+_example_headers = [
+    "domain_voice_ui.example_tau_h",
+    "domain_voice_ui.example_dual_h",
+    "domain_voice_ui.example_recd_h",
+    "domain_voice_ui.example_recd_h",
+    "domain_voice_ui.example_dual_h",
+    "domain_voice_ui.jargon",
+]
+
+for tab, parts, illus, topic, ex_field, ex_h in zip(
+    tabs, files, tab_illustrations, micro_topics, _example_fields, _example_headers
+):
     with tab:
         show_illustration(illus)
+        # Full sentences for visitors — never raw i18n keys
+        st.info(render_situated_example(lens_domain, ex_field, ex_h))
         st.markdown(read_markdown(*parts))
+        st.divider()
+        render_micro_lab(topic, domain=lens_domain)
 
 st.sidebar.markdown(
     f'<div class="stp-sidebar-section">{t("common.suggested_path")}</div>',

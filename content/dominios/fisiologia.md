@@ -25,3 +25,23 @@ La arquitectura del sueño coordina variables autonómicas y conductuales. Cuand
 ## 4. Madurez
 
 Media — pedagógica y de transferencia; no dispositivo médico ni scoring clínico de sueño.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[\mathrm{HRV}, \mathrm{actividad}, \mathrm{temp}]\) |
+| **Evento** | Onset de fragmentación circadiana (~70 % de la serie) |
+| **Preset Lab** | `physiology` · Fast para docencia |
+| **Demos** | `sleep_fragmentation_demo` |
+| **Madurez** | Media — transferencia fisiológica pedagógica |
+
+### Frases permitidas
+- Reorganización relacional bajo fragmentación de sueño diseñada…
+- No es dispositivo médico de scoring de sueño.
+
+### Frases prohibidas (v1.0)
+- Diagnóstico clínico de sueño
+- Claim de dispositivo médico

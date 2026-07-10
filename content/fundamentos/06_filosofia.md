@@ -1,74 +1,46 @@
-# Fundamentos filosóficos (operativos, no decorativos)
+# Fundamentos — Postura filosófica y metodológica
 
-### Objetivos de este módulo
-1. Entender por qué el lenguaje de *niveles* y *tiempo extramental* no es adorno.
-2. Traducir vocabulario poliano a **contadores, entropías y pesos** en el software.
-3. Separar **horizonte de interpretación** de **resultado falsable**.
-
----
-
-## 1. Por qué esta sección existe
-
-Esta sección es deliberadamente **corta y precisa**. No sustituye la *Síntesis Magna* ni los ensayos ontológicos; orienta al investigador que necesita saber **por qué el lenguaje del paradigma no es decorativo**.
-
-Regla de la plataforma:
-
-> Si una afirmación ontológica no genera una predicción empírica o un control con surrogates, se trata como **comentario**, no como resultado.
+| Campo | Valor |
+|-------|--------|
+| **Módulo** | Fundamentos 06 |
+| **Nivel** | Posgrado |
+| **Versión** | 1.1 · 2026 |
 
 ---
 
-## 2. Leonardo Polo y los niveles de la realidad (lectura metodológica)
+## Resultados de aprendizaje
 
-La obra de **Leonardo Polo** ofrece un vocabulario para hablar de **límites, niveles y el abandono del límite mental** sin reducir la realidad a un único plano de modelización. En Tau/RECD eso se traduce operativamente en:
-
-| Nivel metodológico | Pregunta | Riesgo si se ignora | Proxy en el Lab |
-|--------------------|----------|---------------------|-----------------|
-| Nivel 1 (coincidencia) | ¿Qué co-ocurre? | Correlación superficial | Φ₁ |
-| Nivel 2 (relación) | ¿Qué se sostiene entre partes? | Perder hábitos relacionales | Φ₂ |
-| Nivel 3 (emergencia) | ¿Qué es irreducible a las partes? | Reduccionismo metodológico | excess3 / Φ₃ |
-
-Los niveles **no son misticismo**: en el software son contadores, entropías y pesos. La filosofía justifica **por qué conviene no colapsarlos en una sola métrica**.
+1. Distinguir Chronos de Kairos en el lenguaje de análisis.  
+2. Articular honestidad de claims y madurez.  
+3. Tratar la reproducibilidad como deber epistémico, no empaque.
 
 ---
 
-## 3. Tiempo extramental discreto
+## 1. Tiempo del sistema vs tiempo del archivo
 
-| Término | Significado operativo |
-|---------|----------------------|
-| **Extramental** | El tiempo del sistema no se identifica con la experiencia subjetiva del observador ni con el mero parámetro \(t\) del instrumento |
-| **Discreto** | Avanza por **eventos de conjunción / reorganización**, no por un flujo infinitesimal homogéneo |
-| **RECD** | Acumulación medible de esos avances (ΔRECD), modulada por el régimen (λ, τ_s) |
+- **Chronos:** índice del registro.  
+- **Kairos:** tiempo ponderado de reorganización (ticks RECD).  
 
-- *Chronos* = eje del CSV.  
-- *Kairos* = cuando el sistema **produce un instante con peso** — en la práctica, un tick grande de RECD con composición de Nivel 2–3.
+Escribir “el tiempo del sistema aceleró” exige evidencia RECD, no solo un número de fila CSV.
 
 ---
 
-## 4. Principio de ascenso ontológico (lectura operativa)
+## 2. Virtudes metodológicas en la pedagogía STP
 
-En el marco de capas del Tau Sistémico:
-
-1. **Capa local** — intensificación / hiper-persistencia de estados.  
-2. **Capa relacional** — episodios conjuntos, anti-sincronización, coherencia entre módulos.  
-3. **Capa de reorganización** — cambio de ley (contrastes de distribución, consenso de detectores).
-
-El “ascenso” no es moral: es **metodológico**. Si solo se mira la capa 1, se confunde ruido local con transición global.
+| Virtud | Práctica |
+|--------|----------|
+| Lectura dual | Paneles relacional + clásico |
+| Disciplina del nulo | Surrogates con n y seed reportados |
+| Etiquetado de madurez | Ancla / transferencia / sandbox |
+| Reproducibilidad | Hash + Methods + citación del dataset |
+| No-claims | Explícitos sobre límites de predicción |
 
 ---
 
-## 5. Cómo leer esto en la plataforma v1.0
+## 3. Cierre
 
-| Sección | Rol de la filosofía |
-|---------|---------------------|
-| Fundamentos | Vocabulario y analogías |
-| Matemática | Fórmulas y parámetros |
-| Dominios | Misma estructura en corazón, epidemia, lago… |
-| Lab | Se **miden** Φ₁–Φ₃ y excess3; la ontología es horizonte de interpretación |
-| Evidencia | Se **cita** lo empírico; no se cita la metáfora como prueba |
+STP es un **lenguaje y un laboratorio** para la reorganización relacional ordinal. Es potente cuando es humilde: enseña mejores preguntas antes que alertas más ruidosas.
 
-### Ejercicio de escritura
-Escriba un párrafo de 5–7 líneas que:
-1. defina τ_s sin fórmulas,  
-2. diga por qué EWS clásicas no bastan en su dominio,  
-3. use *una sola* metáfora (orquesta, partitura, reloj),  
-4. termine con una predicción falsable (p.ej. “bajo phase-shuffle, Δexcess3 colapsa”).
+---
+
+*Fundamentos 06 · STP v1.1*

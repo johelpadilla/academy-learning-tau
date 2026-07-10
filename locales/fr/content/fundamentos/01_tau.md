@@ -1,22 +1,76 @@
-# Tau systémique (τ_s)
+# Fondements — Tau systémique (τ_s)
+
+| Champ | Valeur |
+|-------|--------|
+| **Module** | Fondements 01 |
+| **Niveau** | Postgraduate |
+| **Version** | 1.1 · 2026 |
+| **Handouts liés** | Théorie · Mathématiques pratiques · Lecture duale |
+
+---
 
 ## Objectifs d’apprentissage
-- Formuler la question scientifique à laquelle répond τ_s (réorganisation relationnelle).
-- Distinguer τ_s d’une corrélation de rangs statique.
-- Situer τ_s par rapport aux EWS classiques (variance, AR1).
 
-## Définition centrale
-Le **Tau systémique (τ_s)** est une mesure en fenêtre glissante du **couplage ordinal** entre canaux d’une série multivariée. Dans le noyau éducatif de STP, il est estimé comme la moyenne des Kendall-τ par paires dans chaque fenêtre de longueur *W* (pas *s*).
+1. Énoncer la question scientifique de τ_s en une phrase sans « prédire ».  
+2. Contraster la mesure ordinale–relationnelle avec l’amplitude/ralentissement univarié.  
+3. Lister les éléments de design requis (N, W, événement, nulls) pour un Δτ_s défendable.
 
-L’objet d’étude n’est pas « combien de variance ? » mais **comment les relations se réordonnent** lorsque le système évolue — y compris autour d’un événement ou d’un changement de régime.
+---
 
-## Ce que τ_s n’est pas
-- Ni diagnostic clinique ni signal de trading.
-- Ni Transfer Entropy (flux d’information directionnel).
-- Ni table de corrélations statique : c’est la *dynamique* du couplage qui compte.
+## 1. Objet scientifique
 
-## Panneau dual
-Lisez toujours τ_s avec RECD/excess3 et les EWS classiques. La concordance renforce une claim relationnelle ; la discordance exige du contexte.
+**Tau systémique (τ_s)** mesure comment la **structure d’ordre partagée** entre les variables d’un système multivarié se réorganise dans le temps. Elle ne demande pas d’abord l’ampleur des fluctuations de chaque canal, mais comment les **relations d’ordre** entre canaux changent autour d’un basculement de régime.
 
-## Pratique
-Ouvrez le Lab avec les **logistiques couplées** (switch connu) ou une démo de domaine. Marquez l’événement, lancez Fast, puis Full avec surrogates.
+Opérationnellement (pipeline pédagogique Lab v1.0) :
+
+1. Série multivariée \(X\in\mathbb{R}^{T\times N}\) (ou proxy bivarié documenté).  
+2. Fenêtres glissantes de longueur \(W\) avec pas `stride`.  
+3. Motifs ordinaux locaux (Bandt–Pompe / rangs).  
+4. Résumé de cohérence ordinale croisée → \(\tau_s(t)\).  
+5. Contraste Δ (pre/post événement ou moitié/moitié) sous nulls de surrogates.
+
+---
+
+## 2. Pourquoi ordinal et relationnel ?
+
+| Propriété | Implication |
+|-----------|-------------|
+| Ordinal | Robuste aux transforms strictement monotones |
+| Relationnel | Cible la réorganisation du couplage, pas seulement le CSD univarié |
+| En fenêtres | Capture la dynamique, pas un coefficient statique unique |
+| Sensible au null | Le phase-shuffle teste la structure croisée résiduelle |
+
+---
+
+## 3. Ce que τ_s n’est pas
+
+- Pas un simple renommage marketing du Kendall-τ statique.  
+- Pas la Transfer Entropy (prédiction directionnelle).  
+- Pas un prédicteur certifié d’événements cliniques ou de marché.  
+- Pas un substitut de la théorie de domaine.
+
+---
+
+## 4. Lire τ_s en pratique
+
+Toujours avec :
+
+1. Taille d’effet (magnitude et signe de Δτ_s).  
+2. Panneau EWS classique (lecture duale).  
+3. p_surr + méthode + n_surr + seed.  
+4. Énoncé de maturité de domaine.  
+5. `repro_hash`.
+
+**Signe context-dependent :** hausse ou baisse de τ_s peuvent indiquer une réorganisation selon le régime.
+
+---
+
+## 5. Micro-contrôle
+
+- [ ] J’explique τ_s sans revendiquer la prédiction.  
+- [ ] Je sais pourquoi N≥2 (ou proxy) est requis.  
+- [ ] Je ne publierai pas p sans Δ et design.
+
+---
+
+*Fondements 01 · STP v1.1*

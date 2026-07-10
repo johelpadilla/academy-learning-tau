@@ -1,9 +1,14 @@
-"""Template-based dual-reading interpretation (no LLM). Language-aware via stp.i18n."""
+"""Template-based dual-reading interpretation (no LLM). Language-aware via stp.i18n.
+
+When a domain voice pack exists, bullets/summaries use field jargon while the
+underlying metrics stay domain-agnostic.
+"""
 
 from __future__ import annotations
 
 from typing import Any
 
+from stp.domains.voice import domain_gloss_bundle, normalize_domain, voice_t
 from stp.i18n.core import get_lang, t
 
 
@@ -17,9 +22,10 @@ def interpret_dual_reading(
     """
     Build structured interpretation bullets from pipeline metrics.
 
-    Returns title, summary, bullets, caution, flags.
+    Returns title, summary, bullets, caution, flags, domain, voice glosses.
     """
     lang = lang or get_lang()
+    domain = normalize_domain(domain)
     surr = (surrogate_stats or {}).get("tau_s", {})
     d_tau = float(metrics.get("delta_tau_s", 0.0))
     d_ex = float(metrics.get("delta_excess3", 0.0))
@@ -29,6 +35,7 @@ def interpret_dual_reading(
 
     flags: list[str] = []
     bullets: list[str] = []
+    gloss = domain_gloss_bundle(domain, lang=lang)
 
     def _mag(v: float) -> str:
         a = abs(v)
@@ -46,9 +53,11 @@ def interpret_dual_reading(
         direction = t("interp.dir_flat", lang=lang)
 
     bullets.append(
-        t(
-            "interp.bullet_dtau",
+        voice_t(
+            domain,
+            "bullet_dtau",
             lang=lang,
+            fallback="interp.bullet_dtau",
             d_tau=d_tau,
             mag=_mag(d_tau),
             direction=direction,
@@ -63,9 +72,11 @@ def interpret_dual_reading(
         trend = t("interp.trend_flat", lang=lang)
 
     bullets.append(
-        t(
-            "interp.bullet_excess",
+        voice_t(
+            domain,
+            "bullet_excess",
             lang=lang,
+            fallback="interp.bullet_excess",
             mean_ex=mean_ex,
             d_ex=d_ex,
             mag=_mag(d_ex),
@@ -87,10 +98,31 @@ def interpret_dual_reading(
         bullets.append(t("interp.surr_off", lang=lang))
 
     if event_index is not None:
-        bullets.append(t("interp.event_on", lang=lang, t=event_index))
+        bullets.append(
+            voice_t(
+                domain,
+                "event_on",
+                lang=lang,
+                fallback="interp.event_on",
+                t=event_index,
+            )
+        )
         flags.append("event_split")
     else:
-        bullets.append(t("interp.event_off", lang=lang))
+        bullets.append(
+            voice_t(
+                domain,
+                "event_off",
+                lang=lang,
+                fallback="interp.event_off",
+            )
+        )
+
+    # Domain framing gloss (short coach line as context bullet)
+    coach = gloss.get("lab_coach") or ""
+    if coach and not coach.startswith("domain_voice."):
+        bullets.append(coach)
+        flags.append("domain_voice")
 
     domain_key = f"interp.dom_{domain}"
     domain_note = t(domain_key, lang=lang)
@@ -114,26 +146,38 @@ def interpret_dual_reading(
     p_part = t("interp.p_part", lang=lang, p=p_val) if p_val is not None else ""
     if same_sign:
         flags.append("sign_concordance")
-        summary = t(
-            "interp.summary_concord",
+        summary = voice_t(
+            domain,
+            "summary_concord",
             lang=lang,
+            fallback="interp.summary_concord",
             d_tau=d_tau,
             d_ex=d_ex,
             p_part=p_part,
         )
     elif abs(d_tau) < 0.02 and abs(d_ex) < 0.01:
         flags.append("quiet")
-        summary = t("interp.summary_quiet", lang=lang)
+        summary = voice_t(
+            domain,
+            "summary_quiet",
+            lang=lang,
+            fallback="interp.summary_quiet",
+        )
     else:
         flags.append("mixed_panel")
-        summary = t(
-            "interp.summary_mixed",
+        summary = voice_t(
+            domain,
+            "summary_mixed",
             lang=lang,
+            fallback="interp.summary_mixed",
             d_tau=d_tau,
             d_ex=d_ex,
         )
 
+    maturity = gloss.get("maturity_phrase") or ""
     caution = domain_note + t("interp.caution_tail", lang=lang)
+    if maturity and not maturity.startswith("domain_voice."):
+        caution = f"{caution} {maturity}"
 
     return {
         "title": t("interp.title", lang=lang),
@@ -143,6 +187,18 @@ def interpret_dual_reading(
         "flags": flags,
         "domain": domain,
         "lang": lang,
+        "voice": {
+            "variables": gloss.get("variables", ""),
+            "event_name": gloss.get("event_name", ""),
+            "tau_gloss": gloss.get("tau_gloss", ""),
+            "excess_gloss": gloss.get("excess_gloss", ""),
+            "classic_gloss": gloss.get("classic_gloss", ""),
+            "lab_coach": gloss.get("lab_coach", ""),
+            "example_dual": gloss.get("example_dual", ""),
+            "jargon_note": gloss.get("jargon_note", ""),
+            "methods_note": gloss.get("methods_note", ""),
+            "maturity_phrase": gloss.get("maturity_phrase", ""),
+        },
     }
 
 
@@ -159,8 +215,12 @@ def methods_paragraph(
     FR/ES provide equivalent formal prose when UI language is set.
     """
     lang = lang or get_lang()
+    domain = normalize_domain(domain)
     p = params
     n = n if n is not None else getattr(p, "n_surrogates", 0)
+    methods_note = voice_t(domain, "methods_note", lang=lang)
+    if methods_note.startswith("domain_voice."):
+        methods_note = ""
 
     if lang == "es":
         split = (
@@ -184,6 +244,7 @@ def methods_paragraph(
                 "Se computó memoria ordinal (MI simbólica lag-1 y cross-MI) como extensión."
             )
         extra_txt = (" " + " ".join(extras)) if extras else ""
+        note = f" {methods_note}" if methods_note else ""
         return (
             f"Las series multivariadas se estandarizaron (z-score) por canal. Systemic Tau (τ_s) se "
             f"computó como la media de Kendall-τ por pares en ventanas deslizantes (W={p.window}, "
@@ -194,7 +255,7 @@ def methods_paragraph(
             f"EWS clásicas (varianza, AR(1)) usaron el mismo W/stride base. "
             f"Nulos: surrogates independientes {surrogate_method} (n={n}, seed={p.seed}) "
             f"sobre el contraste Δτ_s definido por {split}.{extra_txt} "
-            f"Preset de dominio: {domain}. "
+            f"Preset de dominio: {domain}.{note} "
             f"Hash de reproducibilidad (SHA-256): {repro_hash or '—'}. "
             f"Software: Systemic Tau Platform v1.0 (núcleo educativo + extensiones opcionales)."
         )
@@ -221,6 +282,7 @@ def methods_paragraph(
                 "La mémoire ordinale (MI symbolique lag-1 et cross-MI) a été calculée comme extension."
             )
         extra_txt = (" " + " ".join(extras)) if extras else ""
+        note = f" {methods_note}" if methods_note else ""
         return (
             f"Les séries multivariées ont été standardisées (z-score) par canal. Le Systemic Tau (τ_s) "
             f"a été calculé comme la moyenne des Kendall-τ par paires dans des fenêtres glissantes "
@@ -231,7 +293,7 @@ def methods_paragraph(
             f"Les EWS classiques (variance, AR(1)) ont utilisé le même W/stride de base. "
             f"Nuls : surrogates indépendants {surrogate_method} (n={n}, seed={p.seed}) "
             f"sur le contraste Δτ_s défini par {split}.{extra_txt} "
-            f"Preset de domaine : {domain}. "
+            f"Preset de domaine : {domain}.{note} "
             f"Hash de reproductibilité (SHA-256) : {repro_hash or '—'}. "
             f"Logiciel : Systemic Tau Platform v1.0 (noyau éducatif + extensions optionnelles)."
         )
@@ -258,6 +320,7 @@ def methods_paragraph(
             "Ordinal memory (symbolic MI lag-1 and cross-MI) was computed as an extension."
         )
     extra_txt = (" " + " ".join(extras)) if extras else ""
+    note = f" {methods_note}" if methods_note else ""
 
     return (
         f"Multivariate series were z-scored per channel. Systemic Tau (τ_s) was computed as the "
@@ -268,7 +331,7 @@ def methods_paragraph(
         f"Classical EWS (variance, AR(1)) used the same base W/stride for comparison. "
         f"Null models used independent {surrogate_method} surrogates (n={n}, seed={p.seed}) "
         f"on the Δτ_s contrast defined by {split}.{extra_txt} "
-        f"Analysis domain preset: {domain}. "
+        f"Analysis domain preset: {domain}.{note} "
         f"Reproducibility hash (SHA-256): {repro_hash or '—'}. "
         f"Software: Systemic Tau Platform v1.0 (educational core + optional extensions)."
     )

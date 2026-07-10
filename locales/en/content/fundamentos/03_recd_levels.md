@@ -1,16 +1,56 @@
-# Nested RECD: Φ₁ · Φ₂ · Φ₃
+# Foundations — RECD nested levels (Φ₁–Φ₃)
 
-## Learning goals
-- Name the three RECD levels and their ordinal interpretation.
-- Connect Bandt–Pompe symbols to nested conjunctions.
+| Field | Value |
+|-------|--------|
+| **Module** | Foundations 03 |
+| **Level** | Graduate |
+| **Version** | 1.1 · 2026 |
 
-## Levels
-- **Φ₁**: coincidence of ordinal patterns across channels (shared alphabet activity).
-- **Φ₂**: persistence / short-term memory of those co-occurrences.
-- **Φ₃**: higher-order conjunctions under threshold θ₃ — the seed of **excess3**.
+---
 
-## Nested clock
-RECD supplies a grammar for the system’s *internal* timing (Kairos) relative to external time (Chronos). Cumulative **T_recd** tracks progress of that grammar.
+## Learning outcomes
 
-## Practice
-In Mathematics, run the Bandt–Pompe sandbox (m=3 → 6 symbols) then the logistics demo and inspect the RECD panel.
+1. Define Φ₁, Φ₂, Φ₃ and excess3 operationally.  
+2. Distinguish Chronos (CSV index) from Kairos (RECD clock).  
+3. Prefer continuous excess3 over binary Φ₃ under noise.
+
+---
+
+## 1. Why a clock?
+
+τ_s is a **thermometer** of relational reorganization.  
+**RECD** accumulates reorganization as discrete **ticks**, giving the system an emergent time (Kairos) distinct from sampling time (Chronos).
+
+---
+
+## 2. Nested grammar
+
+| Level | Idea | Caution |
+|-------|------|---------|
+| **Φ₁** | Pairwise symbol coincidence at t | High ≠ emergence |
+| **Φ₂** | Persistence of pairwise relations (≥ d steps) | Habit, not flash |
+| **Φ₃** | Binary synergy above θ₃ | May stay 0 under noise |
+| **excess3** | Continuous irreducible synergy | Primary in noisy regimes |
+
+ΔRECD is modulated by reorganization intensity λ (often linked to |τ_s|).
+
+---
+
+## 3. Reporting standard
+
+Report:
+
+- mean_excess3 and Δexcess3 (primary continuous);  
+- Φ₃ occupancy if used;  
+- θ₃ value;  
+- link to τ_s trajectory and event design.
+
+---
+
+## 4. Micro-check
+
+Explain in three sentences why Φ₃=0 does not imply “no synergy” when excess3 moves.
+
+---
+
+*Foundations 03 · STP v1.1*

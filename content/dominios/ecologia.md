@@ -31,3 +31,23 @@ Este dominio es el **hogar histórico** de las EWS de CSD. Funcionan en muchos m
 
 - Scheffer, *Critical Transitions in Nature and Society*.
 - NTL LTER data publications.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[\mathrm{chla}, \mathrm{tp}, \mathrm{do}, \mathrm{temp}]\) (z-score) |
+| **Evento** | Bascule claro→turbio / onset de bloom |
+| **Preset Lab** | `ecology` · lectura dual vs panel CSD |
+| **Demos** | `ecology_like_demo` |
+| **Madurez** | Media (puente docente con literatura CSD) |
+
+### Frases permitidas
+- Reorganización relacional en torno a bascula de régimen diseñada o histórica…
+- Transferencia metodológica desde CCTP; no alarma operativa de gestión de lago.
+
+### Frases prohibidas (v1.0)
+- Producto operativo de alerta de eutrofización
+- Prueba causal de un lago real solo con el demo

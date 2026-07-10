@@ -40,3 +40,23 @@ Sequías y flips hidro-climáticos se estudian con indicadores de temperatura, p
 
 - Scheffer et al., critical transitions / CSD.
 - Literatura de drought indices (SPI, SPEI) como contraste univariado.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[\mathrm{temp}, \mathrm{precip}, \mathrm{soil}]\) |
+| **Evento** | Inicio de régimen seco / activación del latente de sequía |
+| **Preset Lab** | `climate` · lectura dual obligatoria |
+| **Demos** | `climate_drought_demo` |
+| **Madurez** | Media — énfasis docente |
+
+### Frases permitidas
+- Reorganización relacional bajo latente de sequía diseñado…
+- Transferencia pedagógica; no alertas oficiales de sequía.
+
+### Frases prohibidas (v1.0)
+- Forecast oficial de sequía / sistema de alerta de agencia
+- Predicción garantizada de aridificación irreversible

@@ -18,7 +18,7 @@ from stp.i18n.core import t
 from components.illustrations import show_illustration
 from components.ui import page_link, callout, footer, learning_goals, page_header, section_header
 from stp.core.ordinal import bandt_pompe_symbols
-from stp.core.pipeline import run_analysis
+from components.lab_cache import run_lab_cached
 from stp.config.settings import AnalysisParams
 from stp.data.generators import coupled_logistic
 from stp.education.content_loader import read_markdown
@@ -85,7 +85,7 @@ if run:
     X = coupled_logistic(T=600, coupling=0.2, switch_at=300, seed=7)
     params = AnalysisParams(window=51, stride=2, mode=mode, n_surrogates=4 if mode == "fast" else 20)
     with st.spinner(t("matematica.computing")):
-        result = run_analysis(X, params)
+        result = run_lab_cached(X, params, domain="synthetic")
     st.success(
         t(
             "matematica.ready",

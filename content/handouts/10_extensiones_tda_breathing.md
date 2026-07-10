@@ -1,8 +1,21 @@
 # Extensiones operativas — Breathing Window y TDA / Betti
 
-**Audiencia:** estudiantes de Lab (semana 3–6) y docentes  
-**Estado:** **operativo** en el Lab STP (no “en desarrollo”)  
-**Rol:** extensión pedagógica del núcleo τ_s + RECD + EWS + surrogates
+| Campo | Valor |
+|-------|--------|
+| **Documento** | Handout 10 · Extensiones |
+| **Audiencia** | Estudiantes de Lab (semanas 3–6) y docentes |
+| **Estado** | **Operativo** en el Lab STP (no “en desarrollo”) |
+| **Rol** | Extensión pedagógica del núcleo τ_s + RECD + EWS + surrogates |
+| **Versión** | 1.1 · 2026 |
+
+---
+
+## Resultados de aprendizaje
+
+1. Separar el **claim del núcleo** del **contraste de extensión**.  
+2. Interpretar W(t) adaptativa sin inventar acoplamiento.  
+3. Reportar β₀/β₁ con el backend correcto (`ripser` vs `vr_skeleton`).  
+4. Mantener claims de nivel tesis sobre el núcleo de lectura dual ordinal.
 
 ---
 
@@ -29,14 +42,18 @@ Breathing mapea la **volatilidad local** a un tamaño de ventana impar:
 
 ### Cómo usarlo en el Lab
 
-1. Active **Breathing window** (por defecto en modo Full).  
+1. Active **Breathing window** (por defecto en Full).  
 2. Ejecute.  
-3. Pestaña **Extensiones** o el eje secundario en τ_s: serie **W(t)**.  
+3. Pestaña **Extensiones** o eje secundario en τ_s: serie **W(t)**.  
 4. Documente el rango W observado (p.ej. W∈[21–101]).
 
 ### Lectura honesta
 
 Breathing cambia la **resolución temporal** de τ_s. No inventa acoplamiento: si el control AR sigue plano, no force una narrativa.
+
+### Reporte
+
+Declare: activado/desactivado, rango W observado, y si el Δ primario usó W fija o breathing.
 
 ---
 
@@ -74,11 +91,18 @@ Ambos son **proxies pedagógicos** de topología del estado. No son un pipeline 
 | ¿El cloud de estados cambia de topología? | β₀ / β₁ |
 | ¿El Δ relacional es residual bajo nulo cruzado? | p_surr |
 
-**No** reemplace la columna relacional por TDA. Use TDA para **contrastar**: a veces β₁ se mueve cuando var es ambigua; a veces no aporta.
+**No** reemplace la columna relacional por TDA. Use TDA para **contrastar**.
 
 ---
 
-## 4. CLI
+## 4. Memoria ordinal (breve)
+
+MI simbólica lag-1 y cross-MI estiman **persistencia de información ordinal**.  
+Repórtela como extensión; no la trate como grafo causal.
+
+---
+
+## 5. CLI
 
 ```bash
 # Extensiones on (también default en --mode full)
@@ -89,26 +113,38 @@ stp analyze data.csv --mode full -o report.md
 
 ---
 
-## 5. Checklist de entrega con extensiones
+## 6. Checklist de entrega con extensiones
 
 - [ ] Claim principal basado en τ_s / excess3 / p_surr (+ EWS)  
 - [ ] Breathing/TDA declarados como extensión  
 - [ ] Backend TDA reportado (`ripser` o `vr_skeleton`)  
 - [ ] Rango W si breathing  
 - [ ] Hash de la corrida  
-- [ ] Sin promesas clínicas/operativas basadas en β₁  
+- [ ] Sin promesas clínicas/operativas basadas solo en β₁  
 
 ---
 
-## 6. Errores frecuentes
+## 7. Errores frecuentes
 
 | Error | Corrección |
 |-------|------------|
 | “TDA aún no está listo” | Está operativo como extensión; actualice la app |
 | Publicar solo β₁ | Añada lectura dual del núcleo |
 | Confundir fallback VR con ripser multi-escala | Cite el backend |
-| Activar TDA en series enorme sin subsample | Use modo Fast o series demo del catálogo |
+| Activar TDA en series enormes sin subsample | Use modo Fast o demos del catálogo |
+| Tratar cambios de W breathing como “prueba de acoplamiento” | Resolución ≠ estructura |
 
 ---
 
-*Handout extensiones STP · Breathing + TDA operativos en el Lab*
+## 8. Consejo de nivel tesis
+
+Un capítulo de tesis defendible:
+
+1. Lidera con lectura dual relacional + nulos.  
+2. Usa extensiones en una subsección de **sensibilidad / contraste**.  
+3. Declara versiones de software y backends.  
+4. Mantiene la madurez del dominio explícita.
+
+---
+
+*Handout extensiones STP v1.1 · Breathing + TDA operativos en el Lab*

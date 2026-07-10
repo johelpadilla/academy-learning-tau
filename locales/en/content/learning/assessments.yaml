@@ -1,0 +1,1990 @@
+version: '1.1'
+pass_threshold_pct: 70
+weights:
+  m1: 0.05
+  m2: 0.05
+  m3: 0.05
+  m4: 0.3
+  m5: 0.25
+  m6: 0.3
+modules:
+- id: m1
+  week: 1
+  weight: 0.05
+  competencies:
+  - C1
+  - C6
+  title:
+    es: Semana 1 — EWS clásicas, CSD y límites
+    en: Week 1 — Classical EWS, CSD and limits
+    fr: Semaine 1 — EWS classiques, CSD et limites
+  description:
+    es: Evaluación formativa sobre indicadores tempranos univariados, critical slowing down y alcance
+      ético.
+    en: Formative quiz on univariate early-warning signals, critical slowing down, and ethical scope.
+    fr: Quiz formatif sur les signaux d’alerte univariés, le critical slowing down et le périmètre éthique.
+  questions:
+  - id: m1_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: ¿Qué miden típicamente las EWS clásicas (varianza, AR(1)) en series univariadas?
+      en: What do classical EWS (variance, AR(1)) typically measure in univariate series?
+      fr: Que mesurent typiquement les EWS classiques (variance, AR(1)) sur des séries univariées ?
+    choices:
+    - id: a
+      text:
+        es: El acoplamiento ordinal entre dos o más canales
+        en: Ordinal coupling between two or more channels
+        fr: Le couplage ordinal entre deux canaux ou plus
+    - id: b
+      text:
+        es: Cambios en la dinámica de un solo proceso (p.ej. fluctuaciones / memoria local)
+        en: Changes in a single process (e.g. fluctuations / local memory)
+        fr: Des changements d’un seul processus (fluctuations / mémoire locale)
+    - id: c
+      text:
+        es: La causalidad direccional entre variables clínicas
+        en: Directional causality between clinical variables
+        fr: La causalité directionnelle entre variables cliniques
+    - id: d
+      text:
+        es: El valor predictivo positivo de un dispositivo médico
+        en: Positive predictive value of a medical device
+        fr: La valeur prédictive positive d’un dispositif médical
+    correct: b
+    explanation:
+      es: Var y AR(1) son paneles univariados; no miden por sí solos reorganización relacional entre canales.
+      en: Variance and AR(1) are univariate panels; they alone do not measure cross-channel relational
+        reorganization.
+      fr: Variance et AR(1) sont univariés ; ils ne mesurent pas seuls la réorganisation relationnelle
+        entre canaux.
+  - id: m1_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Una limitación conceptual importante de las EWS clásicas es:'
+      en: 'An important conceptual limit of classical EWS is:'
+      fr: 'Une limite conceptuelle importante des EWS classiques est :'
+    choices:
+    - id: a
+      text:
+        es: Que siempre predicen el colapso con p < 0.05
+        en: That they always predict collapse with p < 0.05
+        fr: Qu’elles prédisent toujours l’effondrement avec p < 0,05
+    - id: b
+      text:
+        es: Ambigüedad de signo e interpretación (var↑ no siempre = misma narrativa de riesgo)
+        en: Sign ambiguity and interpretation (↑variance ≠ one universal risk story)
+        fr: L’ambiguïté de signe et d’interprétation (↑variance ≠ un récit de risque unique)
+    - id: c
+      text:
+        es: Que solo funcionan con m=7 de Bandt–Pompe
+        en: That they only work with Bandt–Pompe m=7
+        fr: Qu’elles ne marchent qu’avec Bandt–Pompe m=7
+    - id: d
+      text:
+        es: Que requieren obligatoriamente TDA / Betti
+        en: That they mandatorily require TDA / Betti numbers
+        fr: Qu’elles exigent obligatoirement la TDA / Betti
+    correct: b
+    explanation:
+      es: El mismo aumento de varianza puede corresponder a regímenes distintos; no sustituye una pregunta
+        relacional.
+      en: The same variance rise can map to different regimes; it does not replace a relational question.
+      fr: La même hausse de variance peut correspondre à des régimes différents ; elle ne remplace pas
+        une question relationnelle.
+  - id: m1_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Critical slowing down (CSD) se asocia conceptualmente con:'
+      en: 'Critical slowing down (CSD) is conceptually associated with:'
+      fr: 'Le critical slowing down (CSD) est conceptuellement associé à :'
+    choices:
+    - id: a
+      text:
+        es: Recuperación más lenta ante perturbaciones cerca de una transición
+        en: Slower recovery from perturbations near a transition
+        fr: Un retour plus lent après perturbation près d’une transition
+    - id: b
+      text:
+        es: Aumento garantizado de τ_s entre todos los pares de variables
+        en: Guaranteed increase of τ_s for every variable pair
+        fr: Une hausse garantie de τ_s pour toutes les paires de variables
+    - id: c
+      text:
+        es: Eliminación de la necesidad de nulos / surrogates
+        en: Removing the need for nulls / surrogates
+        fr: La suppression du besoin de nulls / surrogates
+    - id: d
+      text:
+        es: Validación clínica automática de un algoritmo de UCI
+        en: Automatic clinical validation of an ICU algorithm
+        fr: La validation clinique automatique d’un algorithme de réanimation
+    correct: a
+    explanation:
+      es: CSD describe recuperación lenta cerca de umbrales; no equivale a un dispositivo clínico validado.
+      en: CSD describes slow recovery near thresholds; it is not a validated clinical device claim.
+      fr: Le CSD décrit un retour lent près d’un seuil ; ce n’est pas une validation clinique de dispositif.
+  - id: m1_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Según el alcance de STP v1.0, el software se presenta como:'
+      en: 'Under STP v1.0 scope, the software is presented as:'
+      fr: 'Selon le périmètre STP v1.0, le logiciel est présenté comme :'
+    choices:
+    - id: a
+      text:
+        es: Dispositivo médico de alarma de FV en tiempo real
+        en: Real-time VF alarm medical device
+        fr: Dispositif médical d’alarme FV en temps réel
+    - id: b
+      text:
+        es: Herramienta de investigación y docencia para análisis ordinal / relacional
+        en: Research and teaching tool for ordinal / relational analysis
+        fr: Outil de recherche et d’enseignement pour l’analyse ordinale / relationnelle
+    - id: c
+      text:
+        es: Sistema de trading algorítmico certificado
+        en: Certified algorithmic trading system
+        fr: Système de trading algorithmique certifié
+    - id: d
+      text:
+        es: Sustituto de vigilancia epidemiológica operativa
+        en: Replacement for operational epidemiological surveillance
+        fr: Remplaçant de la surveillance épidémiologique opérationnelle
+    correct: b
+    explanation:
+      es: STP es plataforma educativa/de investigación; no es producto clínico ni financiero regulado.
+      en: STP is an educational/research platform; not a regulated clinical or financial product.
+      fr: STP est une plateforme éducative/recherche ; pas un produit clinique ou financier réglementé.
+  - id: m1_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Una pregunta relacional bien formulada se centra en:'
+      en: 'A well-posed relational question focuses on:'
+      fr: 'Une question relationnelle bien posée porte sur :'
+    choices:
+    - id: a
+      text:
+        es: Si solo sube la media de una variable
+        en: Whether only the mean of one variable rises
+        fr: Si seule la moyenne d’une variable augmente
+    - id: b
+      text:
+        es: Si se reorganiza el acoplamiento / coordinación entre canales en torno a un evento o tramo
+        en: Whether coupling / coordination between channels reorganizes around an event or segment
+        fr: Si le couplage / la coordination entre canaux se réorganise autour d’un événement ou segment
+    - id: c
+      text:
+        es: Si el p-valor de un test t es menor que 0.05
+        en: Whether a t-test p-value is below 0.05
+        fr: Si la p-valeur d’un test t est inférieure à 0,05
+    - id: d
+      text:
+        es: Si el modelo de deep learning alcanza 99% de accuracy
+        en: Whether a deep-learning model reaches 99% accuracy
+        fr: Si un modèle de deep learning atteint 99 % d’accuracy
+    correct: b
+    explanation:
+      es: 'Competencia C1: pregunta relacional ≠ solo univariada.'
+      en: 'Competency C1: relational question ≠ univariate-only question.'
+      fr: 'Compétence C1 : question relationnelle ≠ question purement univariée.'
+  - id: m1_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En una tabla de resultados de Lab aparece: Δvar = +0.8 (sube), ΔAR1 = −0.3 (baja). La lectura
+        más honesta es:'
+      en: 'A Lab results table shows: Δvar = +0.8 (up), ΔAR1 = −0.3 (down). The most honest reading is:'
+      fr: 'Un tableau de résultats Lab montre : Δvar = +0,8 (↑), ΔAR1 = −0,3 (↓). La lecture la plus honnête
+        est :'
+    choices:
+    - id: a
+      text:
+        es: Prueba definitiva de critical slowing down clásico en todos los sentidos
+        en: Definitive proof of classical critical slowing down in every sense
+        fr: Preuve définitive de critical slowing down classique dans tous les sens
+    - id: b
+      text:
+        es: 'Panel clásico ambiguo: un indicador sube y otro baja; no cierra solo la pregunta relacional'
+        en: 'Ambiguous classical panel: one indicator rises, another falls; it does not alone close the
+          relational question'
+        fr: 'Panneau classique ambigu : un indicateur monte, l’autre baisse ; il ne clôt pas seul la question
+          relationnelle'
+    - id: c
+      text:
+        es: Obliga a declarar predicción clínica
+        en: Forces a clinical prediction claim
+        fr: Oblige à déclarer une prédiction clinique
+    - id: d
+      text:
+        es: Demuestra que τ_s es innecesario
+        en: Proves that τ_s is unnecessary
+        fr: Prouve que τ_s est inutile
+    correct: b
+    explanation:
+      es: 'Ítem de interpretación de tabla: ambigüedad clásica motiva la lectura dual.'
+      en: 'Table-interpretation item: classical ambiguity motivates dual reading.'
+      fr: 'Item d’interprétation de tableau : l’ambiguïté classique motive la lecture duale.'
+  - id: m1_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El software STP se usa legítimamente en posgrado para:'
+      en: 'STP software is legitimately used in graduate training to:'
+      fr: 'Le logiciel STP s’utilise légitimement en formation de 3e cycle pour :'
+    choices:
+    - id: a
+      text:
+        es: Enseñar gramática ordinal/relacional, nulos y claims acotados
+        en: Teach ordinal/relational grammar, nulls and bounded claims
+        fr: Enseigner la grammaire ordinale/relationnelle, les nulls et les claims bornés
+    - id: b
+      text:
+        es: Sustituir comités de ética institucionales
+        en: Replace institutional ethics boards
+        fr: Remplacer les comités d’éthique institutionnels
+    - id: c
+      text:
+        es: Certificar dispositivos médicos
+        en: Certify medical devices
+        fr: Certifier des dispositifs médicaux
+    - id: d
+      text:
+        es: Publicar señales de trading sin revisión
+        en: Publish trading signals without review
+        fr: Publier des signaux de trading sans revue
+    correct: a
+    explanation:
+      es: Uso legítimo = investigación y docencia metodológica.
+      en: Legitimate use = methodological research and teaching.
+      fr: Usage légitime = recherche et enseignement méthodologiques.
+  - id: m1_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: Una figura muestra solo la traza univariada de casos de dengue con un umbral. ¿Qué falta para
+        una pregunta STP?
+      en: A figure shows only the univariate dengue-cases trace with a threshold. What is missing for
+        an STP question?
+      fr: Une figure ne montre que la trace univariée des cas de dengue avec un seuil. Que manque-t-il
+        pour une question STP ?
+    choices:
+    - id: a
+      text:
+        es: 'Nada: el umbral basta para reorganización relacional'
+        en: 'Nothing: the threshold suffices for relational reorganization'
+        fr: 'Rien : le seuil suffit pour la réorganisation relationnelle'
+    - id: b
+      text:
+        es: Canales multivariados (p.ej. clima), diseño de evento y contraste ordinal/nulos
+        en: Multivariate channels (e.g. climate), event design and ordinal/null contrast
+        fr: Canaux multivariés (p.ex. climat), design d’événement et contraste ordinal/nulls
+    - id: c
+      text:
+        es: Solo un color más bonito en la figura
+        en: Only a prettier colour on the figure
+        fr: Seulement une plus jolie couleur sur la figure
+    - id: d
+      text:
+        es: Obligatoriamente TDA/Betti
+        en: Mandatory TDA/Betti
+        fr: TDA/Betti obligatoire
+    correct: b
+    explanation:
+      es: 'Ítem de interpretación de figura: univariado+umbral ≠ pregunta relacional STP.'
+      en: 'Figure-interpretation item: univariate+threshold ≠ STP relational question.'
+      fr: 'Item d’interprétation de figure : univarié+seuil ≠ question relationnelle STP.'
+  - id: m1_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: ¿Cuál es un prerrequisito razonable del curso de 6 semanas?
+      en: Which is a reasonable prerequisite for the 6-week course?
+      fr: Quel est un prérequis raisonnable du cours de 6 semaines ?
+    choices:
+    - id: a
+      text:
+        es: Series temporales o estadística intermedia y lectura de gráficos científicos
+        en: Time series or intermediate statistics and reading scientific graphics
+        fr: Séries temporelles ou statistique intermédiaire et lecture de graphiques scientifiques
+    - id: b
+      text:
+        es: Licencia de médico especialista en arritmias
+        en: Specialist cardiology licence in arrhythmias
+        fr: Licence de médecin spécialiste en arythmies
+    - id: c
+      text:
+        es: Certificación de trader profesional
+        en: Professional trader certification
+        fr: Certification de trader professionnel
+    - id: d
+      text:
+        es: Dominio de ripser en producción
+        en: Production mastery of ripser
+        fr: Maîtrise de ripser en production
+    correct: a
+    explanation:
+      es: 'Syllabus §3: base cuantitativa intermedia, no credencial clínica.'
+      en: 'Syllabus §3: intermediate quantitative base, not a clinical credential.'
+      fr: 'Syllabus §3 : base quantitative intermédiaire, pas une accréditation clinique.'
+- id: m2
+  week: 2
+  weight: 0.05
+  competencies:
+  - C2
+  - C3
+  - C6
+  title:
+    es: Semana 2 — Bandt–Pompe y Systemic Tau (τ_s)
+    en: Week 2 — Bandt–Pompe and Systemic Tau (τ_s)
+    fr: Semaine 2 — Bandt–Pompe et Tau systémique (τ_s)
+  description:
+    es: Patrones ordinales, τ_s en ventana, controles sintéticos y reproducibilidad (hash).
+    en: Ordinal patterns, windowed τ_s, synthetic controls, and reproducibility (hash).
+    fr: Motifs ordinaux, τ_s en fenêtre, contrôles synthétiques et reproductibilité (hash).
+  questions:
+  - id: m2_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Los patrones Bandt–Pompe codifican principalmente:'
+      en: 'Bandt–Pompe patterns primarily encode:'
+      fr: 'Les motifs Bandt–Pompe encodent surtout :'
+    choices:
+    - id: a
+      text:
+        es: La amplitud absoluta en unidades físicas
+        en: Absolute amplitude in physical units
+        fr: L’amplitude absolue en unités physiques
+    - id: b
+      text:
+        es: El orden relativo (ranking) de valores en un embedding de retardo
+        en: Relative order (ranking) of values in a delay embedding
+        fr: L’ordre relatif (classement) des valeurs dans un plongement à retard
+    - id: c
+      text:
+        es: La etiqueta clínica del paciente
+        en: The patient’s clinical label
+        fr: L’étiquette clinique du patient
+    - id: d
+      text:
+        es: El hash SHA-256 del archivo CSV
+        en: The SHA-256 hash of the CSV file
+        fr: Le hash SHA-256 du fichier CSV
+    correct: b
+    explanation:
+      es: 'Bandt–Pompe es ordinal: ranks locales, no la escala bruta de la serie.'
+      en: 'Bandt–Pompe is ordinal: local ranks, not the raw scale of the series.'
+      fr: 'Bandt–Pompe est ordinal : rangs locaux, pas l’échelle brute de la série.'
+  - id: m2_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Systemic Tau (τ_s) se interpreta mejor como:'
+      en: 'Systemic Tau (τ_s) is best interpreted as:'
+      fr: 'Le Tau systémique (τ_s) s’interprète mieux comme :'
+    choices:
+    - id: a
+      text:
+        es: Un termómetro de acoplamiento ordinal entre canales en ventanas
+        en: A thermometer of ordinal coupling between channels in windows
+        fr: Un thermomètre de couplage ordinal entre canaux en fenêtres
+    - id: b
+      text:
+        es: La probabilidad de muerte súbita a 24 h
+        en: 24-hour sudden-death probability
+        fr: La probabilité de mort subite à 24 h
+    - id: c
+      text:
+        es: El precio futuro de un activo financiero
+        en: The future price of a financial asset
+        fr: Le prix futur d’un actif financier
+    - id: d
+      text:
+        es: Un sustituto de la frecuencia cardíaca media
+        en: A substitute for mean heart rate
+        fr: Un substitut de la fréquence cardiaque moyenne
+    correct: a
+    explanation:
+      es: τ_s resume acoplamiento ordinal; no es un endpoint clínico ni de mercado.
+      en: τ_s summarizes ordinal coupling; it is not a clinical or market endpoint.
+      fr: τ_s résume le couplage ordinal ; ce n’est pas un critère clinique ni de marché.
+  - id: m2_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En el diseño pedagógico STP, `synthetic_coupled_logistic` vs `synthetic_ar_noise` sirven para:'
+      en: 'In STP pedagogy, `synthetic_coupled_logistic` vs `synthetic_ar_noise` serve to:'
+      fr: 'En pédagogie STP, `synthetic_coupled_logistic` vs `synthetic_ar_noise` servent à :'
+    choices:
+    - id: a
+      text:
+        es: Reemplazar todos los datos clínicos reales
+        en: Replace all real clinical data
+        fr: Remplacer toutes les données cliniques réelles
+    - id: b
+      text:
+        es: Contrastar un control positivo de switch de acoplamiento con un casi-nulo
+        en: Contrast a positive coupling-switch control with a near-null control
+        fr: Contraster un contrôle positif de bascule de couplage avec un quasi-nul
+    - id: c
+      text:
+        es: Calcular Φ₃ sin necesidad de ventana
+        en: Compute Φ₃ without any window
+        fr: Calculer Φ₃ sans aucune fenêtre
+    - id: d
+      text:
+        es: Validar un ETF de volatilidad
+        en: Validate a volatility ETF
+        fr: Valider un ETF de volatilité
+    correct: b
+    explanation:
+      es: Semana 2 exige contraste positivo vs casi-nulo antes del ancla empírica.
+      en: Week 2 requires positive vs near-null contrast before the empirical anchor.
+      fr: La semaine 2 exige le contraste positif vs quasi-nul avant l’ancre empirique.
+  - id: m2_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El hash de reproducibilidad (SHA-256) en el Lab documenta principalmente:'
+      en: 'The Lab reproducibility hash (SHA-256) mainly documents:'
+      fr: 'Le hash de reproductibilité (SHA-256) du Lab documente surtout :'
+    choices:
+    - id: a
+      text:
+        es: Que el resultado es causalmente verdadero en la población
+        en: That the result is causally true in the population
+        fr: Que le résultat est causalement vrai dans la population
+    - id: b
+      text:
+        es: Una huella de datos + parámetros + pipeline para que un par pueda rehacer la corrida
+        en: A fingerprint of data + parameters + pipeline so a peer can redo the run
+        fr: Une empreinte données + paramètres + pipeline pour qu’un pair refasse la course
+    - id: c
+      text:
+        es: La aprobación ética del comité hospitalario
+        en: Hospital IRB ethical approval
+        fr: L’approbation éthique du comité hospitalier
+    - id: d
+      text:
+        es: El score de un examen estandarizado nacional
+        en: A national standardized exam score
+        fr: Le score d’un examen national standardisé
+    correct: b
+    explanation:
+      es: 'Competencia C6: Methods + hash + export, no prueba causal universal.'
+      en: 'Competency C6: Methods + hash + export, not universal causal proof.'
+      fr: 'Compétence C6 : Methods + hash + export, pas une preuve causale universelle.'
+  - id: m2_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Para un primer Lab formativo de τ_s, una práctica recomendada es:'
+      en: 'For a first formative τ_s Lab, a recommended practice is:'
+      fr: 'Pour un premier Lab formatif de τ_s, une pratique recommandée est :'
+    choices:
+    - id: a
+      text:
+        es: Usar modo Full con TDA y breathing sin leer el panel núcleo
+        en: Use Full mode with TDA and breathing without reading the core panel
+        fr: Utiliser le mode Full avec TDA et breathing sans lire le panneau noyau
+    - id: b
+      text:
+        es: Fijar preset/W/stride coherentes, n_surr ≥ 8 y comparar con un control casi-nulo
+        en: Set coherent preset/W/stride, n_surr ≥ 8, and compare to a near-null control
+        fr: Fixer preset/W/stride cohérents, n_surr ≥ 8 et comparer à un quasi-nul
+    - id: c
+      text:
+        es: Reportar solo el p-valor más pequeño sin Δτ_s
+        en: Report only the smallest p-value without Δτ_s
+        fr: Ne rapporter que la plus petite p-valeur sans Δτ_s
+    - id: d
+      text:
+        es: Cambiar el seed hasta obtener el resultado deseado sin documentarlo
+        en: Change the seed until the desired result appears without documenting it
+        fr: Changer la graine jusqu’au résultat souhaité sans le documenter
+    correct: b
+    explanation:
+      es: 'El núcleo pedagógico: parámetros justificados + nulos + contraste de controles.'
+      en: 'Pedagogical core: justified parameters + nulls + control contrast.'
+      fr: 'Noyau pédagogique : paramètres justifiés + nulls + contraste de contrôles.'
+  - id: m2_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Una tabla reporta: m=3, W=101, stride=5, repro_hash=abc…, n_surr=0. ¿Qué falta para un claim
+        de nulo?'
+      en: 'A table reports: m=3, W=101, stride=5, repro_hash=abc…, n_surr=0. What is missing for a null
+        claim?'
+      fr: 'Un tableau rapporte : m=3, W=101, stride=5, repro_hash=abc…, n_surr=0. Que manque-t-il pour
+        un claim de null ?'
+    choices:
+    - id: a
+      text:
+        es: Surrogates (n_surr>0) o declaración explícita de que no se contrastó nulo
+        en: Surrogates (n_surr>0) or an explicit statement that no null was tested
+        fr: Surrogates (n_surr>0) ou déclaration explicite qu’aucun null n’a été testé
+    - id: b
+      text:
+        es: 'Nada: el hash basta como p-valor'
+        en: 'Nothing: the hash suffices as a p-value'
+        fr: 'Rien : le hash suffit comme p-valeur'
+    - id: c
+      text:
+        es: Solo cambiar m a 7
+        en: Only change m to 7
+        fr: Seulement passer m à 7
+    - id: d
+      text:
+        es: Borrar el hash
+        en: Delete the hash
+        fr: Effacer le hash
+    correct: a
+    explanation:
+      es: Hash ≠ nulo. n_surr=0 exige transparencia.
+      en: Hash ≠ null. n_surr=0 requires transparency.
+      fr: Hash ≠ null. n_surr=0 exige la transparence.
+  - id: m2_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El control sintético `synthetic_ar_noise` se usa principalmente para:'
+      en: 'The synthetic control `synthetic_ar_noise` is mainly used to:'
+      fr: 'Le contrôle synthétique `synthetic_ar_noise` sert surtout à :'
+    choices:
+    - id: a
+      text:
+        es: Simular un switch de acoplamiento fuerte
+        en: Simulate a strong coupling switch
+        fr: Simuler un fort basculement de couplage
+    - id: b
+      text:
+        es: 'Casi-nulo: esperar |Δτ_s| pequeño si no hay transición diseñada'
+        en: 'Near-null: expect small |Δτ_s| when no transition is designed'
+        fr: 'Quasi-null : attendre un |Δτ_s| petit s’il n’y a pas de transition conçue'
+    - id: c
+      text:
+        es: Validar un dispositivo de FV
+        en: Validate a VF device
+        fr: Valider un dispositif de FV
+    - id: d
+      text:
+        es: Entrenar un modelo de trading
+        en: Train a trading model
+        fr: Entraîner un modèle de trading
+    correct: b
+    explanation:
+      es: Control casi-nulo del syllabus semana 2.
+      en: Near-null control from syllabus week 2.
+      fr: Contrôle quasi-null du syllabus semaine 2.
+  - id: m2_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Si dos transformaciones monótonas distintas se aplican a la misma serie, los símbolos Bandt–Pompe:'
+      en: 'If two different monotone transforms are applied to the same series, Bandt–Pompe symbols:'
+      fr: 'Si deux transformées monotones distinctes sont appliquées à la même série, les motifs Bandt–Pompe
+        :'
+    choices:
+    - id: a
+      text:
+        es: Suelen permanecer iguales (invarianza ordinal monótona)
+        en: Typically stay the same (monotone ordinal invariance)
+        fr: Restent en général les mêmes (invariance ordinale monotone)
+    - id: b
+      text:
+        es: Siempre se invierten al azar
+        en: Always flip at random
+        fr: S’inversent toujours au hasard
+    - id: c
+      text:
+        es: Requieren unidades SI obligatorias
+        en: Require mandatory SI units
+        fr: Exigent des unités SI obligatoires
+    - id: d
+      text:
+        es: Eliminan la necesidad de ventanas W
+        en: Remove the need for windows W
+        fr: Suppriment le besoin de fenêtres W
+    correct: a
+    explanation:
+      es: Propiedad pedagógica central de Bandt–Pompe.
+      en: Central pedagogical property of Bandt–Pompe.
+      fr: Propriété pédagogique centrale de Bandt–Pompe.
+  - id: m2_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: Una figura de τ_s(t) sin evento marcado ni panel clásico. ¿Qué debilidad de informe es la principal?
+      en: A figure of τ_s(t) with no marked event and no classical panel. What is the main report weakness?
+      fr: Une figure de τ_s(t) sans événement marqué ni panneau classique. Quelle est la principale faiblesse
+        du rapport ?
+    choices:
+    - id: a
+      text:
+        es: Falta diseño (evento/corte) y lectura dual para situar el Δ
+        en: Missing design (event/cut) and dual reading to situate Δ
+        fr: Manque le design (événement/coupe) et la lecture duale pour situer Δ
+    - id: b
+      text:
+        es: Demasiados surrogates
+        en: Too many surrogates
+        fr: Trop de surrogates
+    - id: c
+      text:
+        es: Uso correcto de Methods completo
+        en: Correct use of a full Methods section
+        fr: Usage correct d’une section Methods complète
+    - id: d
+      text:
+        es: Exceso de citas de PhysioNet
+        en: Too many PhysioNet citations
+        fr: Trop de citations PhysioNet
+    correct: a
+    explanation:
+      es: Interpretación de figura incompleta sin diseño ni dual.
+      en: Incomplete figure interpretation without design or dual panel.
+      fr: Interprétation de figure incomplète sans design ni dual.
+- id: m3
+  week: 3
+  weight: 0.05
+  competencies:
+  - C3
+  - C4
+  - C5
+  title:
+    es: Semana 3 — RECD, excess3 y lectura dual
+    en: Week 3 — RECD, excess3 and dual reading
+    fr: Semaine 3 — RECD, excess3 et lecture duale
+  description:
+    es: Niveles Φ₁–Φ₃, excess3 bajo ruido y protocolo de lectura dual con EWS.
+    en: Φ₁–Φ₃ levels, excess3 under noise, and dual-reading protocol with EWS.
+    fr: Niveaux Φ₁–Φ₃, excess3 sous bruit et protocole de lecture duale avec EWS.
+  questions:
+  - id: m3_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En RECD ordinal anidado, excess3 se introduce sobre todo porque:'
+      en: 'In nested ordinal RECD, excess3 is introduced mainly because:'
+      fr: 'Dans le RECD ordinal emboîté, excess3 est surtout introduit parce que :'
+    choices:
+    - id: a
+      text:
+        es: Φ₃ binario puede apagarse bajo ruido mientras la sinergia gradual sigue siendo informativa
+        en: Binary Φ₃ can go dark under noise while graded synergy remains informative
+        fr: Φ₃ binaire peut s’éteindre sous bruit alors qu’une synergie graduée reste informative
+    - id: b
+      text:
+        es: Sustituye por completo a τ_s
+        en: It fully replaces τ_s
+        fr: Il remplace complètement τ_s
+    - id: c
+      text:
+        es: Es el único indicador aceptado por la FDA
+        en: It is the only FDA-accepted indicator
+        fr: C’est le seul indicateur accepté par la FDA
+    - id: d
+      text:
+        es: Elimina la necesidad de ventana deslizante
+        en: It removes the need for a sliding window
+        fr: Il supprime le besoin d’une fenêtre glissante
+    correct: a
+    explanation:
+      es: excess3 es el primario robusto cuando Φ₃ binario es frágil al ruido.
+      en: excess3 is the robust primary when binary Φ₃ is noise-fragile.
+      fr: excess3 est le primaire robuste quand Φ₃ binaire est fragile au bruit.
+  - id: m3_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'La lectura dual consiste en:'
+      en: 'Dual reading consists of:'
+      fr: 'La lecture duale consiste à :'
+    choices:
+    - id: a
+      text:
+        es: Publicar solo el p_surr más bajo del panel
+        en: Publishing only the lowest p_surr on the panel
+        fr: Ne publier que la plus basse p_surr du panneau
+    - id: b
+      text:
+        es: Contrastar sistemáticamente el panel relacional (τ_s/RECD) con EWS clásicas (var/AR1)
+        en: Systematically contrasting the relational panel (τ_s/RECD) with classical EWS (var/AR1)
+        fr: Contraster systématiquement le panneau relationnel (τ_s/RECD) avec les EWS classiques (var/AR1)
+    - id: c
+      text:
+        es: Entrenar dos redes neuronales y promediar
+        en: Training two neural nets and averaging them
+        fr: Entraîner deux réseaux de neurones et les moyenner
+    - id: d
+      text:
+        es: Duplicar el dataset para inflar el n
+        en: Duplicating the dataset to inflate n
+        fr: Dupliquer le jeu de données pour gonfler n
+    correct: b
+    explanation:
+      es: Concordancia, discordancia o quietud entre paneles es el protocolo de la semana 3.
+      en: Concordance, discordance, or quietude between panels is the week-3 protocol.
+      fr: Concordance, discordance ou quietude entre panneaux est le protocole de la semaine 3.
+  - id: m3_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Si var↑ y AR1↓ mientras τ_s/excess3 se mueven en el approach, una lectura dual cuidadosa dice:'
+      en: 'If variance↑ and AR1↓ while τ_s/excess3 move in the approach, careful dual reading says:'
+      fr: 'Si variance↑ et AR1↓ tandis que τ_s/excess3 bougent à l’approche, une lecture duale soignée
+        dit :'
+    choices:
+    - id: a
+      text:
+        es: Que las EWS clásicas están “refutadas para siempre”
+        en: That classical EWS are “refuted forever”
+        fr: Que les EWS classiques sont « réfutées à jamais »
+    - id: b
+      text:
+        es: Que el panel univariado puede ser ambiguo mientras el relacional aporta otra capa
+        en: That the univariate panel can be ambiguous while the relational layer adds information
+        fr: Que le panneau univarié peut être ambigu tandis que la couche relationnelle ajoute de l’information
+    - id: c
+      text:
+        es: Que se debe ocultar el panel clásico en el informe
+        en: That the classical panel must be hidden from the report
+        fr: Qu’il faut cacher le panneau classique dans le rapport
+    - id: d
+      text:
+        es: Que el análisis es inválido y no debe documentarse
+        en: That the analysis is invalid and must not be documented
+        fr: Que l’analyse est invalide et ne doit pas être documentée
+    correct: b
+    explanation:
+      es: La gramática del curso celebra la ambigüedad clásica cuando el relacional se mueve.
+      en: Course grammar embraces classical ambiguity when the relational panel moves.
+      fr: La grammaire du cours accueille l’ambiguïté classique quand le relationnel bouge.
+  - id: m3_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Φ₁–Φ₃ en RECD describen, en la pedagogía del curso:'
+      en: 'In course pedagogy, Φ₁–Φ₃ in RECD describe:'
+      fr: 'Dans la pédagogie du cours, Φ₁–Φ₃ du RECD décrivent :'
+    choices:
+    - id: a
+      text:
+        es: Niveles anidados de coincidencia / persistencia / sinergia en el marco ordinal
+        en: Nested levels of coincidence / persistence / synergy in the ordinal framework
+        fr: Des niveaux emboîtés de coïncidence / persistance / synergie dans le cadre ordinal
+    - id: b
+      text:
+        es: Tres umbrales de precio de una acción
+        en: Three stock-price thresholds
+        fr: Trois seuils de prix d’une action
+    - id: c
+      text:
+        es: Tres capas de un modelo transformer
+        en: Three layers of a transformer model
+        fr: Trois couches d’un modèle transformer
+    - id: d
+      text:
+        es: Tres hospitales del ensayo CCTP
+        en: Three hospitals in the CCTP trial
+        fr: Trois hôpitaux de l’essai CCTP
+    correct: a
+    explanation:
+      es: RECD anidado = gramática de reorganización, no un endpoint multi-centro por sí solo.
+      en: Nested RECD = reorganization grammar, not a multi-center endpoint by itself.
+      fr: RECD emboîté = grammaire de réorganisation, pas un critère multi-centrique à lui seul.
+  - id: m3_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Respecto a extensiones (TDA, breathing, memoria) en v1.0 del curso:'
+      en: 'Regarding extensions (TDA, breathing, memory) in course v1.0:'
+      fr: 'Concernant les extensions (TDA, breathing, mémoire) en v1.0 du cours :'
+    choices:
+    - id: a
+      text:
+        es: Deben ser el claim principal del mini-informe de la semana 3
+        en: They must be the main claim of the week-3 mini-report
+        fr: Elles doivent être le claim principal du mini-rapport de la semaine 3
+    - id: b
+      text:
+        es: Son opt-in; el claim principal sigue siendo τ_s + excess3 + dual + nulo
+        en: They are opt-in; the main claim remains τ_s + excess3 + dual + null
+        fr: Elles sont opt-in ; le claim principal reste τ_s + excess3 + dual + null
+    - id: c
+      text:
+        es: Invalidan el uso de surrogates
+        en: They invalidate the use of surrogates
+        fr: Elles invalident l’usage des surrogates
+    - id: d
+      text:
+        es: Solo existen en el idioma inglés
+        en: They exist only in English
+        fr: Elles n’existent qu’en anglais
+    correct: b
+    explanation:
+      es: El núcleo evaluable no se delega a extensiones experimentales.
+      en: The graded core is not delegated to experimental extensions.
+      fr: Le noyau évalué n’est pas délégué aux extensions expérimentales.
+  - id: m3_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Tabla: Φ₃ binario ≈ 0 en casi todas las ventanas, pero mean_excess3 y Δexcess3 son notables.
+        La lectura preferente es:'
+      en: 'Table: binary Φ₃ ≈ 0 in almost all windows, but mean_excess3 and Δexcess3 are notable. Preferred
+        reading:'
+      fr: 'Tableau : Φ₃ binaire ≈ 0 presque partout, mais mean_excess3 et Δexcess3 sont notables. Lecture
+        préférée :'
+    choices:
+    - id: a
+      text:
+        es: Usar excess3 como primario; Φ₃ umbralizado puede apagarse por θ₃
+        en: Treat excess3 as primary; thresholded Φ₃ can switch off due to θ₃
+        fr: Traiter excess3 comme primaire ; Φ₃ seuillé peut s’éteindre à cause de θ₃
+    - id: b
+      text:
+        es: Ignorar excess3 y declarar ausencia total de estructura
+        en: Ignore excess3 and declare total absence of structure
+        fr: Ignorer excess3 et déclarer l’absence totale de structure
+    - id: c
+      text:
+        es: Concluir predicción clínica automática
+        en: Conclude automatic clinical prediction
+        fr: Conclure une prédiction clinique automatique
+    - id: d
+      text:
+        es: Sustituir todo por solo varianza
+        en: Replace everything by variance alone
+        fr: Tout remplacer par la seule variance
+    correct: a
+    explanation:
+      es: Punto pedagógico del syllabus sem. 3 sobre excess3.
+      en: Pedagogical point from syllabus week 3 on excess3.
+      fr: Point pédagogique du syllabus sem. 3 sur excess3.
+  - id: m3_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Patrón de lectura dual: relacional sí, clásico ambiguo. La frase modelo correcta enfatiza:'
+      en: 'Dual-reading pattern: relational yes, classical ambiguous. The correct model sentence emphasizes:'
+      fr: 'Motif de lecture duale : relationnel oui, classique ambigu. La phrase modèle correcte insiste
+        sur :'
+    choices:
+    - id: a
+      text:
+        es: Que el hallazgo principal es la reorganización ordinal bajo nulo, con panel univariado ambiguo
+        en: That the main finding is ordinal reorganization under the null, with an ambiguous univariate
+          panel
+        fr: Que le résultat principal est la réorganisation ordinale sous le null, avec un panneau univarié
+          ambigu
+    - id: b
+      text:
+        es: Ocultar el panel clásico porque estorba
+        en: Hiding the classical panel because it is inconvenient
+        fr: Cacher le panneau classique parce qu’il gêne
+    - id: c
+      text:
+        es: Declarar valor predictivo externo del 99%
+        en: Declaring 99% external predictive value
+        fr: Déclarer une valeur prédictive externe de 99 %
+    - id: d
+      text:
+        es: Que TDA es obligatorio
+        en: That TDA is mandatory
+        fr: Que la TDA est obligatoire
+    correct: a
+    explanation:
+      es: Plantilla B del handout de lectura dual.
+      en: Template B from the dual-reading handout.
+      fr: Modèle B du handout de lecture duale.
+  - id: m3_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: ¿Qué NO debe basar el claim principal de un informe de semana 3?
+      en: What should NOT ground the main claim of a week-3 report?
+      fr: Qu’est-ce qui ne doit PAS fonder le claim principal d’un rapport de semaine 3 ?
+    choices:
+    - id: a
+      text:
+        es: Δτ_s, excess3 y lectura dual con nulos documentados
+        en: Δτ_s, excess3 and dual reading with documented nulls
+        fr: Δτ_s, excess3 et lecture duale avec nulls documentés
+    - id: b
+      text:
+        es: Solo extensiones TDA/breathing sin el núcleo relacional
+        en: Only TDA/breathing extensions without the relational core
+        fr: Seulement les extensions TDA/breathing sans le noyau relationnel
+    - id: c
+      text:
+        es: Parámetros W, m, seed
+        en: Parameters W, m, seed
+        fr: Paramètres W, m, seed
+    - id: d
+      text:
+        es: Frase de alcance del dominio
+        en: A domain-scope sentence
+        fr: Une phrase de périmètre de domaine
+    correct: b
+    explanation:
+      es: Extensiones = contraste, no sustituto del núcleo.
+      en: Extensions = contrast, not a substitute for the core.
+      fr: Extensions = contraste, pas un substitut du noyau.
+  - id: m3_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Figura: var y AR1 suben hacia el evento; τ_s estable; p_surr alto. Patrón dual:'
+      en: 'Figure: var and AR1 rise toward the event; τ_s stable; high p_surr. Dual pattern:'
+      fr: 'Figure : var et AR1 montent vers l’événement ; τ_s stable ; p_surr élevé. Motif dual :'
+    choices:
+    - id: a
+      text:
+        es: Clásico sí, relacional no — no reclamar detección relacional
+        en: Classical yes, relational no — do not claim relational detection
+        fr: Classique oui, relationnel non — ne pas réclamer de détection relationnelle
+    - id: b
+      text:
+        es: Concordancia fuerte relacional+clásica
+        en: Strong relational+classical concordance
+        fr: Forte concordance relationnelle+classique
+    - id: c
+      text:
+        es: Obliga a trading
+        en: Forces a trading claim
+        fr: Oblige un claim de trading
+    - id: d
+      text:
+        es: Prueba de causalidad clínica
+        en: Proof of clinical causality
+        fr: Preuve de causalité clinique
+    correct: a
+    explanation:
+      es: Patrón C del handout de lectura dual.
+      en: Pattern C of the dual-reading handout.
+      fr: Motif C du handout de lecture duale.
+- id: m4
+  week: 4
+  weight: 0.3
+  competencies:
+  - C2
+  - C3
+  - C4
+  - C5
+  - C6
+  title:
+    es: Semana 4 — Ancla CCTP / cardiología (sumativo)
+    en: Week 4 — CCTP / cardiology anchor (summative)
+    fr: Semaine 4 — Ancre CCTP / cardiologie (sommatif)
+  description:
+    es: Pregunta pre-FV, presets cardio, claims acotados y madurez empírica del ancla.
+    en: Pre-VF question, cardio presets, bounded claims, and empirical maturity of the anchor.
+    fr: Question pré-FV, presets cardio, claims bornés et maturité empirique de l’ancre.
+  questions:
+  - id: m4_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El ancla empírica de referencia del curso es:'
+      en: 'The course’s reference empirical anchor is:'
+      fr: 'L’ancre empirique de référence du cours est :'
+    choices:
+    - id: a
+      text:
+        es: Trading de alta frecuencia en criptomonedas
+        en: High-frequency crypto trading
+        fr: Le trading haute fréquence de crypto-actifs
+    - id: b
+      text:
+        es: CCTP / cardiología computacional (pre-FV) con demos SDDB o cardiac_like
+        en: CCTP / computational cardiology (pre-VF) with SDDB or cardiac_like demos
+        fr: CCTP / cardiologie computationnelle (pré-FV) avec démos SDDB ou cardiac_like
+    - id: c
+      text:
+        es: Nowcast operativo de dengue nacional
+        en: Operational national dengue nowcast
+        fr: Nowcast opérationnel national de la dengue
+    - id: d
+      text:
+        es: Scoring social de polarización en redes
+        en: Social scoring of network polarization
+        fr: Scoring social de polarisation sur les réseaux
+    correct: b
+    explanation:
+      es: Otras apps son transferencia metodológica con madurez asimétrica.
+      en: Other apps are methodological transfer with asymmetric maturity.
+      fr: Les autres apps sont un transfert méthodologique à maturité asymétrique.
+  - id: m4_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Una frase de entrega **permitida** en el informe cardio es:'
+      en: 'A **permitted** delivery phrase in the cardio report is:'
+      fr: 'Une phrase de rendu **autorisée** dans le rapport cardio est :'
+    choices:
+    - id: a
+      text:
+        es: “Predice la FV en UCI con este Lab”
+        en: “Predicts ICU VF with this Lab”
+        fr: « Prédit la FV en réanimation avec ce Lab »
+    - id: b
+      text:
+        es: “Reorganización relacional significativa vs phase-shuffle en este diseño…”
+        en: “Significant relational reorganization vs phase-shuffle in this design…”
+        fr: « Réorganisation relationnelle significative vs phase-shuffle dans ce design… »
+    - id: c
+      text:
+        es: “Dispositivo de alarma clínica validado”
+        en: “Validated clinical alarm device”
+        fr: « Dispositif d’alarme clinique validé »
+    - id: d
+      text:
+        es: “El hash del Lab valida un ensayo clínico multicéntrico”
+        en: “The Lab hash validates a multi-center clinical trial”
+        fr: « Le hash du Lab valide un essai clinique multicentrique »
+    correct: b
+    explanation:
+      es: Claims acotados al diseño y al nulo; sin overclaim clínico.
+      en: Claims bounded to design and null; no clinical overclaim.
+      fr: Claims bornés au design et au null ; pas d’overclaim clinique.
+  - id: m4_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Si no hay samples SDDB en el entorno, el syllabus recomienda:'
+      en: 'If SDDB samples are missing in the environment, the syllabus recommends:'
+      fr: 'Si les samples SDDB manquent dans l’environnement, le syllabus recommande :'
+    choices:
+    - id: a
+      text:
+        es: Cancelar la competencia de la semana 4
+        en: Cancel week-4 competency
+        fr: Annuler la compétence de la semaine 4
+    - id: b
+      text:
+        es: Usar `cardiac_like_demo` como flujo CCTP suficiente para la competencia
+        en: Use `cardiac_like_demo` as a CCTP-like flow sufficient for the competency
+        fr: Utiliser `cardiac_like_demo` comme flux type CCTP suffisant pour la compétence
+    - id: c
+      text:
+        es: Sustituir por un dataset de finanzas sin etiquetar
+        en: Replace with an unlabeled finance dataset
+        fr: Remplacer par un jeu financier non étiqueté
+    - id: d
+      text:
+        es: Inventar p-valores sin corrida
+        en: Invent p-values without a run
+        fr: Inventer des p-valeurs sans exécution
+    correct: b
+    explanation:
+      es: 'Nota docente: cardiac_like_demo basta para la competencia si no hay SDDB.'
+      en: 'Teaching note: cardiac_like_demo is enough for competency without SDDB.'
+      fr: 'Note enseignant : cardiac_like_demo suffit pour la compétence sans SDDB.'
+  - id: m4_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En la rúbrica 0–2 (12 puntos), el criterio de **reproducibilidad** al máximo exige:'
+      en: 'On the 0–2 rubric (12 pts), full credit for **reproducibility** requires:'
+      fr: 'Sur la grille 0–2 (12 pts), le maximum en **reproductibilité** exige :'
+    choices:
+    - id: a
+      text:
+        es: Solo el nombre del dataset
+        en: Only the dataset name
+        fr: Seulement le nom du jeu de données
+    - id: b
+      text:
+        es: Hash + Methods + export usable por un par
+        en: Hash + Methods + export usable by a peer
+        fr: Hash + Methods + export utilisable par un pair
+    - id: c
+      text:
+        es: Una captura de pantalla sin parámetros
+        en: A screenshot without parameters
+        fr: Une capture d’écran sans paramètres
+    - id: d
+      text:
+        es: Un párrafo de motivación personal
+        en: A paragraph of personal motivation
+        fr: Un paragraphe de motivation personnelle
+    correct: b
+    explanation:
+      es: Criterio 6 de la rúbrica del syllabus.
+      en: Rubric criterion 6 in the syllabus.
+      fr: Critère 6 de la grille du syllabus.
+  - id: m4_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El umbral de aprobación de la práctica Lab/informe en el syllabus es:'
+      en: 'The Lab/report practice pass threshold in the syllabus is:'
+      fr: 'Le seuil de réussite de la pratique Lab/rapport dans le syllabus est :'
+    choices:
+    - id: a
+      text:
+        es: ≥ 3 / 12
+        en: ≥ 3 / 12
+        fr: ≥ 3 / 12
+    - id: b
+      text:
+        es: ≥ 9 / 12
+        en: ≥ 9 / 12
+        fr: ≥ 9 / 12
+    - id: c
+      text:
+        es: 12 / 12 obligatorio siempre
+        en: 12 / 12 always mandatory
+        fr: 12 / 12 toujours obligatoire
+    - id: d
+      text:
+        es: Sin umbral numérico
+        en: No numeric threshold
+        fr: Aucun seuil numérique
+    correct: b
+    explanation:
+      es: Aprobación ≥ 9/12; excelente ≥ 11/12.
+      en: Pass ≥ 9/12; excellent ≥ 11/12.
+      fr: Réussite ≥ 9/12 ; excellent ≥ 11/12.
+  - id: m4_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Usar el preset de dominio `cardiology` sirve para:'
+      en: 'Using the `cardiology` domain preset is meant to:'
+      fr: 'Utiliser le preset de domaine `cardiology` vise à :'
+    choices:
+    - id: a
+      text:
+        es: Garantizar aprobación regulatoria del algoritmo
+        en: Guarantee regulatory approval of the algorithm
+        fr: Garantir l’approbation réglementaire de l’algorithme
+    - id: b
+      text:
+        es: Proponer W/stride/θ₃/m de partida justificados al dominio, documentables en Methods
+        en: Propose domain-justified starting W/stride/θ₃/m, documentable in Methods
+        fr: Proposer des W/stride/θ₃/m de départ justifiés au domaine, documentables dans Methods
+    - id: c
+      text:
+        es: Cambiar la matemática de Bandt–Pompe por Fourier
+        en: Replace Bandt–Pompe math with Fourier analysis
+        fr: Remplacer la mathématique Bandt–Pompe par Fourier
+    - id: d
+      text:
+        es: Ocultar el panel de EWS clásicas
+        en: Hide the classical EWS panel
+        fr: Cacher le panneau des EWS classiques
+    correct: b
+    explanation:
+      es: Presets son punto de partida pedagógico, no magia regulatoria.
+      en: Presets are a pedagogical starting point, not regulatory magic.
+      fr: Les presets sont un point de départ pédagogique, pas une magie réglementaire.
+  - id: m4_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Tabla CCTP-like: Δτ_s significativo, p_surr bajo, var↑, AR1↓, N=1 sample demo. Conclusión correcta:'
+      en: 'CCTP-like table: significant Δτ_s, low p_surr, var↑, AR1↓, N=1 demo sample. Correct conclusion:'
+      fr: 'Tableau type CCTP : Δτ_s significatif, p_surr bas, var↑, AR1↓, N=1 sample démo. Conclusion
+        correcte :'
+    choices:
+    - id: a
+      text:
+        es: Reorganización relacional en este diseño con panel clásico ambiguo; no dispositivo de alarma;
+          límites de sample
+        en: Relational reorganization under this design with ambiguous classical panel; not an alarm device;
+          sample limits
+        fr: Réorganisation relationnelle sous ce design avec panneau classique ambigu ; pas un dispositif
+          d’alarme ; limites d’échantillon
+    - id: b
+      text:
+        es: Validación clínica de alarma de FV en tiempo real
+        en: Clinical validation of a real-time VF alarm
+        fr: Validation clinique d’une alarme FV temps réel
+    - id: c
+      text:
+        es: Se puede omitir el disclaimer porque p es bajo
+        en: The disclaimer can be omitted because p is low
+        fr: On peut omettre le disclaimer car p est bas
+    - id: d
+      text:
+        es: El signo de Δ es irrelevante siempre
+        en: The sign of Δ is always irrelevant
+        fr: Le signe de Δ est toujours sans importance
+    correct: a
+    explanation:
+      es: Interpretación de tabla cardio con ética de claims.
+      en: Cardio table interpretation with claim ethics.
+      fr: Interprétation de tableau cardio avec éthique des claims.
+  - id: m4_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El sample `sddb_rr_51_demo` (pacing) se usa pedagógicamente para:'
+      en: 'The `sddb_rr_51_demo` sample (pacing) is used pedagogically to:'
+      fr: 'Le sample `sddb_rr_51_demo` (pacing) sert pédagogiquement à :'
+    choices:
+    - id: a
+      text:
+        es: Ilustrar dificultad, flags de calidad y límites del preset
+        en: Illustrate difficulty, quality flags and preset limits
+        fr: Illustrer la difficulté, les flags de qualité et les limites du preset
+    - id: b
+      text:
+        es: Garantizar el caso más fácil de la cohorte
+        en: Guarantee the easiest case in the cohort
+        fr: Garantir le cas le plus facile de la cohorte
+    - id: c
+      text:
+        es: Probar un algoritmo de trading
+        en: Test a trading algorithm
+        fr: Tester un algorithme de trading
+    - id: d
+      text:
+        es: Sustituir revisión ética
+        en: Replace ethics review
+        fr: Remplacer la revue éthique
+    correct: a
+    explanation:
+      es: Sample 51 = dificultad / calidad, no 'éxito garantizado'.
+      en: Sample 51 = difficulty / quality, not guaranteed success.
+      fr: Sample 51 = difficulté / qualité, pas succès garanti.
+  - id: m4_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Preset cardiology típico en la app (orden de magnitud):'
+      en: 'Typical cardiology preset in the app (order of magnitude):'
+      fr: 'Preset cardiology typique dans l’app (ordre de grandeur) :'
+    choices:
+    - id: a
+      text:
+        es: W≈101, stride≈5, θ₃≈0.08, m=3
+        en: W≈101, stride≈5, θ₃≈0.08, m=3
+        fr: W≈101, stride≈5, θ₃≈0.08, m=3
+    - id: b
+      text:
+        es: W=3, stride=1000, m=15 sin justificación
+        en: W=3, stride=1000, m=15 without justification
+        fr: W=3, stride=1000, m=15 sans justification
+    - id: c
+      text:
+        es: Solo TDA sin τ_s
+        en: TDA only without τ_s
+        fr: TDA seule sans τ_s
+    - id: d
+      text:
+        es: n_surr obligatorio = 0
+        en: Mandatory n_surr = 0
+        fr: n_surr obligatoire = 0
+    correct: a
+    explanation:
+      es: Preset documentado CCTP/Lab.
+      en: Documented CCTP/Lab preset.
+      fr: Preset CCTP/Lab documenté.
+  - id: m4_q10
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Peso del informe dual cardio en la estructura sugerida del syllabus:'
+      en: 'Weight of the cardio dual report in the suggested syllabus structure:'
+      fr: 'Poids du rapport dual cardio dans la structure suggérée du syllabus :'
+    choices:
+    - id: a
+      text:
+        es: ≈ 30 % del portfolio/curso
+        en: ≈ 30% of the portfolio/course
+        fr: ≈ 30 % du portfolio/cours
+    - id: b
+      text:
+        es: 0 % — solo TDA cuenta
+        en: 0% — only TDA counts
+        fr: 0 % — seule la TDA compte
+    - id: c
+      text:
+        es: 100 % sin formativas
+        en: 100% with no formatives
+        fr: 100 % sans formatifs
+    - id: d
+      text:
+        es: Solo 1 % porque es demo
+        en: Only 1% because it is a demo
+        fr: Seulement 1 % car c’est une démo
+    correct: a
+    explanation:
+      es: Syllabus §6.1 / weights m4=0.30.
+      en: Syllabus §6.1 / weights m4=0.30.
+      fr: Syllabus §6.1 / weights m4=0.30.
+- id: m5
+  week: 5
+  weight: 0.25
+  competencies:
+  - C2
+  - C7
+  title:
+    es: Semana 5 — Transferencia a un segundo dominio (sumativo)
+    en: Week 5 — Transfer to a second domain (summative)
+    fr: Semaine 5 — Transfert vers un second domaine (sommatif)
+  description:
+    es: Misma gramática, otra jerga/proxy; madurez empírica y no-overclaim.
+    en: Same grammar, different jargon/proxy; empirical maturity and no overclaim.
+    fr: Même grammaire, autre jargon/proxy ; maturité empirique et pas d’overclaim.
+  questions:
+  - id: m5_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: 'La transferencia metodológica significa:'
+      en: 'Methodological transfer means:'
+      fr: 'Le transfert méthodologique signifie :'
+    choices:
+    - id: a
+      text:
+        es: Que todo dominio tiene la misma madurez empírica que CCTP
+        en: That every domain has the same empirical maturity as CCTP
+        fr: Que chaque domaine a la même maturité empirique que le CCTP
+    - id: b
+      text:
+        es: Reutilizar la gramática τ_s/RECD/dual/nulos, explicitando qué cambia (proxy, W, jerga) y qué
+          no
+        en: Reuse τ_s/RECD/dual/nulls grammar, stating what changes (proxy, W, jargon) and what does not
+        fr: Réutiliser la grammaire τ_s/RECD/dual/nulls en disant ce qui change (proxy, W, jargon) et
+          ce qui ne change pas
+    - id: c
+      text:
+        es: Copiar p-valores del informe cardio al de dengue
+        en: Copy p-values from the cardio report into the dengue report
+        fr: Copier les p-valeurs du rapport cardio vers le rapport dengue
+    - id: d
+      text:
+        es: Cambiar el idioma de la app sin cambiar el análisis
+        en: Change the app language without changing the analysis
+        fr: Changer la langue de l’app sans changer l’analyse
+    correct: b
+    explanation:
+      es: 'Competencia C7: transferir gramática, no promesas de madurez.'
+      en: 'Competency C7: transfer grammar, not maturity promises.'
+      fr: 'Compétence C7 : transférer la grammaire, pas les promesses de maturité.'
+  - id: m5_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Para finanzas y dinámica social en v1.0 del curso, el encuadre correcto es:'
+      en: 'For finance and social dynamics in course v1.0, the correct framing is:'
+      fr: 'Pour la finance et la dynamique sociale en v1.0 du cours, le bon cadrage est :'
+    choices:
+    - id: a
+      text:
+        es: Sandbox de gramática / método — no predicción de mercado ni scoring social operativo
+        en: Grammar / method sandbox — not market prediction or operational social scoring
+        fr: Sandbox de grammaire / méthode — pas de prédiction de marché ni de scoring social opérationnel
+    - id: b
+      text:
+        es: Alpha de trading listo para producción
+        en: Production-ready trading alpha
+        fr: Alpha de trading prêt pour la production
+    - id: c
+      text:
+        es: Prueba causal de polarización en poblaciones reales sin etiquetar
+        en: Causal proof of polarization in unlabeled real populations
+        fr: Preuve causale de polarisation sur populations réelles non étiquetées
+    - id: d
+      text:
+        es: Sustituto de un rating crediticio regulado
+        en: A substitute for a regulated credit rating
+        fr: Un substitut d’une notation de crédit réglementée
+    correct: a
+    explanation:
+      es: Syllabus §9 y frases prohibidas de entrega.
+      en: Syllabus §9 and forbidden delivery phrases.
+      fr: Syllabus §9 et phrases de rendu interdites.
+  - id: m5_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Al elegir un dominio de transferencia, el estudiante debe documentar sobre todo:'
+      en: 'When choosing a transfer domain, the student should mainly document:'
+      fr: 'En choisissant un domaine de transfert, l’étudiant doit surtout documenter :'
+    choices:
+    - id: a
+      text:
+        es: Solo el color del tema de la app
+        en: Only the app theme color
+        fr: Seulement la couleur du thème de l’app
+    - id: b
+      text:
+        es: Proxy de variables, preset/W, madurez empírica y frase de no-alcance
+        en: Variable proxies, preset/W, empirical maturity, and a no-scope phrase
+        fr: Proxies de variables, preset/W, maturité empirique et phrase de non-portée
+    - id: c
+      text:
+        es: La contraseña de su cuenta STP
+        en: Their STP account password
+        fr: Le mot de passe de leur compte STP
+    - id: d
+      text:
+        es: Un ranking de compañeros de clase
+        en: A ranking of classmates
+        fr: Un classement des camarades
+    correct: b
+    explanation:
+      es: Methods de transferencia = proxy + parámetros + madurez + límites.
+      en: Transfer Methods = proxy + parameters + maturity + limits.
+      fr: Methods de transfert = proxy + paramètres + maturité + limites.
+  - id: m5_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'La “voz de dominio” en la interpretación sirve para:'
+      en: 'Domain voice in interpretation is used to:'
+      fr: 'La « voix de domaine » dans l’interprétation sert à :'
+    choices:
+    - id: a
+      text:
+        es: Cambiar las fórmulas matemáticas de τ_s
+        en: Change the mathematical formulas of τ_s
+        fr: Changer les formules mathématiques de τ_s
+    - id: b
+      text:
+        es: Expresar la misma gramática con jerga y ejemplos del dominio sin alterar el núcleo
+        en: Express the same grammar with domain jargon and examples without altering the core
+        fr: Exprimer la même grammaire avec le jargon et les exemples du domaine sans altérer le noyau
+    - id: c
+      text:
+        es: Eliminar la lectura dual
+        en: Remove dual reading
+        fr: Supprimer la lecture duale
+    - id: d
+      text:
+        es: Autorizar claims clínicos en cualquier dominio
+        en: Authorize clinical claims in any domain
+        fr: Autoriser des claims cliniques dans n’importe quel domaine
+    correct: b
+    explanation:
+      es: Voz de dominio = pedagogía, no nuevo teorema.
+      en: Domain voice = pedagogy, not a new theorem.
+      fr: Voix de domaine = pédagogie, pas un nouveau théorème.
+  - id: m5_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Presentar un demo sintético como si fueran datos clínicos reales sin etiquetar es:'
+      en: 'Presenting a synthetic demo as unlabeled real clinical data is:'
+      fr: 'Présenter une démo synthétique comme des données cliniques réelles non étiquetées est :'
+    choices:
+    - id: a
+      text:
+        es: Buena práctica de marketing
+        en: Good marketing practice
+        fr: Une bonne pratique marketing
+    - id: b
+      text:
+        es: Violación de integridad académica / ética del curso
+        en: A breach of academic integrity / course ethics
+        fr: Une violation d’intégrité académique / d’éthique du cours
+    - id: c
+      text:
+        es: Obligatorio en la semana 5
+        en: Mandatory in week 5
+        fr: Obligatoire en semaine 5
+    - id: d
+      text:
+        es: Requerido para el hash SHA-256
+        en: Required for the SHA-256 hash
+        fr: Requis pour le hash SHA-256
+    correct: b
+    explanation:
+      es: 'Política 9.2: no presentar demos como datos clínicos reales sin etiquetar.'
+      en: 'Policy 9.2: do not present demos as unlabeled real clinical data.'
+      fr: 'Politique 9.2 : ne pas présenter des démos comme données cliniques réelles non étiquetées.'
+  - id: m5_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Al transferir a `finance_like_demo`, la frase de cierre obligatoria debe incluir:'
+      en: 'When transferring to `finance_like_demo`, the required closing sentence must include:'
+      fr: 'En transférant vers `finance_like_demo`, la phrase de clôture obligatoire doit inclure :'
+    choices:
+    - id: a
+      text:
+        es: Que no es consejo de inversión ni señal de trading
+        en: That it is not investment advice or a trading signal
+        fr: Que ce n’est ni un conseil d’investissement ni un signal de trading
+    - id: b
+      text:
+        es: Una promesa de alpha
+        en: A promise of alpha
+        fr: Une promesse d’alpha
+    - id: c
+      text:
+        es: Que la madurez es igual a CCTP automáticamente
+        en: That maturity equals CCTP automatically
+        fr: Que la maturité égale automatiquement CCTP
+    - id: d
+      text:
+        es: Que el hash prueba causalidad de mercado
+        en: That the hash proves market causality
+        fr: Que le hash prouve la causalité de marché
+    correct: a
+    explanation:
+      es: Ética de dominio finanzas / C7.
+      en: Finance domain ethics / C7.
+      fr: Éthique du domaine finance / C7.
+  - id: m5_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Tabla de transferencia: mismo pipeline, proxy distinto, madurez ''media''. ¿Qué cambia y qué
+        no?'
+      en: 'Transfer table: same pipeline, different proxy, ''medium'' maturity. What changes and what
+        does not?'
+      fr: 'Tableau de transfert : même pipeline, proxy différent, maturité « moyenne ». Que change et
+        que ne change pas ?'
+    choices:
+    - id: a
+      text:
+        es: Cambia jerga/proxy/madurez de claim; no cambia la ontología del método (τ_s/RECD/dual/nulos)
+        en: Jargon/proxy/claim maturity change; method ontology (τ_s/RECD/dual/nulls) does not
+        fr: Jargon/proxy/maturité de claim changent ; l’ontologie de méthode (τ_s/RECD/dual/nulls) non
+    - id: b
+      text:
+        es: Cambia toda la matemática del núcleo cada dominio
+        en: The entire core math changes every domain
+        fr: Toute la mathématique du noyau change à chaque domaine
+    - id: c
+      text:
+        es: Nada cambia nunca
+        en: Nothing ever changes
+        fr: Rien ne change jamais
+    - id: d
+      text:
+        es: Solo cambia el color del UI
+        en: Only the UI colour changes
+        fr: Seul la couleur de l’UI change
+    correct: a
+    explanation:
+      es: Competencia C7 de transferencia.
+      en: Transfer competency C7.
+      fr: Compétence de transfert C7.
+  - id: m5_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El demo `social_polarization_demo` en v1.0 debe presentarse como:'
+      en: 'The `social_polarization_demo` in v1.0 must be presented as:'
+      fr: 'Le `social_polarization_demo` en v1.0 doit être présenté comme :'
+    choices:
+    - id: a
+      text:
+        es: Modelo de juguete pedagógico sin cohorte social validada
+        en: Pedagogical toy model without a validated social cohort
+        fr: Modèle jouet pédagogique sans cohorte sociale validée
+    - id: b
+      text:
+        es: Predictor electoral certificado
+        en: Certified election predictor
+        fr: Prédicteur électoral certifié
+    - id: c
+      text:
+        es: Evidencia de madurez igual a CCTP
+        en: Evidence of maturity equal to CCTP
+        fr: Preuve d’une maturité égale à CCTP
+    - id: d
+      text:
+        es: Sustituto de datos de redes reales sin ética
+        en: A substitute for real network data without ethics
+        fr: Un substitut de données de réseaux réels sans éthique
+    correct: a
+    explanation:
+      es: Madurez baja-media explícita del dominio social.
+      en: Explicit low–medium maturity of the social domain.
+      fr: Maturité basse–moyenne explicite du domaine social.
+  - id: m5_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Peso sugerido del mini-informe de transferencia (sem. 5):'
+      en: 'Suggested weight of the transfer mini-report (week 5):'
+      fr: 'Poids suggéré du mini-rapport de transfert (sem. 5) :'
+    choices:
+    - id: a
+      text:
+        es: ≈ 25 %
+        en: ≈ 25%
+        fr: ≈ 25 %
+    - id: b
+      text:
+        es: 0 %
+        en: 0%
+        fr: 0 %
+    - id: c
+      text:
+        es: 90 % sin cardio
+        en: 90% with no cardio
+        fr: 90 % sans cardio
+    - id: d
+      text:
+        es: Solo peer review sin peso
+        en: Peer review only with zero weight
+        fr: Seulement peer review sans poids
+    correct: a
+    explanation:
+      es: m5 weight 0.25 en assessments/syllabus.
+      en: m5 weight 0.25 in assessments/syllabus.
+      fr: Poids m5 0.25 dans assessments/syllabus.
+- id: m6
+  week: 6
+  weight: 0.3
+  competencies:
+  - C5
+  - C6
+  - C7
+  title:
+    es: Semana 6 — Nulos, ética, portfolio y cierre (sumativo)
+    en: Week 6 — Nulls, ethics, portfolio and close (summative)
+    fr: Semaine 6 — Nulls, éthique, portfolio et clôture (sommatif)
+  description:
+    es: Surrogates, p_surr, Methods, portfolio y límites del claim.
+    en: Surrogates, p_surr, Methods, portfolio, and claim limits.
+    fr: Surrogates, p_surr, Methods, portfolio et limites du claim.
+  questions:
+  - id: m6_q1
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Los surrogates (phase-shuffle / IAAFT) en el pipeline sirven para:'
+      en: 'Surrogates (phase-shuffle / IAAFT) in the pipeline serve to:'
+      fr: 'Les surrogates (phase-shuffle / IAAFT) dans le pipeline servent à :'
+    choices:
+    - id: a
+      text:
+        es: Aumentar artificialmente el tamaño muestral clínico
+        en: Artificially inflate clinical sample size
+        fr: Gonfler artificiellement la taille d’échantillon clinique
+    - id: b
+      text:
+        es: Construir un nulo para contrastar Δτ_s (u otras métricas) bajo hipótesis de ausencia de estructura
+        en: Build a null to contrast Δτ_s (or other metrics) under a no-structure hypothesis
+        fr: Construire un null pour contraster Δτ_s (ou d’autres métriques) sous une hypothèse sans structure
+    - id: c
+      text:
+        es: Firmar digitalmente el informe para el hospital
+        en: Digitally sign the report for the hospital
+        fr: Signer numériquement le rapport pour l’hôpital
+    - id: d
+      text:
+        es: Sustituir la lectura dual
+        en: Replace dual reading
+        fr: Remplacer la lecture duale
+    correct: b
+    explanation:
+      es: 'Competencia C5: nular sin reducir el informe a un único p-valor.'
+      en: 'Competency C5: null carefully without reducing the report to a single p-value.'
+      fr: 'Compétence C5 : nuller sans réduire le rapport à une seule p-valeur.'
+  - id: m6_q2
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Reducir todo el portfolio a “p < 0.05, listo” es problemático porque:'
+      en: 'Reducing the whole portfolio to “p < 0.05, done” is problematic because:'
+      fr: 'Réduire tout le portfolio à « p < 0,05, c’est bon » est problématique car :'
+    choices:
+    - id: a
+      text:
+        es: El curso exige también Δ, dual reading, Methods, alcance y reproducibilidad
+        en: The course also requires Δ, dual reading, Methods, scope, and reproducibility
+        fr: Le cours exige aussi Δ, lecture duale, Methods, portée et reproductibilité
+    - id: b
+      text:
+        es: Los p-valores están prohibidos en toda la app
+        en: P-values are banned everywhere in the app
+        fr: Les p-valeurs sont interdites partout dans l’app
+    - id: c
+      text:
+        es: Solo se permite IAAFT, nunca phase-shuffle
+        en: Only IAAFT is allowed, never phase-shuffle
+        fr: Seul IAAFT est autorisé, jamais phase-shuffle
+    - id: d
+      text:
+        es: El umbral correcto es siempre p < 0.0001
+        en: The correct threshold is always p < 0.0001
+        fr: Le seuil correct est toujours p < 0,0001
+    correct: a
+    explanation:
+      es: El portfolio integra narrativa científica completa, no un único umbral.
+      en: The portfolio integrates a full scientific narrative, not a single threshold.
+      fr: Le portfolio intègre un récit scientifique complet, pas un seul seuil.
+  - id: m6_q3
+    type: mcq
+    points: 1
+    prompt:
+      es: 'El portfolio final del curso (competencia integradora) debe incluir idealmente:'
+      en: 'The final course portfolio (integrative competency) should ideally include:'
+      fr: 'Le portfolio final du cours (compétence intégratrice) devrait idéalement inclure :'
+    choices:
+    - id: a
+      text:
+        es: Solo un emoji de check
+        en: Only a checkmark emoji
+        fr: Seulement un emoji de coche
+    - id: b
+      text:
+        es: Informe de lectura dual + export MD/JSON + Methods + checklist de alcance
+        en: Dual-reading report + MD/JSON export + Methods + scope checklist
+        fr: Rapport de lecture duale + export MD/JSON + Methods + checklist de portée
+    - id: c
+      text:
+        es: Un video de trading en vivo
+        en: A live trading video
+        fr: Une vidéo de trading en direct
+    - id: d
+      text:
+        es: La contraseña de PhysioNet de un tercero
+        en: A third party’s PhysioNet password
+        fr: Le mot de passe PhysioNet d’un tiers
+    correct: b
+    explanation:
+      es: Entregable integrador del syllabus §2 y §6.
+      en: Integrative deliverable in syllabus §2 and §6.
+      fr: Livrable intégrateur du syllabus §2 et §6.
+  - id: m6_q4
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Si n_surr = 0 en una corrida, una práctica correcta es:'
+      en: 'If n_surr = 0 in a run, correct practice is:'
+      fr: 'Si n_surr = 0 dans une course, la bonne pratique est :'
+    choices:
+    - id: a
+      text:
+        es: Inventar un p_surr = 0.01
+        en: Invent p_surr = 0.01
+        fr: Inventer p_surr = 0,01
+    - id: b
+      text:
+        es: Declarar explícitamente que no hay nulo surrogate y acotar la interpretación
+        en: Explicitly state that there is no surrogate null and bound the interpretation
+        fr: Déclarer explicitement l’absence de null surrogate et borner l’interprétation
+    - id: c
+      text:
+        es: Afirmar que el resultado es más fuerte que con surrogates
+        en: Claim the result is stronger than with surrogates
+        fr: Affirmer que le résultat est plus fort qu’avec surrogates
+    - id: d
+      text:
+        es: Ocultar el parámetro en Methods
+        en: Hide the parameter in Methods
+        fr: Cacher le paramètre dans Methods
+    correct: b
+    explanation:
+      es: La rúbrica acepta n_surr=0 si se declara; no se fabrica p.
+      en: The rubric accepts n_surr=0 if declared; p is never fabricated.
+      fr: La grille accepte n_surr=0 s’il est déclaré ; on ne fabrique pas de p.
+  - id: m6_q5
+    type: mcq
+    points: 1
+    prompt:
+      es: 'La madurez empírica asimétrica del curso implica que:'
+      en: 'Asymmetric empirical maturity in the course implies that:'
+      fr: 'La maturité empirique asymétrique du cours implique que :'
+    choices:
+    - id: a
+      text:
+        es: Cardio (CCTP) > demos de transferencia en cuanto a ancla empírica; los claims deben reflejarlo
+        en: Cardio (CCTP) > transfer demos as empirical anchor; claims must reflect that
+        fr: Cardio (CCTP) > démos de transfert comme ancre empirique ; les claims doivent le refléter
+    - id: b
+      text:
+        es: Todos los dominios están igualmente validados en multicentro
+        en: All domains are equally multi-center validated
+        fr: Tous les domaines sont également validés en multicentrique
+    - id: c
+      text:
+        es: Solo el dominio social está listo para producción
+        en: Only the social domain is production-ready
+        fr: Seul le domaine social est prêt pour la production
+    - id: d
+      text:
+        es: La ética no aplica a demos sintéticas
+        en: Ethics do not apply to synthetic demos
+        fr: L’éthique ne s’applique pas aux démos synthétiques
+    correct: a
+    explanation:
+      es: Afirmación central del alcance STP y del syllabus.
+      en: Central STP scope and syllabus statement.
+      fr: Énoncé central du périmètre STP et du syllabus.
+  - id: m6_q6
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En trabajo en equipo (opcional sem. 4–6), cada miembro debe poder:'
+      en: 'In team work (optional weeks 4–6), each member should be able to:'
+      fr: 'En travail d’équipe (optionnel sem. 4–6), chaque membre doit pouvoir :'
+    choices:
+    - id: a
+      text:
+        es: Explicar Methods y el hash de la corrida del equipo
+        en: Explain Methods and the team run’s hash
+        fr: Expliquer les Methods et le hash de la course d’équipe
+    - id: b
+      text:
+        es: Delegar toda la comprensión a un solo autor silencioso
+        en: Delegate all understanding to one silent author
+        fr: Déléguer toute la compréhension à un seul auteur silencieux
+    - id: c
+      text:
+        es: Entregar sin citación del software
+        en: Submit without citing the software
+        fr: Rendre sans citer le logiciel
+    - id: d
+      text:
+        es: Usar la cuenta de otro estudiante sin declararlo
+        en: Use another student’s account without disclosure
+        fr: Utiliser le compte d’un autre étudiant sans le déclarer
+    correct: a
+    explanation:
+      es: Política 9.3 de trabajo en equipo del syllabus.
+      en: Syllabus team-work policy 9.3.
+      fr: Politique de travail d’équipe 9.3 du syllabus.
+  - id: m6_q7
+    type: mcq
+    points: 1
+    prompt:
+      es: 'En la rúbrica 0–2 del informe Lab, el umbral de aprobación de la práctica es:'
+      en: 'In the 0–2 Lab report rubric, the practice pass threshold is:'
+      fr: 'Dans la grille 0–2 du rapport Lab, le seuil de réussite de la pratique est :'
+    choices:
+    - id: a
+      text:
+        es: ≥ 9 / 12
+        en: ≥ 9 / 12
+        fr: ≥ 9 / 12
+    - id: b
+      text:
+        es: ≥ 1 / 12
+        en: ≥ 1 / 12
+        fr: ≥ 1 / 12
+    - id: c
+      text:
+        es: 12/12 obligatorio en formativas
+        en: Mandatory 12/12 on formatives
+        fr: 12/12 obligatoire en formatifs
+    - id: d
+      text:
+        es: No hay umbral
+        en: There is no threshold
+        fr: Il n’y a pas de seuil
+    correct: a
+    explanation:
+      es: Syllabus §6.2 umbral ≥ 9/12.
+      en: Syllabus §6.2 threshold ≥ 9/12.
+      fr: Syllabus §6.2 seuil ≥ 9/12.
+  - id: m6_q8
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Tabla de portfolio: hay hash y params, pero falta panel EWS y frase de no-alcance. Criterios
+        rúbrica más afectados:'
+      en: 'Portfolio table: hash and params present, but missing EWS panel and non-scope sentence. Rubric
+        criteria most affected:'
+      fr: 'Tableau de portfolio : hash et params présents, mais panneau EWS et phrase de non-portée manquants.
+        Critères les plus touchés :'
+    choices:
+    - id: a
+      text:
+        es: EWS en paralelo (criterio 4) y conclusión acotada (criterio 5)
+        en: Parallel EWS (criterion 4) and bounded conclusion (criterion 5)
+        fr: EWS en parallèle (critère 4) et conclusion bornée (critère 5)
+    - id: b
+      text:
+        es: Solo tipografía
+        en: Typography only
+        fr: Seulement la typographie
+    - id: c
+      text:
+        es: 'Ninguno: el hash lo compensa todo'
+        en: 'None: the hash compensates everything'
+        fr: 'Aucun : le hash compense tout'
+    - id: d
+      text:
+        es: Solo el color de las figuras
+        en: Only figure colours
+        fr: Seulement les couleurs des figures
+    correct: a
+    explanation:
+      es: Ítem de interpretación de rúbrica/tabla de entrega.
+      en: Rubric/delivery-table interpretation item.
+      fr: Item d’interprétation de grille/tableau de rendu.
+  - id: m6_q9
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Phase-shuffle vs IAAFT en la semana 6 se usa para:'
+      en: 'Phase-shuffle vs IAAFT in week 6 is used to:'
+      fr: 'Phase-shuffle vs IAAFT en semaine 6 sert à :'
+    choices:
+    - id: a
+      text:
+        es: Refinar nulos y documentar qué hipótesis de independencia/espectro se prueba
+        en: Refine nulls and document which independence/spectrum hypothesis is tested
+        fr: Raffiner les nulls et documenter quelle hypothèse d’indépendance/spectre est testée
+    - id: b
+      text:
+        es: Reemplazar por completo τ_s
+        en: Fully replace τ_s
+        fr: Remplacer entièrement τ_s
+    - id: c
+      text:
+        es: Obtener certificación FDA automática
+        en: Obtain automatic FDA certification
+        fr: Obtenir une certification FDA automatique
+    - id: d
+      text:
+        es: Evitar exportar Methods
+        en: Avoid exporting Methods
+        fr: Éviter d’exporter Methods
+    correct: a
+    explanation:
+      es: 'Objetivo de semana 6: nulos refinados.'
+      en: 'Week-6 goal: refined nulls.'
+      fr: 'Objectif semaine 6 : nulls raffinés.'
+  - id: m6_q10
+    type: mcq
+    points: 1
+    prompt:
+      es: 'Un portfolio excelente (≥11/12) además debería incluir cuando el docente lo active:'
+      en: 'An excellent portfolio (≥11/12) should additionally include when the instructor enables it:'
+      fr: 'Un portfolio excellent (≥11/12) devrait en plus inclure lorsque l’enseignant l’active :'
+    choices:
+    - id: a
+      text:
+        es: Peer review útil según rúbrica
+        en: Useful peer review per the rubric
+        fr: Un peer review utile selon la grille
+    - id: b
+      text:
+        es: Overclaim clínico deliberado
+        en: Deliberate clinical overclaim
+        fr: Overclaim clinique délibéré
+    - id: c
+      text:
+        es: Omisión del hash
+        en: Omitting the hash
+        fr: Omission du hash
+    - id: d
+      text:
+        es: Solo screenshots sin números
+        en: Screenshots only with no numbers
+        fr: Seulement des captures sans nombres
+    correct: a
+    explanation:
+      es: 'Syllabus: excelente ≥11/12 y peer review útil si aplica.'
+      en: 'Syllabus: excellent ≥11/12 and useful peer review if applicable.'
+      fr: 'Syllabus : excellent ≥11/12 et peer review utile si applicable.'

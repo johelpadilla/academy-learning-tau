@@ -1,7 +1,19 @@
 # Guía de lectura dual — Relacional vs EWS clásicas
 
-**Audiencia:** estudiantes en Lab y autores de informes cortos  
-**Regla de oro:** un solo panel no basta para una conclusión de sistemas
+| Campo | Valor |
+|-------|--------|
+| **Documento** | Handout 06 · Lectura dual |
+| **Audiencia** | Estudiantes en Lab y autores de informes cortos |
+| **Regla de oro** | Un solo panel no basta para una conclusión de sistemas |
+| **Versión** | 1.1 · 2026 |
+
+---
+
+## Resultados de aprendizaje
+
+1. Estructurar un informe de dos paneles (relacional + clásico).  
+2. Clasificar resultados en cuatro patrones arquetípicos con prosa defendible.  
+3. Rellenar la plantilla de párrafo de entrega con números y alcance.
 
 ---
 
@@ -28,7 +40,7 @@ La plataforma calcula ambos en el Lab. La **interpretación humana** declara con
 - Clásico: var y/o AR1 también se mueven hacia el evento  
 
 **Texto modelo:**  
-*“Tanto el panel relacional como el clásico señalan cambio hacia t=…; el nulo phase-shuffle no explica el Δτ_s (p=…). Interpretación acotada al diseño …”*
+*“Tanto el panel relacional como el clásico señalan cambio hacia t=…; el nulo phase-shuffle no explica el Δτ_s (p=…). Interpretación acotada al diseño … y a la madurez del dominio ….”*
 
 ### B. Relacional sí, clásico ambiguo
 
@@ -57,16 +69,16 @@ La plataforma calcula ambos en el Lab. La **interpretación humana** declara con
 ## 3. Plantilla de párrafo para entregas (copiar y rellenar)
 
 ```
-Diseño. Serie T×N = …×…; dominio = …; W=…, stride=…, m=…;
+Diseño. Serie T×N = …×…; dominio = …; W=…, stride=…, m=…, delay=…;
 evento en t=… (o partición mitad/mitad exploratoria).
 Surrogates: método=…, n=…, seed=….
 
 Hallazgos relacionales. Δτ_s = …; mean_excess3 = …; Δexcess3 = …;
-p_surr(τ_s) = ….
+p_surr(τ_s) = … [opcional p_surr(excess3)=…].
 
 Hallazgos clásicos. Δvar ≈ …; comportamiento AR1: ….
 
-Lectura dual. Concordancia / discordancia: ….
+Lectura dual. Concordancia / discordancia / quietud: ….
 Alcance. Madurez del dominio: …; límites: no uso clínico/operativo.
 Reproducibilidad. repro_hash = ….
 ```
@@ -82,6 +94,7 @@ Reproducibilidad. repro_hash = ….
 | Mezclar W distintas entre paneles sin decirlo | Incomparabilidad |
 | Usar demo sintético como evidencia de dominio real | Categoría de claim incorrecta |
 | Ignorar signo context-dependent | Δ negativo puede ser reorganización real |
+| Reportar solo Φ₃ cuando excess3 es la señal | Artefacto de umbral |
 
 ---
 
@@ -98,4 +111,14 @@ Reproducibilidad. repro_hash = ….
 
 ---
 
-*Guía de lectura dual STP · pegar en el LMS junto al syllabus.*
+## 6. Mini-ejemplos (una línea)
+
+| Escenario | Línea dual |
+|-----------|------------|
+| Switch logístico acoplado | Δ relacional grande, p bajo; clásico puede o no concordar — reporte ambos |
+| AR independientes | Δ pequeño, p alto; clásico quieto — control nulo exitoso |
+| Demo cardio | Declare límites de sample; no reclame predicción certificada |
+
+---
+
+*Guía de lectura dual STP v1.1 · pegar en el LMS junto al syllabus.*

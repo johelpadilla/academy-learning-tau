@@ -24,7 +24,12 @@ def page_link(
     is executed in isolation (AppTest, direct script). Fall back to caption.
     """
     try:
-        st.page_link(page, label=label, icon=icon, query_params=query_params, **kwargs)
+        link_kwargs: dict[str, Any] = dict(kwargs)
+        if icon:
+            link_kwargs["icon"] = icon
+        if query_params:
+            link_kwargs["query_params"] = query_params
+        st.page_link(page, label=label, **link_kwargs)
     except (KeyError, Exception):
         prefix = f"{icon} " if icon else ""
         extra = ""
@@ -65,16 +70,72 @@ def language_selector() -> str:
     return lang
 
 
+# Multipage nav: 4 role-based sections (not a flat 11-item list).
+# Icons: emoji only in sidebar chrome (Streamlit page_link); feature cards use
+# geometric marks elsewhere so blocks never mix systems.
+_SIDEBAR_SECTIONS: tuple[tuple[str, tuple[tuple[str, str, str], ...]], ...] = (
+    (
+        "nav.section_learn",
+        (
+            ("Home.py", "nav.home", "🏠"),
+            ("pages/1_Fundamentos.py", "nav.fundamentos", "📘"),
+            ("pages/2_Matematica.py", "nav.matematica", "📐"),
+            ("pages/5_Ruta_Aprendizaje.py", "nav.ruta", "🗺️"),
+            ("pages/9_Evaluaciones.py", "nav.evaluaciones", "✅"),
+        ),
+    ),
+    (
+        "nav.section_do",
+        (
+            ("pages/3_Dominios.py", "nav.dominios", "🌐"),
+            ("pages/4_Laboratorio.py", "nav.laboratorio", "🔬"),
+        ),
+    ),
+    (
+        "nav.section_evidence",
+        (
+            ("pages/6_Evidencia.py", "nav.evidencia", "📑"),
+            ("pages/10_Biblioteca.py", "nav.biblioteca", "📚"),
+        ),
+    ),
+    (
+        "nav.section_teach",
+        (
+            ("pages/7_Docencia.py", "nav.docencia", "🎓"),
+            ("pages/8_Materiales.py", "nav.materiales", "📦"),
+        ),
+    ),
+)
+
+
+def sidebar_nav() -> None:
+    """Translated multipage menu grouped into Learn / Do / Evidence / Teach."""
+    for section_key, pages in _SIDEBAR_SECTIONS:
+        st.sidebar.markdown(
+            f'<div class="stp-sidebar-section">{t(section_key)}</div>',
+            unsafe_allow_html=True,
+        )
+        for page, label_key, icon in pages:
+            label = t(label_key)
+            try:
+                st.sidebar.page_link(page, label=label, icon=icon)
+            except (KeyError, Exception):
+                # AppTest / isolated page execution
+                st.sidebar.caption(f"{icon} {label}")
+
+
 def sidebar_brand() -> None:
-    """Compact brand block at top of sidebar + language selector."""
+    """Brand + language + translated page menu in the sidebar."""
+    name = t("common.brand_name")
+    sub = t("common.brand_sub")
     st.sidebar.markdown(
-        """
+        f"""
         <div class="stp-sidebar-brand">
           <div class="logo">
             <div class="mark">τ</div>
             <div>
-              <div class="name">Systemic Tau</div>
-              <div class="sub">Educational &amp; Research</div>
+              <div class="name">{name}</div>
+              <div class="sub">{sub}</div>
             </div>
           </div>
         </div>
@@ -82,6 +143,24 @@ def sidebar_brand() -> None:
         unsafe_allow_html=True,
     )
     language_selector()
+    sidebar_nav()
+    try:
+        from components.auth import render_auth_sidebar
+
+        render_auth_sidebar()
+    except Exception:
+        # Auth module optional during early boot / isolated tests
+        pass
+
+
+def _mount_auth_topbar() -> None:
+    """Login chip in the top-right of the main pane (all pages)."""
+    try:
+        from components.auth import render_auth_topbar
+
+        render_auth_topbar()
+    except Exception:
+        pass
 
 
 def render_hero(
@@ -89,12 +168,24 @@ def render_hero(
     tagline: str = "Paradigma Tau Sistémico: de la teoría a la práctica",
     badge: str = "v1.0 · Educational & Research",
     description: str | None = None,
+    meta_badges: list[str] | None = None,
 ) -> None:
     inject_css()
     sidebar_brand()
+    _mount_auth_topbar()
     desc = description or (
         "Plataforma premium para fundamentos, matemática, dominios y laboratorio "
         "interactivo de Tau Sistémica + RECD (Φ₁–Φ₃, excess3)."
+    )
+    badges = meta_badges or [
+        t("home.badge_core"),
+        t("home.badge_cctp"),
+        t("home.badge_surr"),
+        t("home.badge_domains"),
+    ]
+    meta_html = "".join(
+        f'<span class="stp-badge{" stp-badge-solid" if i == 0 else ""}">{b}</span>'
+        for i, b in enumerate(badges)
     )
     st.markdown(
         f"""
@@ -104,10 +195,7 @@ def render_hero(
           <p class="tagline">{tagline}</p>
           <p class="desc">{desc}</p>
           <div class="stp-hero-meta">
-            <span class="stp-badge stp-badge-solid">τ<sub>s</sub> + RECD</span>
-            <span class="stp-badge">CCTP / SDDB</span>
-            <span class="stp-badge">Surrogates · hash SHA-256</span>
-            <span class="stp-badge">5 dominios</span>
+            {meta_html}
           </div>
         </div>
         """,
@@ -124,6 +212,7 @@ def page_header(
     """Consistent page title block used across multipage app."""
     inject_css()
     sidebar_brand()
+    _mount_auth_topbar()
     eye = f"{icon} {eyebrow}".strip() if icon or eyebrow else ""
     eye_html = f'<div class="eyebrow">{eye}</div>' if eye else ""
     sub_html = f'<p class="subtitle">{subtitle}</p>' if subtitle else ""
@@ -172,6 +261,72 @@ def nav_card(title: str, body: str, icon: str = "◉") -> str:
       <p class="stp-muted">{body}</p>
     </div>
     """
+
+
+def action_card(title: str, body: str, icon: str = "◉", accent: str = "teal") -> str:
+    """Visual face of a primary door (Study / Analyze / Teach). Geometric icons only."""
+    return f"""
+    <div class="stp-action-card stp-action-card--{accent}">
+      <div class="mark">{icon}</div>
+      <h3>{title}</h3>
+      <p class="stp-muted">{body}</p>
+    </div>
+    """
+
+
+def link_action_card(
+    page: str,
+    title: str,
+    body: str,
+    *,
+    icon: str = "◉",
+    accent: str = "teal",
+    cta: str | None = None,
+) -> None:
+    """Primary door: visual card + full-width page_link as one control."""
+    label = cta if cta is not None else t("home.start_open")
+    # Marker class on a zero-height anchor so CSS can style the following page_link
+    st.markdown(
+        f"""
+        <div class="stp-action-card-wrap" data-accent="{accent}">
+          {action_card(title, body, icon=icon, accent=accent)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    try:
+        st.page_link(page, label=f"→  {label}")
+    except (KeyError, Exception):
+        st.caption(f"→ {label} · `{page}`")
+
+
+def verdict_panel(
+    title: str,
+    summary: str,
+    metrics: list[tuple[str, str]],
+    *,
+    caution: str = "",
+) -> None:
+    """Lab run verdict: one glance before detail tabs."""
+    cells = "".join(
+        f'<div class="stp-verdict-metric"><div class="val">{v}</div><div class="lbl">{l}</div></div>'
+        for l, v in metrics
+    )
+    caution_html = (
+        f'<p class="stp-verdict-caution">{caution}</p>' if caution else ""
+    )
+    st.markdown(
+        f"""
+        <div class="stp-verdict">
+          <div class="stp-verdict-kicker">{t("lab.verdict_header")}</div>
+          <h3>{title}</h3>
+          <p class="stp-verdict-summary">{summary}</p>
+          <div class="stp-verdict-metrics">{cells}</div>
+          {caution_html}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def metrics_strip(items: list[tuple[str, str]]) -> None:

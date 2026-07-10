@@ -190,6 +190,10 @@ def test_page_ui_keys_resolve_all_langs():
         "evidencia.regen_btn",
         "docencia.syl_header",
         "materiales.packs_header",
+        "nav.evaluaciones",
+        "auth.section",
+        "eval.title",
+        "eval.submit_quiz",
         "illus.tau_title",
         "handouts.pack_student_title",
     ]

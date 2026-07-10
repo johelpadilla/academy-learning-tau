@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use Academy Learning Tau, please cite it as below."
 type: software
 title: "Academy Learning Tau: Educational and research platform for Systemic Tau and RECD"
-version: "1.0.0"
-date-released: "2026-07-09"
+version: "1.1.0"
+date-released: "2026-07-10"
 license: MIT
 repository-code: "https://github.com/johelpadilla/academy-learning-tau"
 url: "https://github.com/johelpadilla/academy-learning-tau"

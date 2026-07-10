@@ -31,3 +31,7 @@ reports_out/**
 *.npz
 *.parquet
 !data/samples/**
+
+# Local student accounts & progress (never commit credentials)
+data/student_records/**
+!data/student_records/.gitkeep

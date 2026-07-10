@@ -1,14 +1,49 @@
-# excess3
+# Foundations — excess3 as continuous synergy
 
-## Learning goals
-- Define excess3 as irreducible ordinal synergy beyond pairwise structure.
-- Explain why excess3 is often the primary readout under noise.
+| Field | Value |
+|-------|--------|
+| **Module** | Foundations 04 |
+| **Level** | Graduate |
+| **Version** | 1.1 · 2026 |
 
-## Definition (educational core)
-**excess3** quantifies synergy at the third nested level that is not reducible to lower-order RECD terms. In noisy multivariate data, pairwise τ_s may wiggle while excess3 still marks reorganization of higher-order co-structure.
+---
 
-## Reading rule
-Report **mean excess3** and **Δexcess3** with the event cut (or half/half). Concordance with Δτ_s is informative; discordance is also informative.
+## Learning outcomes
 
-## Practice
-Lab → Full mode → dual-reading tab. Compare Δτ_s and Δexcess3 signs.
+1. Define excess3 as continuous irreducible synergy.  
+2. Explain its role relative to Φ₃ and τ_s.  
+3. Apply dual reading using Δexcess3 under surrogate nulls.
+
+---
+
+## 1. Motivation
+
+Binary indicators lose amplitude information. In noisy empirical regimes (e.g. CCTP pilot narrative), **mean_excess3** and **Δexcess3** often carry the primary relational message while Φ₃ remains sparse.
+
+---
+
+## 2. Operational reading
+
+| Quantity | Use |
+|----------|-----|
+| excess3(t) | Continuous synergy trajectory |
+| mean_excess3 | Level summary |
+| Δexcess3 | Pre/post (or half/half) contrast |
+| p_surr on Δ | Cross-dependence null extremeness |
+| Φ₃ | Thresholded occupancy (secondary) |
+
+---
+
+## 3. Common error
+
+Publishing only “Φ₃ never fired” without excess3 curves is incomplete methods.
+
+---
+
+## 4. Micro-lab
+
+On a noisy demo, compare Φ₃ occupancy vs Δexcess3 magnitude. Write which metric you would defend in a methods paragraph and why.
+
+---
+
+*Foundations 04 · STP v1.1*

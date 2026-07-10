@@ -1,16 +1,56 @@
-# RECD emboîté : Φ₁ · Φ₂ · Φ₃
+# Fondements — Niveaux RECD emboîtés (Φ₁–Φ₃)
+
+| Champ | Valeur |
+|-------|--------|
+| **Module** | Fondements 03 |
+| **Niveau** | Postgraduate |
+| **Version** | 1.1 · 2026 |
+
+---
 
 ## Objectifs d’apprentissage
-- Nommer les trois niveaux RECD et leur lecture ordinale.
-- Relier les symboles Bandt–Pompe aux conjonctions emboîtées.
 
-## Niveaux
-- **Φ₁** : coïncidence des motifs ordinaux entre canaux.
-- **Φ₂** : persistance / mémoire à court terme de ces co-occurrences.
-- **Φ₃** : conjonctions d’ordre supérieur sous le seuil θ₃ — graine de **excess3**.
+1. Définir Φ₁, Φ₂, Φ₃ et excess3 de façon opérationnelle.  
+2. Distinguer Chronos (index CSV) et Kairos (horloge RECD).  
+3. Préférer excess3 continu à Φ₃ binaire sous bruit.
 
-## Horloge emboîtée
-Le RECD fournit une grammaire du temps *interne* du système (Kairos) par rapport au temps externe (Chronos). **T_recd** cumulé suit la progression de cette grammaire.
+---
 
-## Pratique
-En Mathématiques, lancez le sandbox Bandt–Pompe (m=3 → 6 symboles) puis la démo logistiques et inspectez le panneau RECD.
+## 1. Pourquoi une horloge ?
+
+τ_s est un **thermomètre** de réorganisation relationnelle.  
+**RECD** accumule la réorganisation en **ticks** discrets, donnant au système un temps émergent (Kairos) distinct du temps d’échantillonnage (Chronos).
+
+---
+
+## 2. Grammaire emboîtée
+
+| Niveau | Idée | Prudence |
+|--------|------|----------|
+| **Φ₁** | Coïncidence de symboles par paires en t | Élevé ≠ émergence |
+| **Φ₂** | Persistance de relations par paires (≥ d pas) | Habitude, pas flash |
+| **Φ₃** | Synergie binaire au-dessus de θ₃ | Peut rester 0 sous bruit |
+| **excess3** | Synergie irréductible continue | Primaire en régimes bruités |
+
+ΔRECD est modulé par l’intensité de réorganisation λ (souvent liée à |τ_s|).
+
+---
+
+## 3. Standard de reporting
+
+Rapporter :
+
+- mean_excess3 et Δexcess3 (continu primaire) ;  
+- occupation de Φ₃ si utilisée ;  
+- valeur de θ₃ ;  
+- lien à la trajectoire τ_s et au design d’événement.
+
+---
+
+## 4. Micro-contrôle
+
+Expliquer en trois phrases pourquoi Φ₃=0 n’implique pas « pas de synergie » lorsque excess3 bouge.
+
+---
+
+*Fondements 03 · STP v1.1*

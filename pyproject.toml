@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "academy-learning-tau"
-version = "1.0.0"
+version = "1.1.0"
 description = "Academy Learning Tau — educational and research platform for Systemic Tau and RECD"
 readme = "README.md"
 requires-python = ">=3.10"

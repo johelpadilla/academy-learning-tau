@@ -14,7 +14,9 @@ from stp.i18n.core import t
 
 from components.ui import page_link, callout, footer, learning_goals, page_header, section_header
 from stp.education.content_loader import read_markdown
+from stp.education.curriculum import list_weeks
 from stp.education.glossary import search_glossary
+from stp.education.handouts import get_handout, render_handout_bytes
 
 st.set_page_config(page_title=t("ruta.page_title"), page_icon="🌀", layout="wide")
 
@@ -30,7 +32,13 @@ learning_goals(
 )
 
 tabs = st.tabs(
-    [t("ruta.tab_path"), t("ruta.tab_scope"), t("ruta.tab_glossary"), t("ruta.tab_faq")]
+    [
+        t("ruta.tab_path"),
+        t("ruta.tab_week"),
+        t("ruta.tab_scope"),
+        t("ruta.tab_glossary"),
+        t("ruta.tab_faq"),
+    ]
 )
 
 with tabs[0]:
@@ -87,6 +95,19 @@ with tabs[0]:
         },
     ]
 
+    # Restore checklist from student account when logged in
+    try:
+        from components.auth import get_progress, is_logged_in, sync_checklist_from_session
+
+        if is_logged_in():
+            prog = get_progress()
+            if prog:
+                for k, v in prog.checklist.items():
+                    if k.startswith("lp_") and k not in st.session_state:
+                        st.session_state[k] = bool(v)
+    except Exception:
+        pass
+
     for lvl in levels:
         done = sum(
             1
@@ -100,6 +121,18 @@ with tabs[0]:
         ):
             for i, item in enumerate(lvl["items"]):
                 st.checkbox(item, key=f"lp_{lvl['sk']}_{i}")
+
+    # Persist checklist to account if logged in
+    try:
+        from components.auth import get_progress, is_logged_in, sync_checklist_from_session
+
+        if is_logged_in():
+            prog = get_progress()
+            if prog:
+                sync_checklist_from_session(prog)
+            st.caption(t("ruta.checklist_saved"))
+    except Exception:
+        pass
 
     section_header(t("ruta.exp_header"))
     st.markdown(t("ruta.exp_blurb"))
@@ -130,10 +163,61 @@ with tabs[0]:
         )
 
 with tabs[1]:
+    # Week N — single panel: readings + Lab deep-link + quiz + deliverable
+    section_header(t("curriculum.week_header"))
+    callout(t("curriculum.quiz_note"))
+    weeks = list_weeks()
+    labels = {w.week: f"S{w.week} · {t(w.title_key)}" for w in weeks}
+    choice = st.selectbox(
+        t("curriculum.week_select"),
+        options=[w.week for w in weeks],
+        format_func=lambda n: labels[n],
+        key="ruta_week_select",
+    )
+    w = next(x for x in weeks if x.week == choice)
+    st.markdown(f"### {t(w.title_key)}")
+    st.caption(f"{t('curriculum.week_weight')}: **{w.weight * 100:.0f}%** · `{w.module_id}`")
+
+    c_goals, c_read = st.columns(2)
+    with c_goals:
+        section_header(t("curriculum.week_goals"))
+        for gk in w.goals_keys:
+            st.markdown(f"- {t(gk)}")
+    with c_read:
+        section_header(t("curriculum.week_readings"))
+        for rk in w.reading_keys:
+            st.markdown(f"- {t(rk)}")
+
+    section_header(t("curriculum.week_handouts"))
+    for hid in w.handout_ids:
+        try:
+            h = get_handout(hid)
+            st.markdown(f"- **{h.title}** (`{h.filename}`)")
+        except KeyError:
+            st.markdown(f"- `{hid}`")
+
+    section_header(t("curriculum.week_lab"))
+    st.markdown(t(w.lab.label_key))
+    page_link(
+        "pages/4_Laboratorio.py",
+        label=t("curriculum.week_lab"),
+        icon="🔬",
+        query_params={"dataset": w.lab.dataset, "domain": w.lab.domain},
+    )
+
+    section_header(t("curriculum.week_quiz"))
+    page_link("pages/9_Evaluaciones.py", label=t("curriculum.open_quiz"), icon="✅")
+
+    section_header(t("curriculum.week_deliv"))
+    st.markdown(t(w.deliverable_key))
+    page_link("pages/7_Docencia.py", label=t("nav.syllabus_docencia"), icon="🎓")
+    page_link("pages/8_Materiales.py", label=t("curriculum.open_materials"), icon="📦")
+
+with tabs[2]:
     section_header(t("ruta.scope_header"))
     st.markdown(read_markdown("learning", "v1_logros.md"))
 
-with tabs[2]:
+with tabs[3]:
     section_header(t("ruta.gloss_header"))
     st.markdown(t("ruta.gloss_blurb"))
     q = st.text_input(t("ruta.search"), "", placeholder=t("ruta.search_ph"))
@@ -151,12 +235,10 @@ with tabs[2]:
                 st.markdown(f"**{term.get('short', '')}**")
                 st.markdown(term.get("long", ""))
 
-with tabs[3]:
+with tabs[4]:
     section_header(t("ruta.faq_header"))
     st.markdown(read_markdown("learning", "faq.md"))
     try:
-        from stp.education.handouts import render_handout_bytes
-
         st.download_button(
             t("ruta.dl_faq"),
             data=render_handout_bytes("faq"),
@@ -175,5 +257,6 @@ with tabs[3]:
 
 page_link("pages/1_Fundamentos.py", label=t("nav.start_fundamentos"), icon="📘")
 page_link("pages/4_Laboratorio.py", label=t("nav.practice_lab"), icon="🔬")
+page_link("pages/9_Evaluaciones.py", label=t("nav.evaluaciones"), icon="✅")
 page_link("pages/8_Materiales.py", label=t("nav.materials"), icon="📦")
 footer()

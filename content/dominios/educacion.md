@@ -34,3 +34,23 @@ STP es software **pedagógico** antes que comercial. Tiene sentido que un domini
 ## 5. Ética y límites
 
 No sustituye evaluación formativa ni privacy de LMS. Es un **sandbox** para aprender el pipeline y exportar Methods con hash.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[\mathrm{engagement}, \mathrm{peer\_sync}, \mathrm{load}]\) |
+| **Evento** | Cambio de régimen a mitad de curso / shock de evaluación |
+| **Preset Lab** | `education` · Fast para demos de aula |
+| **Demos** | `education_cohort_demo` |
+| **Madurez** | Media — sandbox de alfabetización del pipeline |
+
+### Frases permitidas
+- Reorganización ordinal engagement–peers–carga bajo evento de mitad de curso…
+- No sustituye evaluación formativa ni privacidad de LMS.
+
+### Frases prohibidas (v1.0)
+- Calificación automática de estudiantes con τ_s
+- Vigilancia de aprendices sin revisión ética

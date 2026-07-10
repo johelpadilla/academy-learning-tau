@@ -302,7 +302,7 @@ def get_adapter(domain: str) -> DomainAdapter:
 
 
 def domain_hint(domain: str) -> str:
-    """Localized short hint for Lab/UI; falls back to adapter Spanish hint."""
+    """Localized short hint for Lab/UI; falls back to voice coach then adapter."""
     try:
         from stp.i18n.core import t
 
@@ -310,6 +310,11 @@ def domain_hint(domain: str) -> str:
         val = t(key)
         if val != key:
             return val
+        from stp.domains.voice import voice_t
+
+        coach = voice_t(domain, "lab_coach")
+        if coach and not coach.startswith("domain_voice."):
+            return coach
     except Exception:
         pass
     return get_adapter(domain).hint()

@@ -86,3 +86,24 @@ Columnas típicas: `rr_ms`, `abs_drr`, `z_rr`, `z_abs_drr`. Evento: índice de o
 - Goldberger et al., PhysioNet / SDDB.  
 - Greenwald (1986) — base del SDDB.  
 - En plataforma: **Evidencia** + **Alcance del núcleo** (Ruta de aprendizaje).
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[z(\mathrm{RR}), z(\|\Delta\mathrm{RR}\|)]\) |
+| **Evento** | Onset de FV (`vfon`) o ventana de approach |
+| **Preset Lab** | `cardiology` · W≈101 · stride≈5 · θ₃≈0.08 · m=3 |
+| **Demos** | `sddb_rr_38_demo`, `sddb_rr_51_demo`, cardio-like |
+| **Madurez** | Muy alta (ancla CCTP) |
+
+### Frases permitidas
+- Reorganización relacional significativa vs phase-shuffle en este diseño…
+- Panel clásico ambiguo (var↑, AR1↓); el relacional se mueve en el approach…
+- No es dispositivo de alarma clínica; aplican límites de N y sample.
+
+### Frases prohibidas (v1.0)
+- Predice la FV / alarma en tiempo real validada
+- Dispositivo médico certificado / soporte de decisión en UCI

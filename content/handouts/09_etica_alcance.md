@@ -1,7 +1,20 @@
 # Ética, alcance del núcleo y uso responsable
 
-**Audiencia:** todo usuario · obligatorio antes de claims públicos  
-**Versión:** v1.0
+| Campo | Valor |
+|-------|--------|
+| **Documento** | Handout 09 · Ética y alcance |
+| **Audiencia** | Todo usuario · obligatorio antes de claims públicos |
+| **Versión** | 1.1 · 2026 |
+| **Colocación en el curso** | Semana 1 y relectura en semana 6 |
+
+---
+
+## Resultados de aprendizaje
+
+1. Enunciar para qué existe STP y qué no es.  
+2. Separar claims del núcleo de extensiones del Lab.  
+3. Mapear la fuerza de claims a la madurez empírica.  
+4. Citar correctamente software, datos, paper de dominio y hash.
 
 ---
 
@@ -10,7 +23,7 @@
 Systemic Tau Platform es software de **investigación y docencia** para:
 
 - enseñar la gramática τ_s + RECD frente a EWS clásicas;  
-- reproducir demos y analyses con hash;  
+- reproducir demos y análisis con hash;  
 - transferir el método entre dominios con madurez explícita.
 
 No es, en v1.0:
@@ -26,12 +39,13 @@ No es, en v1.0:
 
 ### Listo para enseñar y explorar
 
-- Pipeline τ_s + RECD/excess3 + EWS + surrogates + repro_hash  
+- Pipeline completo τ_s + RECD/excess3 + EWS + surrogates + repro_hash  
 - Lab, presets, catálogo de demos, export MD/JSON/Methods  
 - Fundamentos, matemática, dominios, evidencia CCTP demo  
-- CLI `stp analyze` / `stp serve`
+- CLI `stp analyze` / `stp serve`  
+- Catálogo de biblioteca de investigación (ruta local de publicaciones)
 
-### Extensiones operativas (Lab) vs horizonte de producto
+### Extensiones operativas del Lab vs horizonte de producto
 
 **Ya operativas en el Lab** (casillas / modo Full; no son el claim principal):
 
@@ -39,7 +53,7 @@ No es, en v1.0:
 - TDA / Betti en ventanas (ripser opcional o VR skeleton)  
 - Memoria ordinal (MI simbólica)
 
-**Horizonte / no bloquear tesis en ellos como núcleo:**
+**Horizonte / no bloquee una tesis en ellos como núcleo:**
 
 - TDA multi-escala de producción con pipelines de persistencia exhaustivos  
 - TE simbólica / causalidad como producto  
@@ -66,7 +80,8 @@ Si el núcleo ya responde la pregunta del estudiante, use extensiones como **con
 
 - PhysioNet / SDDB: cumplan ToS y citación PhysioNet.  
 - Cualquier CSV clínico o educativo real: consentimiento, anonimización, IRB/ética local.  
-- Demos generados en plataforma: licencia “generated in-platform”; no los presente como mediciones de campo.
+- Demos generados en plataforma: licencia “generated in-platform”; no son mediciones de campo.  
+- Archivos de biblioteca de investigación: respete licencias de origen; rutas locales pueden contener material no publicado — trátelo en consecuencia.
 
 ---
 
@@ -75,7 +90,8 @@ Si el núcleo ya responde la pregunta del estudiante, use extensiones como **con
 - Evalúe **proceso** (diseño, nulos, lectura dual, límites), no solo un p-valor bajo.  
 - Premie el uso de **controles** (logísticos vs AR).  
 - Penalice promesas comerciales o clínicas sin base.  
-- Conserve hashes de entregas para integridad académica.
+- Conserve hashes de entregas para integridad académica.  
+- Enseñe a escribir **no-claims** con la misma claridad que los claims.
 
 ---
 
@@ -94,4 +110,15 @@ Usos comerciales o institucionales más allá del uso académico local pueden re
 
 ---
 
-*Handout de ética y alcance STP · leer en semana 1 y releer en semana 6.*
+## 8. Árbol de decisión antes de una frase pública
+
+1. ¿El objeto es un demo, un sample piloto o datos externos?  
+2. ¿El claim es sobre reorganización bajo un diseño declarado — o sobre predicción?  
+3. ¿Están presentes panel dual + nulo + hash?  
+4. ¿Un experto de dominio aceptaría el enunciado de madurez?
+
+Si alguna respuesta es débil, reescriba la frase.
+
+---
+
+*Handout de ética y alcance STP v1.1 · leer en semana 1 y releer en semana 6.*

@@ -1,0 +1,636 @@
+root_path: /Users/johelpadilla/Investigaciones/Publicaciones
+version: '1.1'
+author_default: Padilla-Villanueva, J.
+collections:
+- id: empirical_anchor
+  order: 10
+  label_es: Ancla empírica (CCTP / cardio)
+  label_en: Empirical anchor (CCTP / cardio)
+  label_fr: Ancre empirique (CCTP / cardio)
+  description_es: Manuscrito y evidencia que anclan la v1.0 de la plataforma (Holter SDDB, pre-FV).
+  description_en: Manuscript and evidence anchoring platform v1.0 (SDDB Holter, pre-VF).
+  description_fr: Manuscrit et preuves ancrant la v1.0 de la plateforme (Holter SDDB, pré-FV).
+- id: platform_foundations
+  order: 20
+  label_es: Fundamentos del paradigma (plataforma)
+  label_en: Paradigm foundations (platform)
+  label_fr: Fondements du paradigme (plateforme)
+  description_es: Papers de fundamentos de Tau Sistémica + RECD alineados con el motor del Lab.
+  description_en: Foundational Systemic Tau + RECD papers aligned with the Lab engine.
+  description_fr: Articles fondateurs Tau systémique + RECD alignés sur le moteur du Lab.
+- id: numbered_corpus
+  order: 30
+  label_es: Corpus numerado 01–16 (teoría y métodos)
+  label_en: Numbered corpus 01–16 (theory & methods)
+  label_fr: Corpus numéroté 01–16 (théorie et méthodes)
+  description_es: 'Serie ordenada: ontología, RECD, Feigenbaum, dengue, síntesis y reportes técnicos.'
+  description_en: 'Ordered series: ontology, RECD, Feigenbaum, dengue, synthesis and technical reports.'
+  description_fr: 'Série ordonnée : ontologie, RECD, Feigenbaum, dengue, synthèses et rapports techniques.'
+- id: preprints_2025
+  order: 40
+  label_es: Serie Preprints.org 2025
+  label_en: Preprints.org series 2025
+  label_fr: Série Preprints.org 2025
+  description_es: Publicaciones en Preprints.org (caótica, anti-sincronización, reloj extramental, etc.).
+  description_en: Preprints.org posts (chaos, anti-synchronization, extramental clock, etc.).
+  description_fr: Dépôts Preprints.org (chaos, anti-synchronisation, horloge extramentale, etc.).
+- id: synthesis
+  order: 50
+  label_es: Síntesis y monografías
+  label_en: Syntheses & monographs
+  label_fr: Synthèses et monographies
+  description_es: Textos largos de integración del programa de investigación.
+  description_en: Long-form integration of the research program.
+  description_fr: Textes longs d’intégration du programme de recherche.
+items:
+- id: cctp_sddb_manuscript
+  title: Context-Dependent Relational Reorganization of Heart Rate Dynamics Precedes Spontaneous Ventricular
+    Fibrillation
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: empirical_anchor
+  type: manuscript
+  domain: cardiology
+  topics:
+  - tau_s
+  - RECD
+  - EWS
+  - Holter
+  - SDDB
+  - VF
+  - surrogates
+  status: anchor
+  language: en
+  format: pdf
+  file: CCTP_SDBB_manuscript.pdf
+  doi: 10.5281/zenodo.21270699
+  featured: true
+  sort_order: 10
+  summary: 'CCTP pilot: Systemic Tau + ordinal RECD on SDDB Holter pre-VF; dual panel vs classical EWS;
+    research cohort, not a device.'
+  summary_es: 'Piloto CCTP: Tau Sistémica + RECD ordinal en Holter SDDB pre-FV; panel dual frente a EWS
+    clásicas. Cohorte de investigación, no dispositivo clínico. Ancla empírica de la plataforma v1.0.'
+  related:
+  - systemic_tau_foundations
+  - systemic_tau_recd_framework
+  url: https://doi.org/10.5281/zenodo.21270699
+- id: systemic_tau_foundations
+  title: 'Systemic Tau: Foundations of a Topological Framework for Early Warning Signals in Complex Systems'
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: platform_foundations
+  type: foundations
+  domain: theory
+  topics:
+  - tau_s
+  - EWS
+  - ordinal
+  - critical_transitions
+  status: reference
+  language: en
+  format: pdf
+  file: Systemic_Tau_Foundations_Paper.pdf
+  doi: 10.5281/zenodo.21210553
+  featured: true
+  sort_order: 20
+  summary: 'Foundations paper: ordinal, event-driven Systemic Tau for early warning across complex systems.'
+  summary_es: 'Paper de fundamentos: Tau Sistémica ordinal y orientada a eventos para señales tempranas
+    en sistemas complejos.'
+  related:
+  - systemic_tau_recd_framework
+  - cctp_sddb_manuscript
+  url: https://doi.org/10.5281/zenodo.21210553
+- id: systemic_tau_recd_framework
+  title: 'Systemic Tau and the RECD Framework: A Relational Theory of Hierarchical Ordinal Conjunctions
+    and Critical Transitions'
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: platform_foundations
+  type: foundations
+  domain: theory
+  topics:
+  - tau_s
+  - RECD
+  - ordinal
+  - hierarchy
+  - critical_transitions
+  status: reference
+  language: en
+  format: pdf
+  file: Systemic_Tau_RECD_Framework.pdf
+  doi: 10.5281/zenodo.21287252
+  featured: true
+  sort_order: 21
+  summary: Unified theory of τs and hierarchical ordinal RECD for critical transitions.
+  summary_es: Teoría unificada de τs y RECD ordinal jerárquico para transiciones críticas.
+  related:
+  - systemic_tau_foundations
+  - sintesis_magna_pdf
+  url: https://doi.org/10.5281/zenodo.21287252
+- id: n01_dimension_fractal_recd
+  title: Dimensión fractal D ≈ 1.98 del tiempo extramental acumulado en sistemas caóticos
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: mathematics
+  topics:
+  - RECD
+  - fractal
+  - Feigenbaum
+  - time
+  status: methods
+  language: es
+  format: pdf
+  file: 01_Dimension_Fractal_1.98_RECD.pdf
+  sort_order: 101
+  summary: Fractal dimension of accumulated extramental time under RECD (bounds 1.96–2.01).
+  summary_es: Establece la dimensión fractal D≈1.98 del tiempo extramental acumulado T bajo la RECD, con
+    cotas rigurosas y conjugación 2-ádica.
+  doi: 10.5281/zenodo.20619058
+  url: https://doi.org/10.5281/zenodo.20619058
+- id: n02_ontologia_presente
+  title: Hacia una ontología del presente en sistemas complejos (RECD y fragmentación)
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: ontology
+  topics:
+  - ontology
+  - RECD
+  - layers
+  - persistence
+  status: reference
+  language: es
+  format: pdf
+  file: 02_Ontologia_del_Presente_RECD.pdf
+  sort_order: 102
+  summary: 'Three-layer ontology of the present: local intensification, relational coherence, structural
+    reorganization.'
+  summary_es: 'Ontología de tres capas del presente: intensificación local, coherencia relacional y reorganización
+    estructural. Anclaje en mapas acoplados, Lorenz y datos epidemiológicos.'
+  doi: 10.5281/zenodo.20750058
+  url: https://doi.org/10.5281/zenodo.20750058
+- id: n03_ontological_ascent
+  title: 'The Principle of Ontological Ascent: Emergence of New Regimes of Temporal Discreteness'
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: ontology
+  topics:
+  - ontology
+  - RECD
+  - ascent
+  - time
+  status: reference
+  language: en
+  format: pdf
+  file: 03_Principle_Ontological_Ascent.pdf
+  sort_order: 103
+  summary: 'Ontological ascent: Capa-3 reorganization opens a new stratum of discrete temporality.'
+  summary_es: 'Principio de ascenso ontológico: una reorganización de Capa 3 abre un nuevo estrato de
+    temporalidad discreta (RECD).'
+  doi: 10.5281/zenodo.20769218
+  url: https://doi.org/10.5281/zenodo.20769218
+- id: n04_recd_bayesian_accumulator
+  title: The Discrete Extramental Clock as Bayesian Optimal Accumulator
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: mathematics
+  topics:
+  - RECD
+  - Bayesian
+  - Feigenbaum
+  - ordinal
+  status: methods
+  language: en
+  format: pdf
+  file: 04_RECD_Bayesian_Optimal_Accumulator.pdf
+  sort_order: 104
+  summary: RECD as Bayesian optimal accumulator under purely ordinal observability; link to Feigenbaum
+    and large deviations.
+  summary_es: El reloj extramental discreto como acumulador bayesiano óptimo bajo observabilidad puramente
+    ordinal; enlace con Feigenbaum y grandes desviaciones.
+  doi: 10.5281/zenodo.20685001
+  url: https://doi.org/10.5281/zenodo.20685001
+- id: n05_joint_episode
+  title: The Joint Episode as an Ontological-Temporal Unit
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: theory
+  topics:
+  - joint_episode
+  - ontology
+  - tau_s
+  - kairos
+  status: methods
+  language: en
+  format: pdf
+  file: 05_Joint_Episode_Ontological_Unit.pdf
+  sort_order: 105
+  summary: 'Joint Episode: maximal low-antisynchrony interval containing a critical-mass peak — a kairos
+    unit.'
+  summary_es: 'Episodio conjunto: intervalo maximal de baja antisincronía con pico de masa crítica — unidad
+    temporal tipo kairos.'
+  doi: 10.5281/zenodo.20755272
+  url: https://doi.org/10.5281/zenodo.20755272
+- id: n06_dengue_early_warning
+  title: Tau Sistémico y patrones ordinales multivariados para la detección temprana de brotes de dengue
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: epidemiology
+  topics:
+  - dengue
+  - tau_s
+  - EWS
+  - Iquitos
+  - San_Juan
+  status: high_maturity
+  language: es
+  format: pdf
+  file: 06_Tau_Sistemico_Dengue_Early_Warning.pdf
+  featured: true
+  sort_order: 106
+  summary: Multivariate ordinal Tau for dengue early warning on real Iquitos and San Juan data.
+  summary_es: Aplicación de τs y patrones ordinales multivariados a datos reales de dengue (Iquitos y
+    San Juan) para detección temprana de brotes.
+  related:
+  - n07_dengue_three_layer
+  - n08_dengue_supplement
+  doi: 10.5281/zenodo.20657723
+  url: https://doi.org/10.5281/zenodo.20657723
+- id: n07_dengue_three_layer
+  title: Mathematical Characterization of a Three-Layer Ontological Framework for Dengue Early Warning
+    Using Joint Episodes
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: epidemiology
+  topics:
+  - dengue
+  - ontology
+  - joint_episode
+  - RECD
+  status: high_maturity
+  language: en
+  format: pdf
+  file: 07_Dengue_Three_Layer_Ontological_Framework.pdf
+  sort_order: 107
+  summary: Three-layer ontology operationalized for dengue via joint episodes and confidence scoring.
+  summary_es: Operacionalización matemática del marco de tres capas para dengue mediante episodios conjuntos
+    y puntuación de confianza.
+  related:
+  - n06_dengue_early_warning
+  - n08_dengue_supplement
+  doi: 10.5281/zenodo.20740192
+  url: https://doi.org/10.5281/zenodo.20740192
+- id: n08_dengue_supplement
+  title: 'Supplementary: Calibration of Joint Permeability–Critical Mass for Dengue (San Juan & Iquitos)'
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: supplementary
+  domain: epidemiology
+  topics:
+  - dengue
+  - calibration
+  - RECD
+  status: methods
+  language: en
+  format: pdf
+  file: 08_Supplementary_Dengue_RECD.pdf
+  sort_order: 108
+  summary: Technical calibration of permeability–critical mass thresholds on real dengue series.
+  summary_es: 'Suplemento técnico: calibración de umbrales de permeabilidad y masa crítica en series reales
+    de dengue (San Juan e Iquitos).'
+  related:
+  - n06_dengue_early_warning
+  - n07_dengue_three_layer
+  doi: 10.5281/zenodo.20736632
+  url: https://doi.org/10.5281/zenodo.20736632
+- id: n09_feigenbaum_reduction
+  title: Reconstructing unimodal first-return maps from ordinal coherence (Feigenbaum reduction methodology)
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: methods
+  domain: mathematics
+  topics:
+  - Feigenbaum
+  - ordinal
+  - return_maps
+  - Tribolium
+  status: methods
+  language: en
+  format: pdf
+  file: 09_Feigenbaum_Reduction_Theorem.pdf
+  sort_order: 109
+  summary: Method to reconstruct unimodal return maps from ordinal coherence; logistic, Lorenz, Tribolium.
+  summary_es: Método para reconstruir mapas de retorno unimodales desde coherencia ordinal; validación
+    en logístico, Lorenz y poblaciones de laboratorio (Tribolium).
+  doi: 10.5281/zenodo.20615901
+  url: https://doi.org/10.5281/zenodo.20615901
+- id: n11_feigenbaum_theorem_es
+  title: 'Teorema: reducción deductiva a la universalidad de Feigenbaum bajo observabilidad ordinal'
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: article
+  domain: mathematics
+  topics:
+  - Feigenbaum
+  - RECD
+  - ordinal
+  - theorem
+  status: methods
+  language: es
+  format: pdf
+  file: 11_Teorema_Feigenbaum_Estilo_Revista.pdf
+  sort_order: 111
+  summary: Deductive reduction to Feigenbaum universality under ordinal observability and RECD construction.
+  summary_es: Reducción deductiva a la universalidad de Feigenbaum bajo observabilidad ordinal en el Tau
+    Sistémico y construcción del RECD.
+  related:
+  - n09_feigenbaum_reduction
+  - n12_feigenbaum_appendix
+  doi: 10.5281/zenodo.20587751
+  url: https://doi.org/10.5281/zenodo.20587751
+- id: n13_sintesis_magna_pdf
+  title: El paradigma del Tau Sistémico y la Ley del Reloj Extramental Discreto (Síntesis Magna PDF)
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: synthesis
+  domain: theory
+  topics:
+  - tau_s
+  - RECD
+  - synthesis
+  - ontology
+  status: reference
+  language: es
+  format: pdf
+  file: 13_Sintesis_Magna_Tau_Sistemico_2026.pdf
+  featured: true
+  sort_order: 113
+  summary: Magna synthesis of Systemic Tau and the Discrete Extramental Clock law.
+  summary_es: 'Síntesis magna del paradigma: fundamentos de τs, umbrales, RECD, jerarquía ontológica y
+    validaciones.'
+  related:
+  - sintesis_magna_docx
+  - n14_sintesis_completa
+  doi: 10.5281/zenodo.20576241
+  url: https://doi.org/10.5281/zenodo.20576241
+- id: n16_ontological_permeability
+  title: Empirical Validation of the Ontological Permeability Hypothesis
+  authors: Padilla-Villanueva, J.
+  year: 2026
+  collection: numbered_corpus
+  type: technical_report
+  domain: ontology
+  topics:
+  - ontology
+  - permeability
+  - three_layers
+  status: methods
+  language: en
+  format: pdf
+  file: 16_Technical_Report_Ontological_Permeability.pdf
+  sort_order: 116
+  summary: 'Technical report: calibrating upward probabilistic filtering in the three-layer model of the
+    present.'
+  summary_es: 'Informe técnico: validación empírica de la hipótesis de permeabilidad ontológica (filtrado
+    probabilístico ascendente en el modelo de tres capas).'
+  doi: 10.5281/zenodo.20723966
+  url: https://doi.org/10.5281/zenodo.20723966
+- id: pp_202509_1428
+  title: 'Unveiling Systemic Tau: Redefining the Fabric of Time, Stability, and Emergent Order Across
+    Complex Chaotic Systems'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: preprint
+  domain: theory
+  topics:
+  - tau_s
+  - chaos
+  - time
+  - interdisciplinary
+  status: historical
+  language: en
+  format: pdf
+  file: preprints202509.1428.v1-2.pdf
+  doi: 10.20944/preprints202509.1428.v1
+  url: https://doi.org/10.20944/preprints202509.1428.v1
+  sort_order: 201
+  summary: Foundational Preprints.org article introducing Systemic Tau across chaotic systems.
+  summary_es: Artículo fundacional en Preprints.org que presenta el Tau Sistémico a través de sistemas
+    caóticos interdisciplinarios.
+- id: pp_202509_1894
+  title: Validation of Anti-Synchronization in Chaotic Systems Using Systemic Tau
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: preprint
+  domain: epidemiology
+  topics:
+  - tau_s
+  - anti_synchronization
+  - dengue
+  - Aedes
+  status: historical
+  language: en
+  format: pdf
+  file: preprints202509.1894.v2.pdf
+  doi: 10.20944/preprints202509.1894.v2
+  url: https://doi.org/10.20944/preprints202509.1894.v2
+  sort_order: 202
+  summary: Anti-synchronization validation with Systemic Tau; links to dengue / Aedes ecological modeling.
+  summary_es: Validación de anti-sincronización con Tau Sistémico; vínculo con modelado ecológico de dengue
+    / Aedes.
+- id: pp_202509_2174
+  title: 'Synthesis of Systemic Tau Concepts: Integrated Overview of 2025 Preprints on Stability and Anti-Synchronization'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: communication
+  domain: theory
+  topics:
+  - tau_s
+  - synthesis
+  - chaos
+  status: historical
+  language: en
+  format: pdf
+  file: preprints202509.2174.v1.pdf
+  doi: 10.20944/preprints202509.2174.v1
+  url: https://doi.org/10.20944/preprints202509.2174.v1
+  sort_order: 203
+  summary: Short synthesis bridging the 2025 Preprints.org Systemic Tau series.
+  summary_es: Comunicación de síntesis que integra la serie Preprints.org 2025 sobre Tau Sistémico.
+- id: pp_202510_0083
+  title: 'Fractional Anti-Synchronization in Physical Attractors: Quantifying Divergence with Systemic
+    Tau'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: preprint
+  domain: mathematics
+  topics:
+  - tau_s
+  - fractional
+  - anti_synchronization
+  - Lorenz
+  status: historical
+  language: en
+  format: pdf
+  file: preprints202510.0083.v2-2.pdf
+  doi: 10.20944/preprints202510.0083.v2
+  url: https://doi.org/10.20944/preprints202510.0083.v2
+  sort_order: 204
+  summary: Fractional anti-synchronization on physical attractors (e.g. Lorenz) quantified via τs.
+  summary_es: Anti-sincronización fraccionaria en atractores físicos (p. ej. Lorenz) cuantificada con
+    τs.
+- id: pp_202512_0055
+  title: 'Clarifying the Chaotic Range in Systemic Tau: The Intermediate Volatility Zone (|τs| < 0.41)'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: technical_note
+  domain: theory
+  topics:
+  - tau_s
+  - chaos
+  - thresholds
+  - Feigenbaum
+  status: methods
+  language: en
+  format: pdf
+  file: preprints202512.0055.v1.pdf
+  doi: 10.20944/preprints202512.0055.v1
+  url: https://doi.org/10.20944/preprints202512.0055.v1
+  sort_order: 205
+  summary: Clarifies the intermediate chaotic/volatility band |τs| < 0.41 and operational thresholds.
+  summary_es: Aclara el rango caótico intermedio |τs| < 0.41 y sus umbrales operativos.
+- id: pp_202512_0610
+  title: 'Discrete Extramental Time in Chaotic Systems: Event-Conjunction Model and Core Temporal Properties'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: technical_note
+  domain: ontology
+  topics:
+  - RECD
+  - time
+  - event_conjunction
+  status: methods
+  language: en
+  format: pdf
+  file: preprints202512.0610.v1.pdf
+  doi: 10.20944/preprints202512.0610.v1
+  url: https://doi.org/10.20944/preprints202512.0610.v1
+  sort_order: 206
+  summary: Event-conjunction model of discrete extramental time and core temporal properties.
+  summary_es: Modelo de conjunción de eventos del tiempo extramental discreto y propiedades temporales
+    centrales.
+- id: pp_202512_0633
+  title: Mathematical Derivation of the Discrete Extramental Clock Law
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: technical_note
+  domain: mathematics
+  topics:
+  - RECD
+  - Feigenbaum
+  - Kendall
+  - clock_law
+  status: methods
+  language: en
+  format: pdf
+  file: preprints202512.0633.v1.pdf
+  doi: 10.20944/preprints202512.0633.v1
+  url: https://doi.org/10.20944/preprints202512.0633.v1
+  sort_order: 207
+  summary: Mathematical derivation of the discrete extramental clock law (Padilla-Villanueva 2025).
+  summary_es: Derivación matemática de la ley del reloj extramental discreto.
+- id: pp_202512_1503
+  title: 'Philosophical Implications of the Discrete Extramental Clock Law: Non-Existence of Absolute
+    Newtonian Time'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: hypothesis
+  domain: philosophy
+  topics:
+  - time
+  - ontology
+  - chronos
+  - kairos
+  status: exploratory
+  language: en
+  format: pdf
+  file: preprints202512.1503.v1.pdf
+  doi: 10.20944/preprints202512.1503.v1
+  url: https://doi.org/10.20944/preprints202512.1503.v1
+  sort_order: 208
+  summary: 'Philosophical implications: against absolute Newtonian extramental time.'
+  summary_es: 'Implicaciones filosóficas de la ley del reloj extramental: no existencia del tiempo newtoniano
+    absoluto en lo extramental.'
+- id: pp_202512_2010
+  title: 'Fractal-Stochastic Emergence of Discrete Time in Chaotic Systems: Numerical Evidence Against
+    Newtonian Absolutism'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: preprint
+  domain: mathematics
+  topics:
+  - time
+  - fractal
+  - chaos
+  - RECD
+  status: methods
+  language: en
+  format: pdf
+  file: preprints202512.2010.v1.pdf
+  doi: 10.20944/preprints202512.2010.v1
+  url: https://doi.org/10.20944/preprints202512.2010.v1
+  sort_order: 209
+  summary: Numerical evidence for fractal-stochastic emergence of discrete time against Newtonian absolutism.
+  summary_es: Evidencia numérica de la emergencia fractal-estocástica del tiempo discreto frente al absolutismo
+    newtoniano.
+- id: pp_202512_2431
+  title: 'Numerical Validation of the Discrete Extramental Clock Law: Hierarchical Emergence of Objective
+    Time'
+  authors: Padilla-Villanueva, J.
+  year: 2025
+  collection: preprints_2025
+  type: preprint
+  domain: mathematics
+  topics:
+  - RECD
+  - ordinal
+  - Feigenbaum
+  - time
+  status: methods
+  language: en
+  format: pdf
+  file: preprints202512.2431.v1.pdf
+  doi: 10.20944/preprints202512.2431.v1
+  url: https://doi.org/10.20944/preprints202512.2431.v1
+  sort_order: 210
+  summary: Numerical validation of hierarchical emergence of objective time from ordinal conjunctions.
+  summary_es: Validación numérica de la emergencia jerárquica del tiempo objetivo a partir de conjunciones
+    ordinales.
+catalog_policy: Solo fichas con DOI público verificable (Zenodo o Preprints.org). Borradores locales sin
+  DOI se excluyen del catálogo de la biblioteca.

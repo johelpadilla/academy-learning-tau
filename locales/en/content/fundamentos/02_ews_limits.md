@@ -1,14 +1,59 @@
-# Limits of classical EWS
+# Foundations — Classical EWS and their limits
 
-## Learning goals
-- Explain why variance and AR(1) can be silent or ambiguous near a transition.
-- State the role of classical EWS in STP: **comparison panel**, not the primary claim.
+| Field | Value |
+|-------|--------|
+| **Module** | Foundations 02 |
+| **Level** | Graduate |
+| **Version** | 1.1 · 2026 |
 
-## The classical story
-Early-warning signals (EWS) from critical slowing down (CSD) — rising variance, rising AR(1) — are powerful when the system truly slows near a tipping point. Many real multivariate series (cardiac, epidemic, ecological) **do not** always obey that textbook path.
+---
 
-## Why STP keeps them
-Classical EWS remain in the Lab so that dual reading is honest: the relational panel may move when the classical panel does not (or vice versa). That is a scientific result, not a UI failure.
+## Learning outcomes
 
-## Practice
-Run a cardio-like or dengue-like demo and compare z-scored variance/AR1 curves with τ_s on the same windows.
+1. Define variance and AR(1) as classical early warning signals.  
+2. State at least three failure modes of purely univariate EWS.  
+3. Explain why dual reading is required, not optional.
+
+---
+
+## 1. Classical frame (CSD)
+
+*Critical slowing down* (CSD) suggests that near some bifurcations a system recovers more slowly from perturbations. Empirically this often appears as:
+
+- rising **variance** in a rolling window;  
+- rising **lag-1 autocorrelation** (AR(1) coefficient);  
+- sometimes other univariate indicators (skewness, spectral reddening).
+
+These remain **valuable controls**. STP does not discard them.
+
+---
+
+## 2. Limits that motivate τ_s
+
+| Limit | Consequence |
+|-------|-------------|
+| Univariate focus | Misses pure reorganization of coupling |
+| Sign ambiguity | Variance can rise for many non-critical reasons |
+| Spatial/multivariate transitions | Local channels may not “slow” while relations reorganize |
+| Observation process | Noise, sampling, nonstationarity confound EWS |
+| Threshold temptation | “Alert” language without external validation |
+
+---
+
+## 3. Pedagogical rule
+
+In STP Lab:
+
+- Always compute **classical EWS in parallel**.  
+- Never hide an inconvenient classical panel.  
+- Declare concordance, discordance, or quiet.
+
+---
+
+## 4. Micro-lab prompt
+
+On `synthetic_coupled_logistic` and `synthetic_ar_noise`, compare var/AR1 vs Δτ_s. Write four lines of dual reading.
+
+---
+
+*Foundations 02 · STP v1.1*

@@ -70,16 +70,32 @@ def set_lang(lang: str) -> str:
 
 
 def clear_catalog_cache() -> None:
-    _load_catalog.cache_clear()
+    _load_catalog_cached.cache_clear()
 
 
-@lru_cache(maxsize=8)
-def _load_catalog(lang: str) -> dict[str, Any]:
+def _catalog_mtime(lang: str) -> float:
+    path = locales_dir() / lang / "ui.json"
+    try:
+        return path.stat().st_mtime if path.exists() else -1.0
+    except OSError:
+        return -1.0
+
+
+@lru_cache(maxsize=16)
+def _load_catalog_cached(lang: str, mtime: float) -> dict[str, Any]:
+    """Load catalog; ``mtime`` is part of the cache key so edits bust stale text."""
     path = locales_dir() / lang / "ui.json"
     if not path.exists():
         return {}
-    data = json.loads(path.read_text(encoding="utf-8"))
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
     return data if isinstance(data, dict) else {}
+
+
+def _load_catalog(lang: str) -> dict[str, Any]:
+    return _load_catalog_cached(lang, _catalog_mtime(lang))
 
 
 def _dig(tree: dict[str, Any], key: str) -> Any:
@@ -89,6 +105,21 @@ def _dig(tree: dict[str, Any], key: str) -> Any:
             return None
         cur = cur[part]
     return cur
+
+
+def is_unresolved_key(text: str | None, key: str | None = None) -> bool:
+    """True when a translation call failed and left a machine key visible."""
+    if not text:
+        return True
+    s = str(text).strip()
+    if key and s == key:
+        return True
+    # Common failure modes: raw dotted catalog paths leaked into the UI
+    if s.startswith("domain_voice.") or s.startswith("domain_voice_ui."):
+        return True
+    if s.startswith("fundamentos.") or s.startswith("lab.") or s.startswith("auth."):
+        return True
+    return False
 
 
 def t(key: str, lang: str | None = None, **kwargs: Any) -> str:

@@ -47,3 +47,23 @@ Puerto Rico y series tipo **DengAI** (San Juan / Iquitos) son laboratorios natur
 
 - Preprints dengue Tau/RECD del autor (2025–2026).
 - DengAI DrivenData; literatura de early warning en enfermedades vectoriales.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[z(\mathrm{cases}), z(\mathrm{temp}), z(\mathrm{precip})]\) |
+| **Evento** | Onset de brote / régimen de transmisión elevada |
+| **Preset Lab** | `epidemiology` · lectura dual obligatoria |
+| **Demos** | `dengue_like_demo` |
+| **Madurez** | Alta (transferencia; no vigilancia operativa) |
+
+### Frases permitidas
+- Coherencia ordinal cases–clima sube antes del pico bajo este diseño…
+- Transferencia metodológica desde la gramática CCTP; no nowcast operativo.
+
+### Frases prohibidas (v1.0)
+- Alarma operativa de brote para agencias de salud pública
+- Sustituto de sistemas de vigilancia epidemiológica

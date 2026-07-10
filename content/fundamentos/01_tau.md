@@ -1,99 +1,76 @@
-# ¿Qué es Tau Sistémica?
+# Fundamentos — Tau Sistémica (τ_s)
 
-### Objetivos de este módulo
-1. Formular la pregunta científica que τ_s responde (y la que *no* responde).
-2. Distinguir métricas de *amplitud* (var, AR1) de métricas *ordinal-relacionales*.
-3. Poder explicar τ_s a un colega en menos de dos minutos con una analogía sólida.
-
----
-
-## 1. La pregunta que abre el paradigma
-
-**Tau Sistémica** (τ_s) es una métrica **ordinal y relacional** diseñada para detectar **reorganizaciones de acoplamiento** entre variables de un sistema complejo **antes o durante** una transición de régimen.
-
-Las EWS clásicas preguntan, en esencia:
-
-> *¿Cuánto se mueve cada variable? ¿Se está volviendo más lenta al recuperarse?*
-
-τ_s pregunta otra cosa:
-
-> **¿Cómo cambia la estructura de orden compartida entre las variables del sistema?**
-
-Esa diferencia no es cosmética: en sistemas vivos (corazón, epidemia, lago, red neuronal) la transición a menudo es un **cambio de ley relacional**, no un simple enlentecimiento univariado.
+| Campo | Valor |
+|-------|--------|
+| **Módulo** | Fundamentos 01 |
+| **Nivel** | Posgrado |
+| **Versión** | 1.1 · 2026 |
+| **Handouts relacionados** | Teoría · Matemática práctica · Lectura dual |
 
 ---
 
-## 2. Definición conceptual (nivel investigador)
+## Resultados de aprendizaje
 
-Sea un sistema multivariado \(X(t) \in \mathbb{R}^{T \times N}\) con \(N \geq 2\) componentes observables. Ejemplos reales en esta plataforma:
-
-| Dominio | Ejemplo de \(X\) |
-|---------|------------------|
-| Cardiología CCTP | \(z(\mathrm{RR})\), \(z(\|\Delta\mathrm{RR}\|)\) |
-| Dengue | cases, temperatura, precipitación (z-score) |
-| EEG | potencias de banda o canales seleccionados |
-| Sintético | mapas logísticos acoplados con switch de régimen |
-
-En una **ventana deslizante** de longitud \(W\), τ_s resume el **grado de coherencia ordinal cruzada** (y sus cambios) entre las series. Operacionalmente se construye a partir de:
-
-1. **Patrones de rango** (ordenamientos locales / rangos de Kendall en la ventana).
-2. **Contrastes entre módulos o pares** (acoplamiento vs anti-sincronización).
-3. **Normalización** a una escala interpretable en el tiempo de la serie.
-
-El resultado es una trayectoria \(\tau_s(t)\) que **acelera, se invierte o se estabiliza** cuando el sistema se reorganiza — **no necesariamente** cuando la varianza sube.
-
-### Qué mirar en el Lab
-
-| Observación | Lectura |
-|-------------|---------|
-| τ_s estable en basal | Régimen relacional “en ley” |
-| Cambio sostenido basal → approach | Candidato a reorganización |
-| Δτ_s grande + p_surr bajo | El cambio no se explica por dependencia cruzada nula (phase-shuffle) |
-| Δτ_s grande pero p_surr alto | Cuidado: puede ser compatible con nulo espectral |
+1. Enunciar la pregunta científica de τ_s en una frase sin “predecir”.  
+2. Contrastar la medición ordinal–relacional con amplitud/enlentecimiento univariado.  
+3. Listar los elementos de diseño (N, W, evento, nulos) para un Δτ_s defendible.
 
 ---
 
-## 3. Por qué se llama “sistémica”
+## 1. Objeto científico
 
-| Compromiso | Significado | Si se viola… |
-|------------|-------------|--------------|
-| **Relacional** | La señal vive *entre* variables | Se confunde con univariado disfrazado |
-| **Ordinal** | Usa orden e igualdad de rangos; robusta a monótonas y a unidades | Se reintroduce dependencia de escala |
-| **Multiescala / capas** | Puede articularse con RECD y capas ontológicas | Se colapsa todo a un único número sin gramática |
+**Tau Sistémica (τ_s)** mide cómo se reorganiza en el tiempo la **estructura de orden compartida** entre variables de un sistema multivariado. No pregunta principalmente cuánto fluctúa cada canal, sino cómo cambian las **relaciones de orden** entre canales en torno a un cambio de régimen.
 
----
+Operativamente (pipeline educativo Lab v1.0):
 
-## 4. Analogía (orquesta)
-
-Imagine una orquesta:
-
-- **EWS clásicas** miden si cada músico toca más fuerte o más despacio (amplitud, autocorrelación).
-- **τ_s** pregunta si dejan de leer partituras independientes y empiezan a **coordinar el mismo patrón de orden** — aunque el volumen total no cambie, o incluso baje.
-
-En un corazón previo a fibrilación ventricular, en un brote de dengue o en un lago que se eutrofiza, esa “coordinación del orden” es a menudo la firma más informativa de que el sistema está **cambiando de ley**, no solo de ruido.
-
-**Ejercicio mental:** ¿puede haber transición clínica real con AR1 que *baja*? Sí — y el piloto CCTP lo documenta. Ahí τ_s + excess3 no son un lujo: son el panel que sigue teniendo sentido.
+1. Serie multivariada \(X\in\mathbb{R}^{T\times N}\) (o proxy bivariado documentado).  
+2. Ventanas deslizantes de longitud \(W\) con paso `stride`.  
+3. Patrones ordinales locales (Bandt–Pompe / rangos).  
+4. Resumen de coherencia ordinal cruzada → \(\tau_s(t)\).  
+5. Contraste Δ (pre/post evento o mitad/mitad) bajo nulos de surrogates.
 
 ---
 
-## 5. Qué no es Tau Sistémica
+## 2. ¿Por qué ordinal y relacional?
 
-- No es un clasificador de machine learning opaco.
-- No sustituye el juicio clínico, epidemiológico o ecológico.
-- No asume *critical slowing down* univariado como única vía a la transición.
-- No es “caos” en el sentido popular: es **reorganización relacional**, modulable por régimen.
-- No es un Kendall tau estático con marketing (véase FAQ): el objeto es la **dinámica de reorganización** acoplada al RECD.
+| Propiedad | Implicación |
+|-----------|-------------|
+| Ordinal | Robusto a transformaciones estrictamente monótonas |
+| Relacional | Apunta a reorganización de acoplamiento, no solo CSD univariado |
+| En ventanas | Captura dinámica, no un único coeficiente estático |
+| Con nulos | Phase-shuffle evalúa estructura cruzada residual |
 
 ---
 
-## 6. Mini-síntesis (para el examen / el paper)
+## 3. Qué no es τ_s
 
-> **τ_s** = termómetro de *cómo se reordenan las relaciones ordinales* del sistema en el tiempo.  
-> Se interpreta junto a **EWS clásicas** (panel univariado) y a **RECD/excess3** (reloj y sinergia).  
-> La unidad de evidencia no es un pico aislado: es **Δ + contexto + surrogates + concordancia**.
+- No es un reetiquetado de marketing del Kendall-τ estático.  
+- No es Transfer Entropy (predicción direccional).  
+- No es un predictor certificado de eventos clínicos o de mercado.  
+- No sustituye la teoría de dominio.
 
-### Lectura mínima recomendada
-1. *Systemic Tau: Foundations…* (marco ordinal de early warning).  
-2. CCTP/SDDB (aplicación cardíaca pre-FV).  
-3. *Síntesis Magna del Tau Sistémico* (capas ontológicas).  
-4. En esta plataforma: módulo **Límites EWS** → **RECD** → **excess3**.
+---
+
+## 4. Lectura práctica de τ_s
+
+Siempre con:
+
+1. Tamaño de efecto (magnitud y signo de Δτ_s).  
+2. Panel EWS clásico (lectura dual).  
+3. p_surr + método + n_surr + seed.  
+4. Declaración de madurez del dominio.  
+5. `repro_hash`.
+
+**Signo context-dependent:** subir o bajar τ_s puede indicar reorganización según el régimen.
+
+---
+
+## 5. Micro-chequeo
+
+- [ ] Explico τ_s sin reclamar predicción.  
+- [ ] Sé por qué se exige N≥2 (o proxy).  
+- [ ] No publicaré p sin Δ y diseño.
+
+---
+
+*Fundamentos 01 · STP v1.1*

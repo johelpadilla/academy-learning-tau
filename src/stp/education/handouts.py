@@ -88,8 +88,8 @@ _STATIC: list[tuple[str, str, str, str, str, tuple[str, ...]]] = [
     ),
     (
         "syllabus",
-        "Syllabus 6 semanas",
-        "Competencia de salida, semanas, rúbrica y datasets demo.",
+        "Syllabus 6 semanas (v1.1)",
+        "Competencias C1–C7, programa semanal, rúbrica 12 pts, datasets, evaluación y notas docentes.",
         "08_syllabus_6_semanas.md",
         "stp_08_syllabus_6_semanas.md",
         ("docente", "curso"),
@@ -340,3 +340,182 @@ def render_handout(handout_id: str) -> str:
 
 def render_handout_bytes(handout_id: str) -> bytes:
     return render_handout(handout_id).encode("utf-8")
+
+
+def markdown_to_pdf(md: str, *, title: str = "STP") -> bytes | None:
+    """Convert Markdown to PDF via Pandoc + LaTeX when available.
+
+    Prefers XeLaTeX for Unicode (τ, accents). Falls back to default engine.
+    Returns PDF bytes, or ``None`` if Pandoc/LaTeX is missing or conversion fails.
+    """
+    import os
+    import re
+    import shutil
+    import subprocess
+    import tempfile
+
+    pandoc = shutil.which("pandoc")
+    if not pandoc:
+        return None
+
+    # Ensure common MacTeX path is visible to the subprocess
+    env = os.environ.copy()
+    texbin = "/Library/TeX/texbin"
+    if Path(texbin).is_dir():
+        env["PATH"] = texbin + os.pathsep + env.get("PATH", "")
+
+    # Soften content that breaks old Pandoc/pdflatex (Latin-1 pedagogical PDF)
+    replacements = {
+        "τ_s": "tau_s",
+        "τ": "tau",
+        "Φ₁": "Phi1",
+        "Φ₂": "Phi2",
+        "Φ₃": "Phi3",
+        "Φ": "Phi",
+        "Δ": "Delta-",
+        "δ": "delta-",
+        "θ": "theta-",
+        "β": "beta-",
+        "α": "alpha-",
+        "σ": "sigma-",
+        "μ": "mu-",
+        "π": "pi-",
+        "★": "*",
+        "☆": "o",
+        "≥": ">=",
+        "≤": "<=",
+        "≈": "~",
+        "≠": "!=",
+        "→": "->",
+        "↔": "<->",
+        "·": "-",
+        "×": "x",
+        "–": "-",
+        "—": "-",
+        "“": '"',
+        "”": '"',
+        "‘": "'",
+        "’": "'",
+        "«": '"',
+        "»": '"',
+        "…": "...",
+        "✓": "[x]",
+        "§": "sec.",
+    }
+    body = md
+    for a, b in replacements.items():
+        body = body.replace(a, b)
+    # Horizontal rules produce broken \\linethickness on Pandoc 1.x
+    body = re.sub(r"(?m)^\s*([-*_]){3,}\s*$", "", body)
+    # Strip TeX math (greedy enough for table cells)
+    body = re.sub(r"\$\$.*?\$\$", " ", body, flags=re.S)
+    body = re.sub(r"\$[^$\n]+\$", " ", body)
+    body = re.sub(r"\\\(.*?\\\)", " ", body, flags=re.S)
+    body = re.sub(r"\\\[.*?\\\]", " ", body, flags=re.S)
+    # Remaining backslash commands -> plain text
+    body = re.sub(r"\\[a-zA-Z]+\{([^}]*)\}", r"\1", body)
+    body = re.sub(r"\\[a-zA-Z]+", " ", body)
+    body = body.replace("\\", "")
+    # Flatten wide markdown tables (old pandoc + long cells break LaTeX)
+    flat_lines: list[str] = []
+    for line in body.splitlines():
+        if line.strip().startswith("|") and line.strip().endswith("|"):
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            # skip pure separator rows
+            if all(re.fullmatch(r":?-{3,}:?", c.replace(" ", "")) for c in cells if c):
+                continue
+            flat_lines.append("- " + " | ".join(cells))
+        else:
+            flat_lines.append(line)
+    body = "\n".join(flat_lines)
+    # Keep Latin-1 (accents); drop Greek leftovers / emoji
+    body = "".join(ch if ord(ch) < 256 else " " for ch in body)
+
+    with tempfile.TemporaryDirectory(prefix="stp_pdf_") as td:
+        td_path = Path(td)
+        md_path = td_path / "doc.md"
+        plain_path = td_path / "doc.txt"
+        pdf_path = td_path / "doc.pdf"
+        safe_title = re.sub(r"[^\w\s\-.,:;()/+]", "", title)[:80] or "STP"
+        md_path.write_text(f"# {safe_title}\n\n{body}", encoding="utf-8")
+
+        # Strategy 1: Markdown -> PDF (works for simpler handouts)
+        # Strategy 2: Markdown -> plain -> PDF (more robust for long packs / nested lists)
+        attempts: list[list[str]] = [
+            [pandoc, str(md_path), "-o", str(pdf_path), "--standalone"],
+            [
+                pandoc,
+                str(md_path),
+                "-t",
+                "plain",
+                "-o",
+                str(plain_path),
+            ],
+        ]
+        for eng in ("xelatex", "pdflatex", "lualatex"):
+            if shutil.which(eng, path=env.get("PATH")):
+                attempts.insert(
+                    1,
+                    [
+                        pandoc,
+                        str(md_path),
+                        "-o",
+                        str(pdf_path),
+                        "--standalone",
+                        f"--pdf-engine={eng}",
+                    ],
+                )
+
+        for cmd in attempts:
+            try:
+                proc = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    timeout=180,
+                    env=env,
+                    check=False,
+                )
+            except (OSError, subprocess.TimeoutExpired):
+                continue
+            # Intermediate plain text step
+            if cmd[-2:] == ["-o", str(plain_path)] and proc.returncode == 0 and plain_path.exists():
+                plain = plain_path.read_text(encoding="utf-8", errors="replace")
+                plain = "".join(ch if ord(ch) < 256 else " " for ch in plain)
+                wrapped = f"# {safe_title}\n\n" + plain
+                plain_md = td_path / "plain.md"
+                plain_md.write_text(wrapped, encoding="utf-8")
+                try:
+                    proc2 = subprocess.run(
+                        [pandoc, str(plain_md), "-o", str(pdf_path), "--standalone"],
+                        capture_output=True,
+                        timeout=180,
+                        env=env,
+                        check=False,
+                    )
+                except (OSError, subprocess.TimeoutExpired):
+                    continue
+                if proc2.returncode != 0:
+                    continue
+            if pdf_path.exists():
+                data = pdf_path.read_bytes()
+                if data.startswith(b"%PDF"):
+                    return data
+                try:
+                    pdf_path.unlink()
+                except OSError:
+                    pass
+        return None
+
+
+def render_handout_pdf_bytes(handout_id: str) -> bytes | None:
+    """Render a handout pack as PDF bytes (None if PDF pipeline unavailable)."""
+    h = get_handout(handout_id)
+    md = render_handout(handout_id)
+    return markdown_to_pdf(md, title=h.title)
+
+
+def pdf_available() -> bool:
+    """True if Pandoc is on PATH (LaTeX still required for actual conversion)."""
+    import shutil
+
+    return shutil.which("pandoc") is not None

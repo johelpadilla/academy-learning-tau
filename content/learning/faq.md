@@ -1,5 +1,11 @@
 # Preguntas frecuentes (respuestas profundas)
 
+| Campo | Valor |
+|-------|--------|
+| **Documento** | FAQ · respuestas de posgrado |
+| **Versión** | 1.1 · 2026 |
+| **Uso** | Handout descargable + Ruta de aprendizaje |
+
 Estas respuestas están escritas para **malentendidos reales** de posgrado y de revisión por pares — no para un FAQ de marketing.
 
 ---
@@ -140,3 +146,7 @@ Porque STP es software **pedagógico**: sirven para practicar la misma gramátic
 ### ¿Dónde descargo PDF/Markdown para el LMS?
 
 Página **Materiales** de la app: guía rápida, manual, teoría, cheat-sheet, checklist, syllabus, FAQ, glosario, packs estudiante/docente.
+
+### ¿Qué es la Biblioteca de investigación?
+
+Catálogo curado de publicaciones locales (ruta configurable / `STP_PUBLICATIONS_DIR`) clasificadas por colecciones. Provee descarga de los binarios del corpus sin meterlos en git. No sustituye la lectura dual del Lab ni la validación externa.

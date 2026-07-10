@@ -32,3 +32,23 @@ En modelos simples de opinión, dos polos y una intensidad de interacción puede
 ## 5. Madurez
 
 **Baja-media (transferencia conceptual).** Ideal en cursos de sistemas complejos y ciencias sociales computacionales *críticas* (con el disclaimer explícito).
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | \(X=[\mathrm{opinion\_a}, \mathrm{opinion\_b}, \mathrm{interaction}]\) |
+| **Evento** | Onset de cascada de polarización (diseñado) |
+| **Preset Lab** | `social` · solo pedagógico |
+| **Demos** | `social_polarization_demo` |
+| **Madurez** | Baja-media (transferencia conceptual) |
+
+### Frases permitidas
+- Cascada de juguete muestra reorganización ordinal bajo latente diseñado…
+- Docencia crítica de ciencias sociales computacionales con disclaimer explícito.
+
+### Frases prohibidas (v1.0)
+- Predice elecciones / conflictos / virality
+- Prueba causal de polarización del mundo real

@@ -91,6 +91,22 @@ def render_markdown_report(
         for b in interp.get("bullets") or []:
             lines.append(f"- {b}")
         lines += ["", f"_{interp.get('caution', '')}_", ""]
+        voice = interp.get("voice") or {}
+        if voice.get("tau_gloss") or voice.get("example_dual"):
+            lines += [
+                f"### {t('domain_voice_ui.results_voice', lang=lang)}",
+                "",
+            ]
+            if voice.get("tau_gloss"):
+                lines.append(f"- **τ_s:** {voice['tau_gloss']}")
+            if voice.get("excess_gloss"):
+                lines.append(f"- **excess3:** {voice['excess_gloss']}")
+            if voice.get("classic_gloss"):
+                lines.append(f"- **EWS:** {voice['classic_gloss']}")
+            if voice.get("jargon_note"):
+                lines += ["", voice["jargon_note"], ""]
+            if voice.get("example_dual"):
+                lines += ["", f"> {voice['example_dual']}", ""]
 
     lines += [
         f"## {t('report.methods', lang=lang)}",

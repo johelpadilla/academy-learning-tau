@@ -11,7 +11,7 @@ ROOT = ensure_stp_path(__file__)
 
 import streamlit as st
 from stp.i18n.core import t
-from stp.domains import domain_label
+from stp.domains import domain_gloss_bundle, domain_label, render_domain_voice_markdown
 
 from components.ui import page_link, callout, footer, learning_goals, page_header, section_header
 from stp.education.content_loader import read_markdown
@@ -35,129 +35,110 @@ domains = [
         "key": "cardiology",
         "file": "cardiologia.md",
         "icon": "🫀",
-        "maturity": "Muy alto",
+        "maturity_key": "very_high",
         "maturity_cls": "high",
-        "data": "SDDB / CCTP",
+        "data_key": "cardiology",
         "lab_dataset": "sddb_rr_38_demo",
-        "blurb": "Pre-FV: τ_s y excess3; panel clásico a menudo ambiguo. Ancla empírica v1.0.",
     },
     {
         "name": "Epidemiología",
         "key": "epidemiology",
         "file": "epidemiologia.md",
         "icon": "🦠",
-        "maturity": "Alto",
+        "maturity_key": "high",
         "maturity_cls": "high",
-        "data": "Dengue-like demo",
+        "data_key": "epidemiology",
         "lab_dataset": "dengue_like_demo",
-        "blurb": "Brote con acoplamiento cases–clima (reorganización ordinal, no solo rampas).",
     },
     {
         "name": "Neurociencia",
         "key": "neuroscience",
         "file": "neurociencia.md",
         "icon": "🧠",
-        "maturity": "Medio-Alto",
+        "maturity_key": "med_high",
         "maturity_cls": "med",
-        "data": "EEG-like demo",
+        "data_key": "neuroscience",
         "lab_dataset": "eeg_like_demo",
-        "blurb": "Transición de acoplamiento entre canales — gramática ictal de juguete.",
     },
     {
         "name": "Ecología",
         "key": "ecology",
         "file": "ecologia.md",
         "icon": "🌿",
-        "maturity": "Medio",
+        "maturity_key": "med",
         "maturity_cls": "med",
-        "data": "Lago-like demo",
+        "data_key": "ecology",
         "lab_dataset": "ecology_like_demo",
-        "blurb": "Bloom / eutrofización: puente con la literatura CSD de lagos.",
     },
     {
         "name": "Clima e hidrología",
         "key": "climate",
         "file": "clima.md",
-        "icon": "drought",
-        "icon_emoji": "🏜️",
-        "maturity": "Medio",
+        "icon": "🏜️",
+        "maturity_key": "med",
         "maturity_cls": "med",
-        "data": "Sequía-like demo",
+        "data_key": "climate",
         "lab_dataset": "climate_drought_demo",
-        "blurb": "Temp–precip–suelo bajo latente de sequía. CSD climático sin forecast operativo.",
     },
     {
         "name": "Aprendizaje colectivo",
         "key": "education",
         "file": "educacion.md",
-        "icon_emoji": "🎓",
-        "maturity": "Medio",
+        "icon": "🎓",
+        "maturity_key": "med",
         "maturity_cls": "med",
-        "data": "Cohorte demo",
+        "data_key": "education",
         "lab_dataset": "education_cohort_demo",
-        "blurb": "Meta-pedagógico: engagement · peers · carga como sistema relacional del aula.",
     },
     {
         "name": "Dinámica social",
         "key": "social",
         "file": "social.md",
-        "icon_emoji": "🗣️",
-        "maturity": "Bajo-Medio",
+        "icon": "🗣️",
+        "maturity_key": "low_med",
         "maturity_cls": "low",
-        "data": "Polarización-like",
+        "data_key": "social",
         "lab_dataset": "social_polarization_demo",
-        "blurb": "Modelo de juguete de polarización. Enseña el método; no predice lo social.",
     },
     {
         "name": "Fisiología del sueño",
         "key": "physiology",
         "file": "fisiologia.md",
-        "icon_emoji": "😴",
-        "maturity": "Medio",
+        "icon": "😴",
+        "maturity_key": "med",
         "maturity_cls": "med",
-        "data": "Sueño-like demo",
+        "data_key": "physiology",
         "lab_dataset": "sleep_fragmentation_demo",
-        "blurb": "HRV · actividad · temp: fragmentación circadiana. Puente con cardio.",
     },
     {
         "name": "Finanzas",
         "key": "finance",
         "file": "finanzas.md",
-        "icon_emoji": "📈",
-        "maturity": "Medio",
+        "icon": "📈",
+        "maturity_key": "med",
         "maturity_cls": "low",
-        "data": "Vol-like demo",
+        "data_key": "finance",
         "lab_dataset": "finance_like_demo",
-        "blurb": "Regímenes de volatilidad para transferir el método — no para trading ciego.",
     },
 ]
-# localize display names, blurbs, maturity
-_mat_map = {
-    "Muy alto": "very_high",
-    "Alto": "high",
-    "Medio-Alto": "med_high",
-    "Medio": "med",
-    "Bajo-Medio": "low_med",
-    "Bajo": "low",
-}
+
+# Localize names, blurbs, maturity labels, data source chips
 for _d in domains:
     _d["name"] = domain_label(_d["key"])
     _bk = f"domain_blurbs.{_d['key']}"
     _bv = t(_bk)
-    if _bv != _bk:
-        _d["blurb"] = _bv
-    _mk = _mat_map.get(_d.get("maturity", ""), "")
-    if _mk:
-        _mv = t(f"maturity.{_mk}")
-        if _mv != f"maturity.{_mk}":
-            _d["maturity"] = _mv
-
-# Normalize icon field
-for d in domains:
-    d.setdefault("icon", d.get("icon_emoji", "◆"))
+    _d["blurb"] = _bv if _bv != _bk else _d.get("blurb", "")
+    _mk = _d.get("maturity_key", "med")
+    _d["maturity"] = t(f"maturity.{_mk}")
+    _dk = f"domain_data.{_d.get('data_key', _d['key'])}"
+    _dv = t(_dk)
+    _d["data"] = _dv if _dv != _dk else _d.get("data", "")
 
 section_header(t("dominios.map_header"))
+st.markdown(t("dominios.map_intro"))
 callout(t("dominios.anchor_callout"))
+with st.expander(t("dominios.legend_header"), expanded=True):
+    st.markdown(t("dominios.legend_body"))
 
 # Two rows of domain cards
 row1 = domains[:5]
@@ -199,6 +180,13 @@ callout(
 
 with st.container():
     st.markdown(read_markdown("dominios", selected["file"]))
+
+_sel_voice = domain_gloss_bundle(selected["key"])
+section_header(t("dominios.voice_header"))
+st.markdown(render_domain_voice_markdown(selected["key"]))
+st.markdown(f"**{t('dominios.voice_jargon')}**")
+st.info(_sel_voice.get("jargon_note", ""))
+st.success(_sel_voice.get("example_dual", ""))
 
 section_header(t("dominios.open_header"))
 st.markdown(t("dominios.open_body", name=selected["name"]))

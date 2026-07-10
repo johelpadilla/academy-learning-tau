@@ -35,3 +35,23 @@ CHB-MIT (PhysioNet) ofrece registros pediátricos con anotaciones de crisis.
 ## 6. Referencias
 
 - CHB-MIT PhysioNet; literatura de seizure prediction; marco ordinal del paradigma.
+
+---
+
+## Ficha de diseño (esquema uniforme)
+
+| Campo | Valor |
+|-------|--------|
+| **Proxy** | Bandpowers / envelopes multicanal |
+| **Evento** | Onset de crisis / marcador pre-ictal (anotado o diseñado) |
+| **Preset Lab** | `neuroscience` · m=3 · lectura dual |
+| **Demos** | `eeg_like_demo` |
+| **Madurez** | Medio-Alto (pedagogía + evidencia en consolidación) |
+
+### Frases permitidas
+- Cambio de co-ordinación ordinal hacia el evento diseñado/anotado…
+- Gramática ictal de juguete para entrenamiento metodológico; no predictor de crisis.
+
+### Frases prohibidas (v1.0)
+- Dispositivo validado de predicción de crisis
+- Soporte de decisión clínica en unidad de epilepsia

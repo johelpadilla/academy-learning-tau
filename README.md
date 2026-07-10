@@ -11,7 +11,7 @@
 | **Repository** | [github.com/johelpadilla/academy-learning-tau](https://github.com/johelpadilla/academy-learning-tau) |
 | **Local entry point** | `app/Home.py` |
 | **Languages** | Spanish (source) · English · French |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Author** | Johel Padilla-Villanueva |
 | **Contact** | [joel.padilla2@upr.edu](mailto:joel.padilla2@upr.edu) |
 
@@ -198,7 +198,7 @@ If you use Academy Learning Tau in teaching or research, please cite the softwar
   title     = {Academy Learning Tau: Educational and research platform
                for Systemic Tau and RECD},
   year      = {2026},
-  version   = {1.0.0},
+  version   = {1.1.0},
   url       = {https://github.com/johelpadilla/academy-learning-tau},
   orcid     = {0000-0002-5797-6931}
 }

@@ -98,6 +98,11 @@ else:
     st.caption(t("evidencia.press_regen"))
 
 section_header(t("evidencia.pubs_header"))
+page_link(
+    "pages/10_Biblioteca.py",
+    label=t("evidencia.pubs_library_link"),
+    icon="📚",
+)
 pubs = data.get("publications", [])
 if not pubs:
     st.info(t("evidencia.no_pubs"))

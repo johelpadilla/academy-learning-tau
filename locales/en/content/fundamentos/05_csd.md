@@ -1,15 +1,42 @@
-# CSD and dual reading
+# Foundations — Critical slowing down (CSD) in context
 
-## Learning goals
-- Recall critical slowing down (CSD) as the classical narrative.
-- Apply dual reading: classical panel ↔ relational panel.
+| Field | Value |
+|-------|--------|
+| **Module** | Foundations 05 |
+| **Level** | Graduate |
+| **Version** | 1.1 · 2026 |
 
-## Dual reading
-1. Did classical EWS move as CSD predicts?
-2. Did τ_s / excess3 reorganize across the same cut?
-3. Do surrogates support residual relational structure?
+---
 
-Agreement, silence, or contradiction are all publishable results if scoped honestly.
+## Learning outcomes
 
-## Practice
-Evidence page (CCTP) + Lab SDDB samples 38/51.
+1. Summarize CSD as a classical critical-transition heuristic.  
+2. Locate CSD relative to τ_s/RECD (complement, not rival slogan).  
+3. Avoid overclaiming “tipping point detection” from classroom demos.
+
+---
+
+## 1. CSD in one paragraph
+
+Near certain bifurcations, recovery from small perturbations slows, often increasing variance and lag-1 autocorrelation in observations. This motivates classical EWS (Scheffer et al. and related literature).
+
+---
+
+## 2. Relation to STP
+
+| Frame | Question |
+|-------|----------|
+| CSD / classical EWS | Is univariate recovery slowing / amplitude rising? |
+| τ_s + RECD | Is shared ordinal structure reorganizing? |
+
+Both can be true, false, or mixed. Dual reading is the scientific habit.
+
+---
+
+## 3. Pedagogical caution
+
+Classroom “drought” or “bloom” demos illustrate **logic**, not operational early-warning systems for real policy.
+
+---
+
+*Foundations 05 · STP v1.1*

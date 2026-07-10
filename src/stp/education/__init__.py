@@ -8,12 +8,24 @@ from stp.education.handouts import (
     render_handout,
     render_handout_bytes,
 )
+from stp.education.research_library import (
+    filter_library,
+    get_item,
+    list_library,
+    library_stats,
+    publications_root,
+)
 
 __all__ = [
+    "filter_library",
     "get_handout",
+    "get_item",
     "glossary_to_markdown",
     "list_handouts",
+    "list_library",
     "list_section",
+    "library_stats",
+    "publications_root",
     "read_markdown",
     "render_handout",
     "render_handout_bytes",
