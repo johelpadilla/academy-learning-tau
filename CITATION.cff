@@ -5,8 +5,13 @@ title: "Academy Learning Tau: Educational and research platform for Systemic Tau
 version: "1.1.0"
 date-released: "2026-07-10"
 license: MIT
+doi: "10.5281/zenodo.21301571"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21301571"
+    description: "Zenodo software archive for Academy Learning Tau v1.1.0"
 repository-code: "https://github.com/johelpadilla/academy-learning-tau"
-url: "https://github.com/johelpadilla/academy-learning-tau"
+url: "https://doi.org/10.5281/zenodo.21301571"
 abstract: >-
   Academy Learning Tau is an open educational and research software platform
   that operationalizes the Systemic Tau framework and the Discrete Extramental

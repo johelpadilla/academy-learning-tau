@@ -4,11 +4,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21301571.svg)](https://doi.org/10.5281/zenodo.21301571)
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--5797--6931-a6ce39.svg)](https://orcid.org/0000-0002-5797-6931)
 
 | | |
 |:--|:--|
 | **Repository** | [github.com/johelpadilla/academy-learning-tau](https://github.com/johelpadilla/academy-learning-tau) |
+| **DOI (Zenodo)** | [10.5281/zenodo.21301571](https://doi.org/10.5281/zenodo.21301571) |
 | **Local entry point** | `app/Home.py` |
 | **Languages** | Spanish (source) · English · French |
 | **Version** | 1.1.0 |
@@ -199,10 +201,13 @@ If you use Academy Learning Tau in teaching or research, please cite the softwar
                for Systemic Tau and RECD},
   year      = {2026},
   version   = {1.1.0},
-  url       = {https://github.com/johelpadilla/academy-learning-tau},
+  doi       = {10.5281/zenodo.21301571},
+  url       = {https://doi.org/10.5281/zenodo.21301571},
   orcid     = {0000-0002-5797-6931}
 }
 ```
+
+**DOI:** [https://doi.org/10.5281/zenodo.21301571](https://doi.org/10.5281/zenodo.21301571)
 
 A machine-readable citation file is provided as [`CITATION.cff`](CITATION.cff).
 
